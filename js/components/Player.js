@@ -40,20 +40,20 @@ class Player extends Body {
   loadImg() {
     this.animate.setup();
     this.animate.animateE(this.image);
-    this.animateR.setup();
-    this.animateR.animateD(this.imageR, 13);
-    this.soplo.setup();
-    this.soplo.animateD(this.imageS, 29);
-    this.soplo2.setup();
-    this.soplo2.animateD(this.imageS2, 29);
+    // this.animateR.setup();
+    // this.animateR.animateD(this.imageR, 13);
+    //  this.soplo.setup();
+    //  this.soplo.animateD(this.imageS, 29);
+    // this.soplo2.setup();
+    // this.soplo2.animateD(this.imageS2, 29);
   }
 
   setup(engine, world, scena) {
     this.scena = scena;
     this.animate.setupAnimate();
-    this.animateR.setupAnimate();
-    this.soplo.setupAnimate();
-    this.soplo2.setupAnimate();
+    // this.animateR.setupAnimate();
+    // this.soplo.setupAnimate();
+    //  this.soplo2.setupAnimate();
     this.createEllipse(world, scena);
     console.log(this.body[0].angle);
   }
@@ -78,15 +78,15 @@ class Player extends Body {
       // this.animate.format = 2
     }
     if (this.speed === 5) {
-      this.soploX = (this.animate.xp + 1) * 1.21;
+      //   this.soploX = (this.animate.xp + 1) * 1.21;
     } else {
-      this.soploX = (this.animate.xp + 1) * 1.3;
+      //    this.soploX = (this.animate.xp + 1) * 1.3;
     }
 
     if (this.speed === -5) {
-      this.soploX2 = -(this.animate.xp + 1) * 20;
+      //   this.soploX2 = -(this.animate.xp + 1) * 20;
     } else {
-      this.soploX2 = -(this.animate.xp + 1) * 1.5;
+      //    this.soploX2 = -(this.animate.xp + 1) * 1.5;
     }
 
     //this.body.map((b) => image(this.soplo2.spriteEllipse(b.width / 1.2), b.position.x + b.width / this.soploX2 + this.scena.size(0.8, this.scena.scale), b.position.y - b.width / 2.4))

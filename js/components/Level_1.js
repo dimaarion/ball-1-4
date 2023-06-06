@@ -1,5 +1,5 @@
 class Level_1 {
-  scena = new Scena("./scena/scena.json");
+  scena = new Scena("./js/scena/scena.json");
   player = new Player("player");
   animate = new Animate();
   mapPlatform = new TileMap(this.scena);
