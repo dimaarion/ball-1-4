@@ -1,23 +1,31 @@
 /* eslint-disable no-undef, no-unused-vars */
+let Engine = Matter.Engine;
+let engine, world;
+let level_1 = new Level_1();
+function preload() {
+  scena1 = loadJSON("./scena/scena.json");
+}
+function preload() {
+  level_1.preload();
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  // Put setup code here
+  engine = Engine.create();
+  engine.gravity.y = 2;
+  world = engine.world;
+  Engine.run(engine);
+  level_1.create(engine, world);
 }
 
-const foo = "bar";
-function draw() {  
-  // Put drawings here
-  fill(234, 31, 81);
-  noStroke();
-  rect(50, 50, 250, 250);
-  fill(255);
-  textStyle(BOLD);
-  textSize(140);
-  text(foo, 60, 250);
+function draw() {
+  level_1.view();
 }
 
-// This Redraws the Canvas when resized
-windowResized = function() {
-  resizeCanvas(windowWidth, windowHeight);
-};
+function keyPressed(e) {
+  level_1.pressed(e);
+}
+
+function keyReleased(e) {
+  level_1.rePressed(e);
+}
