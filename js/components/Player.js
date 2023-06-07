@@ -16,8 +16,8 @@ class Player extends Body {
   speed = 0;
   friction = 1;
   getObj;
-  image = "./asset/Player/player3.png";
-  imageR = "./asset/Player/playerR.png";
+  image = "./asset/Player/playerHeader.png";
+  imageR = "./asset/Player/player.png";
   imageS = "./asset/Player/soplo.png";
   imageS2 = "./asset/Player/soplo2.png";
   frame = 1;
@@ -39,7 +39,9 @@ class Player extends Body {
   }
   loadImg() {
     this.animate.setup();
-    this.animate.animateE(this.image);
+    this.animate.animateD(this.image, 48);
+    this.animateR.setup();
+    this.animateR.animateD(this.imageR, 32);
     // this.animateR.setup();
     // this.animateR.animateD(this.imageR, 13);
     //  this.soplo.setup();
@@ -51,6 +53,7 @@ class Player extends Body {
   setup(engine, world, scena) {
     this.scena = scena;
     this.animate.setupAnimate();
+     this.animateR.setupAnimate();
     // this.animateR.setupAnimate();
     // this.soplo.setupAnimate();
     //  this.soplo2.setupAnimate();
@@ -60,22 +63,22 @@ class Player extends Body {
 
   view() {
     if (this.speed === 1) {
-      this.setRotate(0.1);
+      // this.setRotate(0.1);
       this.direction = 1;
     } else if (this.speed === 2) {
-      this.setRotate(-0.1);
+      // this.setRotate(-0.1);
       this.direction = 2;
     } else {
       this.description = 0;
     }
 
-    // this.animate.animated = false
+    this.animate.animated = false;
     if (this.direction === 1) {
-      //  this.animate.animated = true;
-      // this.animate.format = 1
+      this.animate.animated = true;
+      this.animate.format = 1;
     } else if (this.direction === 2) {
-      // this.animate.animated = true;
-      // this.animate.format = 2
+      this.animate.animated = true;
+      this.animate.format = 2;
     }
     if (this.speed === 5) {
       //   this.soploX = (this.animate.xp + 1) * 1.21;
@@ -91,12 +94,24 @@ class Player extends Body {
 
     //this.body.map((b) => image(this.soplo2.spriteEllipse(b.width / 1.2), b.position.x + b.width / this.soploX2 + this.scena.size(0.8, this.scena.scale), b.position.y - b.width / 2.4))
     //this.body.map((b) => image(this.soplo.spriteEllipse(b.width / 1.2), b.position.x - b.width / this.soploX - this.scena.size(1.5, this.scena.scale), b.position.y - b.width / 2.4))
-    push();
-    translate(this.body[0].position.x, this.body[0].position.y);
-    rotate(this.body[0].angle);
+
+    //  translate(this.body[0].position.x, this.body[0].position.y);
+    // rotate(this.body[0].angle);
+
+
     this.body.map((b) =>
-      image(this.animate.sprite(), -b.width / 2, -b.width / 2, b.width, b.width)
+      image(
+        this.animate.spriteRect(32,25),
+        b.position.x - 32 / 2,
+        b.position.y - 25 / 2
+      )
     );
-    pop();
+    this.body.map((b) =>
+      image(
+        this.animateR.spriteEllipse(b.width),
+        b.position.x - b.width / 2,
+        b.position.y - b.width / 2
+      )
+    );
   }
 }

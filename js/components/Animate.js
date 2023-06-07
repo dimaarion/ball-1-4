@@ -170,11 +170,12 @@ class Animate {
   spriteRect(w, h) {
     try {
       if (this.animated) {
+        this.params();
         this.newArrImg[this.xp].resize(w, h);
         return this.newArrImg[this.xp];
       } else {
-        this.img.resize(w, h);
-        return this.img;
+        this.newArrImg[0].resize(w, h);
+        return this.newArrImg[0];
       }
     } catch (Exception) {
       return this.img;
