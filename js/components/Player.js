@@ -73,13 +73,19 @@ class Player extends Body {
     }
 
     this.animate.animated = false;
+    this.animateR.animated = false;
     if (this.direction === 1) {
       this.animate.animated = true;
       this.animate.format = 1;
+       this.animateR.animated = true;
+      this.animateR.format = 3;
     } else if (this.direction === 2) {
       this.animate.animated = true;
       this.animate.format = 2;
+       this.animateR.animated = true;
+      this.animateR.format = 0;
     }
+    
     if (this.speed === 5) {
       //   this.soploX = (this.animate.xp + 1) * 1.21;
     } else {
@@ -99,18 +105,19 @@ class Player extends Body {
     // rotate(this.body[0].angle);
 
 
-    this.body.map((b) =>
-      image(
-        this.animate.spriteRect(32,25),
-        b.position.x - 32 / 2,
-        b.position.y - 25 / 2
-      )
-    );
+   
     this.body.map((b) =>
       image(
         this.animateR.spriteEllipse(b.width),
         b.position.x - b.width / 2,
         b.position.y - b.width / 2
+      )
+    ); 
+    this.body.map((b) =>
+      image(
+        this.animate.spriteRect(b.width,b.width / 1.7),
+        b.position.x - b.width / 2,
+       ( b.position.y - this.scena.size(5, this.scena.scale)) - b.width / 2
       )
     );
   }

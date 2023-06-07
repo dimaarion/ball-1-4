@@ -4,7 +4,7 @@ class Scena {
   scenaWidth = 0;
   scenaHeigiht = 0;
   scenaSize = 0;
-  scale = 1.5;
+  scale = 2;
   constructor(name) {
     this.name = name;
   }

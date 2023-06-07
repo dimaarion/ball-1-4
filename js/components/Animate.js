@@ -147,6 +147,15 @@ class Animate {
       if (this.xp < this.frame - 1) {
         //this.xp = 0;
       }
+    }else if (this.format === 3) {
+      this.xr += 1;
+      if (this.xr > this.rate) {
+        this.xp = this.xp - 1;
+        this.xr = 0;
+      }
+      if (this.xp <= 0) {
+        this.xp = this.frame - 1;
+      }
     }
   }
 
