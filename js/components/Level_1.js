@@ -44,7 +44,7 @@ class Level_1 {
 
     this.mapPlatform.view(73);
     this.lift.viewImage();
-    this.point.viewRect();
+    //this.point.viewRect();
     this.portal.viewRect();
     this.player.view();
   }
