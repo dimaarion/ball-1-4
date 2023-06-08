@@ -46,6 +46,14 @@ class Body {
         this.getType(engine, name2).position.y / n
     });
   }
+  
+   translateX(engine, name1, name2, events, n = 10) {
+    Matter.Body.translate(this.getType(engine, events), {
+      x: this.getType(engine, name1).position.x / n -
+        this.getType(engine, name2).position.x / n,
+      y:0
+    });
+  }
 
   translates() {
     if (this.world !== undefined) {

@@ -62,28 +62,36 @@ class Player extends Body {
   }
 
   view() {
+    
+    
+     this.animate.animated = false;
+    this.animateR.animated = false;
+    this.animate.rate = 0.5
     if (this.speed === 1) {
-      // this.setRotate(0.1);
+       this.setRotate(0.2);
       this.direction = 1;
+       this.animateR.animated = true;
+      this.animateR.format = 3;
     } else if (this.speed === 2) {
-      // this.setRotate(-0.1);
+       this.setRotate(-0.2);
       this.direction = 2;
+        this.animateR.animated = true;
+      this.animateR.format = 0;
     } else {
       this.description = 0;
+       this.setRotate(0);
+      
     }
 
-    this.animate.animated = false;
-    this.animateR.animated = false;
+   
     if (this.direction === 1) {
       this.animate.animated = true;
       this.animate.format = 1;
-       this.animateR.animated = true;
-      this.animateR.format = 3;
+      
     } else if (this.direction === 2) {
       this.animate.animated = true;
       this.animate.format = 2;
-       this.animateR.animated = true;
-      this.animateR.format = 0;
+     
     }
     
     if (this.speed === 5) {
