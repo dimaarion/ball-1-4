@@ -301,7 +301,7 @@ class Body {
     }
   }
 
-  viewImage( w = 0, h = 0) {
+  viewImage() {
     if (this.world !== undefined) {
       rectMode(CENTER);
       this.world.bodies
@@ -311,8 +311,8 @@ class Body {
             this.animate.sprite(),
             b.position.x - b.width / 2,
             b.position.y - b.height / 2,
-            w > 0?scena.size(w,scena.scale):b.width,
-            h > 0?scena.size(h,scena.scale):b.height
+            b.width,
+            b.height
           )
         );
     }

@@ -774,15 +774,15 @@
                  "y":450.83335
                 }, 
                 {
-                 "height":27.3333,
+                 "height":32,
                  "id":122,
                  "name":"portal",
                  "rotation":0,
                  "type":"1",
                  "visible":true,
-                 "width":8,
-                 "x":553.818181818182,
-                 "y":448.106077272727
+                 "width":32,
+                 "x":41.0741436623792,
+                 "y":97.0901790215347
                 }],
          "opacity":1,
          "type":"objectgroup",
