@@ -28,11 +28,17 @@ class Body {
     return this.n++;
   }
 
-  loadImage(image) {
+  loadImage(image, frame = 0) {
     this.image = image;
     this.animate.setup();
-    this.animate.animateE(this.image);
+    if(frame > 0){
+      this.animate.animateD(image, frame);
+    }else{
+      this.animate.animateE(this.image);
+    }
+    
   }
+
 
   setupAnimate() {
     this.animate.setupAnimate();
@@ -295,7 +301,7 @@ class Body {
     }
   }
 
-  viewImage() {
+  viewImage( w = 0, h = 0) {
     if (this.world !== undefined) {
       rectMode(CENTER);
       this.world.bodies
@@ -305,8 +311,8 @@ class Body {
             this.animate.sprite(),
             b.position.x - b.width / 2,
             b.position.y - b.height / 2,
-            b.width,
-            b.height
+            w > 0?scena.size(w,scena.scale):b.width,
+            h > 0?scena.size(h,scena.scale):b.height
           )
         );
     }

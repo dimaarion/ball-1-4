@@ -15,6 +15,7 @@ class Level_1 {
     this.animate.animateE("./asset/level1/Background.png");
     this.mapPlatform.loadImg("./asset/level1/Tiles/IndustrialTile_73.png");
     this.lift.loadImage("./asset/level1/Tiles/IndustrialTile_73.png");
+    this.portal.loadImage("./asset/portal/portal.png");
   }
 
   create(engine, world) {
