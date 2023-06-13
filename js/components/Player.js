@@ -30,6 +30,7 @@ class Player extends Body {
   direction = 0;
   soploX = 2;
   soploX2 = 2;
+  speedBody = 5;
   animate = new Animate();
   animateR = new Animate();
   soplo = new Animate();
@@ -66,33 +67,31 @@ class Player extends Body {
 
 
     this.body.map((b) => {
-      if(mouseIsPressed){
-       //  if(b.position.x < mouseX){
-          
-    //  }
-      }
-    
+   //   Matter.Body.setVelocity(b,{x:1,y:5})
     })
-   this.speed === 2
+   
     this.animate.animated = false;
     this.animateR.animated = false;
     this.animate.rate = 0.5
     if (this.speed === 1) {
-       this.setRotate(0.2);
+      this.setVelosity(this.speedBody,this.gravity)
+      // this.setRotate(0.2);
       this.direction = 1;
        this.animateR.animated = true;
       this.animateR.format = 3;
     } else if (this.speed === 2) {
-       this.setRotate(-0.2);
+      this.setVelosity(-this.speedBody,this.gravity)
+       //this.setRotate(-0.2);
       this.direction = 2;
         this.animateR.animated = true;
       this.animateR.format = 0;
     } else {
       this.description = 0;
-       this.setRotate(0);
+      // this.setRotate(0);
+      this.setVelosity(0,this.gravity)
       
     }
-console.log(this.speed)
+
    
     if (this.direction === 1) {
       this.animate.animated = true;

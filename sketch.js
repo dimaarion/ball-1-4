@@ -12,7 +12,7 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   engine = Engine.create();
-  engine.gravity.y = 2;
+  engine.gravity.y = 0;
   world = engine.world;
   Engine.run(engine);
   level_1.create(engine, world);
