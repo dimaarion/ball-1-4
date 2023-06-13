@@ -67,8 +67,8 @@ class Body {
         .filter((f) => f.label === this.name)
         .map((b) =>
           translate(
-            -b.position.x + (windowWidth / 2 - b.width),
-            -b.position.y + (windowHeight / 2 - b.width)
+            -b.position.x + (windowWidth / 2 - b.width / 2),
+            -b.position.y + (windowHeight / 2 - b.width / 2)
           )
         );
     }

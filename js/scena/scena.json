@@ -741,48 +741,48 @@
          "name":"portal",
          "objects":[
                 {
-                 "height":27.3333333333333,
+                 "height":4,
                  "id":80,
                  "name":"portal",
                  "rotation":0,
                  "type":"1",
                  "visible":true,
-                 "width":8,
-                 "x":41.666666666667,
-                 "y":514
+                 "width":4,
+                 "x":46.3333333333337,
+                 "y":524.666666666667
                 }, 
                 {
-                 "height":27.3333,
+                 "height":4,
                  "id":119,
                  "name":"portal",
                  "rotation":0,
                  "type":"1",
                  "visible":true,
-                 "width":8,
-                 "x":106.5,
-                 "y":452.33335
+                 "width":4,
+                 "x":107.833333333333,
+                 "y":461.000016666667
                 }, 
                 {
-                 "height":27.3333,
+                 "height":4,
                  "id":121,
                  "name":"portal",
                  "rotation":0,
                  "type":"1",
                  "visible":true,
-                 "width":8,
-                 "x":292.5,
-                 "y":450.83335
+                 "width":4,
+                 "x":301.833333333333,
+                 "y":464.166683333333
                 }, 
                 {
-                 "height":32,
+                 "height":4,
                  "id":122,
                  "name":"portal",
                  "rotation":0,
                  "type":"1",
                  "visible":true,
-                 "width":32,
-                 "x":41.0741436623792,
-                 "y":97.0901790215347
+                 "width":4,
+                 "x":45.8241436623792,
+                 "y":111.840179021535
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -809,15 +809,15 @@
          "name":"player",
          "objects":[
                 {
-                 "height":25,
+                 "height":13.75,
                  "id":120,
                  "name":"player",
                  "rotation":0,
                  "type":"player",
                  "visible":true,
-                 "width":25,
-                 "x":34.5,
-                 "y":37
+                 "width":14.25,
+                 "x":41.25,
+                 "y":51.5
                 }],
          "opacity":1,
          "type":"objectgroup",

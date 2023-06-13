@@ -63,8 +63,18 @@ class Player extends Body {
 
   view() {
     
+
+
+    this.body.map((b) => {
+      if(mouseIsPressed){
+       //  if(b.position.x < mouseX){
+          
+    //  }
+      }
     
-     this.animate.animated = false;
+    })
+   this.speed === 2
+    this.animate.animated = false;
     this.animateR.animated = false;
     this.animate.rate = 0.5
     if (this.speed === 1) {
@@ -82,7 +92,7 @@ class Player extends Body {
        this.setRotate(0);
       
     }
-
+console.log(this.speed)
    
     if (this.direction === 1) {
       this.animate.animated = true;
@@ -94,6 +104,10 @@ class Player extends Body {
      
     }
     
+
+
+
+
     if (this.speed === 5) {
       //   this.soploX = (this.animate.xp + 1) * 1.21;
     } else {

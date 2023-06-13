@@ -7,7 +7,7 @@ class Level_1 {
   lift = new Body("lift");
   point = new Body("point");
   events = new Events();
-  portal = new Body("portal");
+  portal = new Portal("portal");
   preload() {
     this.scena.preload();
     this.player.loadImg();
@@ -15,7 +15,7 @@ class Level_1 {
     this.animate.animateE("./asset/level1/Background.png");
     this.mapPlatform.loadImg("./asset/level1/Tiles/IndustrialTile_73.png");
     this.lift.loadImage("./asset/level1/Tiles/IndustrialTile_73.png");
-    this.portal.loadImage("./asset/portal/portal.png");
+    this.portal.preload();
   }
 
   create(engine, world) {
@@ -26,7 +26,7 @@ class Level_1 {
     this.point.sensor = true;
     this.point.createRect(world, this.scena);
     this.events.collideStart(engine, this.scena);
-    this.portal.createRect(world, this.scena);
+    this.portal.create(world, this.scena);
   }
 
   view() {
@@ -38,16 +38,37 @@ class Level_1 {
       -window.innerWidth / 2,
       -window.innerHeight / 2,
       this.scena.size(this.scena.scenaWidth, this.scena.scale) +
-        window.innerWidth,
+      window.innerWidth,
       this.scena.size(this.scena.scenaHeigiht, this.scena.scale) +
-        window.innerHeight
+      window.innerHeight
     );
 
     this.mapPlatform.view(73);
     this.lift.viewImage();
     //this.point.viewRect();
-    this.portal.viewImage(100,100);
+    this.portal.view();
     this.player.view();
+    if(mouseIsPressed){
+      if (mouseX > windowWidth / 2) {
+        // console.log(this.player.body[0].position.x)
+         this.player.speed = 1;
+       } else {
+         this.player.speed = 2;
+       }
+    }
+  }
+
+  pressedM() {
+    if (mouseX > windowWidth / 2) {
+     // console.log(this.player.body[0].position.x)
+    //  this.player.speed = 1;
+    } else {
+     // this.player.speed = 2;
+    }
+  }
+
+  relassedM(e){
+    this.player.speed = 0;
   }
 
   pressed(e) {

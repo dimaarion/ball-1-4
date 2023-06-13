@@ -22,6 +22,14 @@ function draw() {
   level_1.view();
 }
 
+function mousePressed(e) {
+  level_1.pressedM(e)
+}
+
+function mouseReleased(e){
+level_1.relassedM(e)
+}
+
 function keyPressed(e) {
   level_1.pressed(e);
 }
