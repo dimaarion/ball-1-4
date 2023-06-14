@@ -14,7 +14,7 @@ class Level_1 {
     this.animate.setup();
     this.animate.animateE("./asset/level1/f1.jpg");
     this.mapPlatform.loadImg("./asset/level1/1.png");
-    this.lift.loadImage("./asset/level1/Tiles/IndustrialTile_73.png");
+    this.lift.loadImage("./asset/portal/tiled.png");
     this.portal.preload();
   }
 
