@@ -3,6 +3,7 @@ class Level_1 {
   player = new Player("player");
   animate = new Animate();
   mapPlatform = new TileMap(this.scena);
+  mapPlatformF = new TileMap(this.scena);
   platform = new Body("platform");
   lift = new Body("lift");
   point = new Body("point");
@@ -14,7 +15,8 @@ class Level_1 {
     this.animate.setup();
     this.animate.animateE("./asset/level1/f1.jpg");
     this.mapPlatform.loadImg("./asset/level1/1.png");
-    this.lift.loadImage("./asset/portal/tiled.png");
+    this.mapPlatformF.loadImg("./asset/portal/tiled.png");
+    this.lift.loadImage("./asset/level1/Tiles/IndustrialTile_73.png");
     this.portal.preload();
   }
 
@@ -44,6 +46,7 @@ class Level_1 {
     );
 
     this.mapPlatform.view(73);
+    this.mapPlatformF.view(9);
     this.lift.viewImage();
     //this.point.viewRect();
     this.portal.view();
