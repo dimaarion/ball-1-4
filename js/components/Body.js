@@ -9,7 +9,7 @@ class Body {
   n = 0;
   scena;
   image;
-  gravity = 10;
+  gravity = 3;
   animate = new Animate();
   constructor(name) {
     this.name = name;
@@ -31,14 +31,12 @@ class Body {
   loadImage(image, frame = 0) {
     this.image = image;
     this.animate.setup();
-    if(frame > 0){
+    if (frame > 0) {
       this.animate.animateD(image, frame);
-    }else{
+    } else {
       this.animate.animateE(this.image);
     }
-    
   }
-
 
   setupAnimate() {
     this.animate.setupAnimate();
@@ -49,15 +47,16 @@ class Body {
       x: 0,
       y:
         this.getType(engine, name1).position.y / n -
-        this.getType(engine, name2).position.y / n
+        this.getType(engine, name2).position.y / n,
     });
   }
-  
-   translateX(engine, name1, name2, events, n = 10) {
+
+  translateX(engine, name1, name2, events, n = 10) {
     Matter.Body.translate(this.getType(engine, events), {
-      x: this.getType(engine, name1).position.x / n -
+      x:
+        this.getType(engine, name1).position.x / n -
         this.getType(engine, name2).position.x / n,
-      y:0
+      y: 0,
     });
   }
 
@@ -191,7 +190,7 @@ class Body {
           label: this.name,
           isStatic: this.static,
           isSensor: this.sensor,
-          typeObject: b.type
+          typeObject: b.type,
         }
       )
     );
@@ -211,7 +210,7 @@ class Body {
           label: this.name,
           isStatic: this.static,
           isSensor: this.sensor,
-          typeObject: b.type
+          typeObject: b.type,
         }
       )
     );
@@ -234,7 +233,7 @@ class Body {
           label: this.name,
           isStatic: this.static,
           isSensor: this.sensor,
-          typeObject: b.type
+          typeObject: b.type,
         }
       )
     );
@@ -252,7 +251,7 @@ class Body {
         b.polygon.map((v, i) => {
           a[i] = {
             x: scena.size(v.x, scena.scale),
-            y: scena.size(v.y, scena.scale)
+            y: scena.size(v.y, scena.scale),
           };
           return a;
         }),
@@ -262,7 +261,7 @@ class Body {
           label: this.name,
           isStatic: this.static,
           isSensor: this.sensor,
-          typeObject: b.type
+          typeObject: b.type,
         }
       )
     );

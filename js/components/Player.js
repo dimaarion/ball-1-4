@@ -30,7 +30,7 @@ class Player extends Body {
   direction = 0;
   soploX = 2;
   soploX2 = 2;
-  speedBody = 5;
+  speedBody = 1;
   animate = new Animate();
   animateR = new Animate();
   soplo = new Animate();
@@ -54,58 +54,48 @@ class Player extends Body {
   setup(engine, world, scena) {
     this.scena = scena;
     this.animate.setupAnimate();
-     this.animateR.setupAnimate();
+    this.animateR.setupAnimate();
     // this.animateR.setupAnimate();
     // this.soplo.setupAnimate();
     //  this.soplo2.setupAnimate();
     this.createEllipse(world, scena);
-    console.log(this.body[0].angle);
+    this.speedBody = scena.size(this.speedBody, scena.scale);
+    this.gravity = scena.size(this.gravity, scena.scale);
   }
 
   view() {
-    
-
-
     this.body.map((b) => {
-   //   Matter.Body.setVelocity(b,{x:1,y:5})
-    })
-   
+      //   Matter.Body.setVelocity(b,{x:1,y:5})
+    });
+
     this.animate.animated = false;
     this.animateR.animated = false;
-    this.animate.rate = 0.5
+    this.animate.rate = 0.5;
     if (this.speed === 1) {
-      this.setVelosity(this.speedBody,this.gravity)
+      this.setVelosity(this.speedBody, this.gravity);
       // this.setRotate(0.2);
       this.direction = 1;
-       this.animateR.animated = true;
+      this.animateR.animated = true;
       this.animateR.format = 3;
     } else if (this.speed === 2) {
-      this.setVelosity(-this.speedBody,this.gravity)
-       //this.setRotate(-0.2);
+      this.setVelosity(-this.speedBody, this.gravity);
+      //this.setRotate(-0.2);
       this.direction = 2;
-        this.animateR.animated = true;
+      this.animateR.animated = true;
       this.animateR.format = 0;
     } else {
       this.description = 0;
       // this.setRotate(0);
-      this.setVelosity(0,this.gravity)
-      
+      this.setVelosity(0, this.gravity);
     }
 
-   
     if (this.direction === 1) {
       this.animate.animated = true;
       this.animate.format = 1;
-      
     } else if (this.direction === 2) {
       this.animate.animated = true;
       this.animate.format = 2;
-     
     }
-    
-
-
-
 
     if (this.speed === 5) {
       //   this.soploX = (this.animate.xp + 1) * 1.21;
@@ -125,20 +115,18 @@ class Player extends Body {
     //  translate(this.body[0].position.x, this.body[0].position.y);
     // rotate(this.body[0].angle);
 
-
-   
     this.body.map((b) =>
       image(
         this.animateR.spriteEllipse(b.width),
         b.position.x - b.width / 2,
         b.position.y - b.width / 2
       )
-    ); 
+    );
     this.body.map((b) =>
       image(
-        this.animate.spriteRect(b.width,b.width / 1.7),
+        this.animate.spriteRect(b.width, b.width / 1.7),
         b.position.x - b.width / 2,
-       ( b.position.y - this.scena.size(5, this.scena.scale)) - b.width / 2
+        b.position.y - this.scena.size(5, this.scena.scale) - b.width / 2
       )
     );
   }
