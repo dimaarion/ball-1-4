@@ -4,6 +4,7 @@ class Level_1 {
   animate = new Animate();
   mapPlatform = new TileMap(this.scena);
   mapPlatformF = new TileMap(this.scena);
+  mapPlatformF2 = new TileMap(this.scena);
   platform = new Body("platform");
   lift = new Body("lift");
   point = new Body("point");
@@ -16,6 +17,7 @@ class Level_1 {
     this.animate.animateE("./asset/level1/f1.jpg");
     this.mapPlatform.loadImg("./asset/level1/1.png");
     this.mapPlatformF.loadImg("./asset/portal/tiled.png");
+    this.mapPlatformF2.loadImg("./asset/portal/tiled2.png");
     this.lift.loadImage("./asset/level1/Tiles/IndustrialTile_73.png");
     this.portal.preload();
   }
@@ -40,37 +42,38 @@ class Level_1 {
       -window.innerWidth / 2,
       -window.innerHeight / 2,
       this.scena.size(this.scena.scenaWidth, this.scena.scale) +
-      window.innerWidth,
+        window.innerWidth,
       this.scena.size(this.scena.scenaHeigiht, this.scena.scale) +
-      window.innerHeight
+        window.innerHeight
     );
 
     this.mapPlatform.view(73);
     this.mapPlatformF.view(9);
+    this.mapPlatformF2.view(18);
     this.lift.viewImage();
     //this.point.viewRect();
     this.portal.view();
     this.player.view();
-    if(mouseIsPressed){
+    if (mouseIsPressed) {
       if (mouseX > windowWidth / 2) {
         // console.log(this.player.body[0].position.x)
-         this.player.speed = 1;
-       } else {
-         this.player.speed = 2;
-       }
+        this.player.speed = 1;
+      } else {
+        this.player.speed = 2;
+      }
     }
   }
 
   pressedM() {
     if (mouseX > windowWidth / 2) {
-     // console.log(this.player.body[0].position.x)
-    //  this.player.speed = 1;
+      // console.log(this.player.body[0].position.x)
+      //  this.player.speed = 1;
     } else {
-     // this.player.speed = 2;
+      // this.player.speed = 2;
     }
   }
 
-  relassedM(e){
+  relassedM(e) {
     this.player.speed = 0;
   }
 
