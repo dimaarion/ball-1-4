@@ -5,9 +5,11 @@ class Level_1 {
   mapPlatform = new TileMap(this.scena);
   mapPlatformF = new TileMap(this.scena);
   mapPlatformF2 = new TileMap(this.scena);
+  mapPlatformF3 = new TileMap(this.scena);
+  mapPlatformF4 = new TileMap(this.scena);
+  mapPlatformF5 = new TileMap(this.scena);
   platform = new Body("platform");
-  lift = new Body("lift");
-  point = new Body("point");
+  pointLevel = new Body("point");
   events = new Events();
   portal = new Portal("portal");
   preload() {
@@ -18,7 +20,9 @@ class Level_1 {
     this.mapPlatform.loadImg("./asset/level1/1.png");
     this.mapPlatformF.loadImg("./asset/portal/tiled.png");
     this.mapPlatformF2.loadImg("./asset/portal/tiled2.png");
-    this.lift.loadImage("./asset/level1/Tiles/IndustrialTile_73.png");
+    this.mapPlatformF3.loadImg("./asset/portal/tiled3.png");
+    this.mapPlatformF4.loadImg("./asset/portal/tiled5.png");
+    this.mapPlatformF5.loadImg("./asset/portal/tiled4.png");
     this.portal.preload();
   }
 
@@ -26,17 +30,16 @@ class Level_1 {
     this.scena.create();
     this.player.setup(engine, world, this.scena);
     this.platform.createRect(world, this.scena);
-    this.lift.createRect(world, this.scena);
-    this.point.sensor = true;
-    this.point.createRect(world, this.scena);
     this.events.collideStart(engine, this.scena);
     this.portal.create(world, this.scena);
+    this.pointLevel.createRect(world, this.scena);
   }
 
   view() {
     background(102, 98, 97);
     rectMode(p5.CENTER);
     this.player.translates();
+    console.log(this.events.level)
     image(
       this.animate.sprite(),
       -window.innerWidth / 2,
@@ -47,18 +50,19 @@ class Level_1 {
         window.innerHeight
     );
 
-    this.mapPlatform.view(73);
-    this.mapPlatformF.view(9);
-    this.mapPlatformF2.view(18);
-    this.lift.viewImage();
-    //this.point.viewRect();
+    this.mapPlatform.view(4);
+    this.mapPlatformF.view(1);
+    this.mapPlatformF2.view(2);
+    this.mapPlatformF3.view(3);
+    this.mapPlatformF4.view(6);
+    this.mapPlatformF5.view(5);
     this.portal.view();
     this.player.view();
     if (mouseIsPressed) {
-      if (mouseX > windowWidth / 2) {
+      if (mouseX > windowWidth / 2 && mouseY > windowHeight / 2) {
         // console.log(this.player.body[0].position.x)
         this.player.speed = 1;
-      } else {
+      } else if(mouseX < windowWidth / 2 && mouseY > windowHeight / 2){
         this.player.speed = 2;
       }
     }
@@ -84,9 +88,9 @@ class Level_1 {
       this.player.speed = 2;
     }
     if (e.key === "ArrowUp") {
-      //  this.player.up = -10;
+        this.player.up = 1;
     } else if (e.key === "ArrowDown") {
-      //   this.player.up = 10;
+      //   this.player.up = 2;
     }
   }
 
@@ -97,7 +101,7 @@ class Level_1 {
       this.player.speed = 0;
     }
     if (e.key === "ArrowUp") {
-      //    this.player.up = 0;
+         this.player.up = 0;
     } else if (e.key === "ArrowDown") {
       //     this.player.up = 0;
     }

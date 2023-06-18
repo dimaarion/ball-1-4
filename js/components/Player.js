@@ -71,22 +71,38 @@ class Player extends Body {
     this.animate.animated = false;
     this.animateR.animated = false;
     this.animate.rate = 0.5;
-    if (this.speed === 1) {
-      this.setVelosity(this.speedBody, this.gravity);
-      // this.setRotate(0.2);
+   
+
+    if(this.up === 1 && this.speed === 1){
+      this.setVelosity(4, -4);
       this.direction = 1;
-      this.animateR.animated = true;
-      this.animateR.format = 3;
-    } else if (this.speed === 2) {
-      this.setVelosity(-this.speedBody, this.gravity);
-      //this.setRotate(-0.2);
+    }else if(this.up === 1 && this.speed === 2){
       this.direction = 2;
-      this.animateR.animated = true;
-      this.animateR.format = 0;
-    } else {
-      this.description = 0;
-      // this.setRotate(0);
-      this.setVelosity(0, this.gravity);
+      this.setVelosity(-4, -4);
+    }else if(this.up === 1){
+      this.setVelosity(0, -4);
+    }
+    
+    else{
+      if (this.speed === 1) {
+        this.setVelosity(this.speedBody, this.gravity);
+        // this.setRotate(0.2);
+        this.direction = 1;
+        this.animateR.animated = true;
+        this.animateR.format = 3;
+      } else if (this.speed === 2) {
+        this.setVelosity(-this.speedBody, this.gravity);
+        //this.setRotate(-0.2);
+        this.direction = 2;
+        this.animateR.animated = true;
+        this.animateR.format = 0;
+      } else if(this.speed === 1 && this.up === 1  ){
+        this.setVelosity(this.speedBody, -4);
+      }else{
+        this.description = 0;
+        // this.setRotate(0);
+        this.setVelosity(0, this.gravity);
+      }
     }
 
     if (this.direction === 1) {
