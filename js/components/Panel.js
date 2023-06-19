@@ -2,14 +2,14 @@ class Panel {
   level = 0;
   x = 10;
   y = 10;
-  w = 860;
-  h = 1000;
+  w = 1500;
+  h = 2000;
   bg;
   window;
   tableNum;
-  tableNumX = 80;
-  tableNumY = 80;
-  tableNumYDop = 80;
+  tableNumX = 100;
+  tableNumY = 150;
+  tableNumYDop = 100;
   tableNumXDop;
   tableNumSize;
   textX = 10;
@@ -65,6 +65,13 @@ class Panel {
   };
 
   view() {
+    //  this.y = windowWidth / 15;
+    this.tableNumYDop = windowWidth / 7;
+    this.tableNumX = windowWidth / 15;
+    this.tableNumY = this.tableNumX;
+    this.tableNumSize = this.tableNumX;
+    this.w = windowWidth / 2;
+    this.h = this.w * 1.5;
     this.tableNumXDop = windowWidth / 2 - this.tableNumX * 5 + this.tableNumX;
     image(this.bg, 0, 0, this.procentX(100), this.procentY(100));
     image(this.window, windowWidth / 2 - this.w / 2, this.y, this.w, this.h);
