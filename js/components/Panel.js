@@ -2,16 +2,16 @@ class Panel {
   level = 0;
   x = 10;
   y = 10;
-  w = 360;
-  h = 500;
+  w = 860;
+  h = 1000;
   bg;
   window;
   tableNum;
-  tableNumX = 50;
-  tableNumY = 50;
+  tableNumX = 80;
+  tableNumY = 80;
   tableNumYDop = 80;
   tableNumXDop;
-  tableNumSize = 50;
+  tableNumSize;
   textX = 10;
   textY = 110;
   textSize = 10;
@@ -24,8 +24,8 @@ class Panel {
   }
 
   create() {
-    this.tableNumXDop = windowWidth / 2 - this.tableNumX * 5 + this.tableNumX;
     this.tableNumYDop = this.tableNumYDop;
+    this.tableNumSize = this.tableNumX;
   }
 
   procentIn(n, p) {
@@ -65,6 +65,7 @@ class Panel {
   };
 
   view() {
+    this.tableNumXDop = windowWidth / 2 - this.tableNumX * 5 + this.tableNumX;
     image(this.bg, 0, 0, this.procentX(100), this.procentY(100));
     image(this.window, windowWidth / 2 - this.w / 2, this.y, this.w, this.h);
     let col = 0;
