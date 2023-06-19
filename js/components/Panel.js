@@ -12,9 +12,9 @@ class Panel {
   tableNumYDop = 100;
   tableNumXDop;
   tableNumSize;
-  textX = 10;
-  textY = 110;
-  textSize = 10;
+  textX = 0;
+  textY = 90;
+  textSizes = 10;
   levelNum = [{}];
   preload() {
     this.bg = loadImage("./asset/panel/BG.png");
@@ -66,13 +66,16 @@ class Panel {
 
   view() {
     //  this.y = windowWidth / 15;
+    this.textY = windowWidth / 5.4;
     this.tableNumYDop = windowWidth / 7;
     this.tableNumX = windowWidth / 15;
     this.tableNumY = this.tableNumX;
     this.tableNumSize = this.tableNumX;
+    this.textSizes = this.tableNumSize / 2;
     this.w = windowWidth / 2;
     this.h = this.w * 1.5;
     this.tableNumXDop = windowWidth / 2 - this.tableNumX * 5 + this.tableNumX;
+
     image(this.bg, 0, 0, this.procentX(100), this.procentY(100));
     image(this.window, windowWidth / 2 - this.w / 2, this.y, this.w, this.h);
     let col = 0;
@@ -80,7 +83,11 @@ class Panel {
     let index = 0;
     Object.values(this.levelNum).map((lev, i) => {
       col++;
-
+      if (i < 9) {
+        this.textX = windowWidth / 1.91 - this.tableNumX * 5 + this.tableNumX;
+      } else {
+        this.textX = windowWidth / 1.95 - this.tableNumX * 5 + this.tableNumX;
+      }
       image(
         this.tableNum,
         col * this.tableNumX + this.tableNumXDop,
@@ -88,21 +95,14 @@ class Panel {
         this.tableNumSize,
         this.tableNumSize
       );
-      textSize(20);
+      textSize(this.textSizes);
       fill(255);
-      if (lev.id < 10) {
-        text(
-          lev.id,
-          col * this.tableNumX + this.textX,
-          row * this.tableNumY + this.textY
-        );
-      } else {
-        text(
-          lev.id,
-          col * this.tableNumX + this.textX - 6,
-          row * this.tableNumY + this.textY
-        );
-      }
+
+      text(
+        lev.id,
+        col * this.tableNumX + this.textX,
+        row * this.tableNumY + this.textY
+      );
 
       if (col > 5) {
         col = 0;
