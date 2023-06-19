@@ -40,7 +40,7 @@ class Panel {
       this.bImg = loadImage(bImg);
     }
   }
-  buttonView(buttons, noButtons) {
+  buttonView() {
     if (this.bImg != "") {
       image(
         this.bImg,
@@ -50,13 +50,7 @@ class Panel {
         this.procentX(this.bh)
       );
     }
-    if (mouseIsPressed) {
-    
-    } else {
-      return noButtons;
-    }
   }
-  
 
   create() {
     this.tableNumYDop = this.tableNumYDop;
@@ -176,18 +170,18 @@ class Panel {
         row++;
       }
     });
-    
-      if (
-        this.collidePointRect(
-          mouseX,
-          mouseY,
-          this.procentX(this.bx),
-          this.procentY(this.by),
-          this.procentX(this.bw),
-          this.procentX(this.bh)
-        )
-      ) {
-        this.level = 0;
-      }
+
+    if (
+      this.collidePointRect(
+        mouseX,
+        mouseY,
+        this.procentX(this.bx),
+        this.procentY(this.by),
+        this.procentX(this.bw),
+        this.procentX(this.bh)
+      )
+    ) {
+      this.level = 0;
+    }
   }
 }
