@@ -58,7 +58,7 @@ class Panel {
     image(
       this.window,
       this.procentX(this.x),
-      this.procentX(this.y),
+      this.procentY(this.y),
       this.procentX(this.w),
       this.procentY(this.h)
     );
@@ -69,8 +69,8 @@ class Panel {
       col++;
       image(
         this.tableNum,
-        this.procentX(col * 12.8),
-        this.procentX(row * 12.8),
+        this.procentX((col + this.x) * 5),
+        this.procentX((row + this.y) * 5),
         this.procentX(lev.w),
         this.procentX(lev.h)
       );
