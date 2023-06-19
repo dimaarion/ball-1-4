@@ -2,10 +2,12 @@
 let Engine = Matter.Engine;
 let engine, world;
 let level_1 = new Level_1();
+let panel = new Panel();
 function preload() {
   scena1 = loadJSON("./scena/scena.json");
 }
 function preload() {
+  panel.preload();
   level_1.preload();
 }
 
@@ -15,19 +17,28 @@ function setup() {
   engine.gravity.y = 0;
   world = engine.world;
   Engine.run(engine);
+  panel.create();
   level_1.create(engine, world);
 }
 
 function draw() {
-  level_1.view();
+  push();
+  console.log(panel.level);
+  if (panel.level === 1) {
+    level_1.view();
+  }
+
+  pop();
+  panel.view();
 }
 
 function mousePressed(e) {
-  level_1.pressedM(e)
+  panel.pressed(e);
+  level_1.pressedM(e);
 }
 
-function mouseReleased(e){
-level_1.relassedM(e)
+function mouseReleased(e) {
+  level_1.relassedM(e);
 }
 
 function keyPressed(e) {

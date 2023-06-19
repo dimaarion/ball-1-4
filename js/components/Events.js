@@ -1,8 +1,4 @@
 class Events {
-
-level = 1; 
-
-
   getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
@@ -17,15 +13,14 @@ level = 1;
       var pairs = event.pairs;
       for (var i = 0; i < pairs.length; i++) {
         var pair = pairs[i];
-        if(pair.bodyA.label === "player" && pair.bodyB.typeObject === "level_2"){
-          
+        if (
+          pair.bodyA.label === "player" &&
+          pair.bodyB.typeObject === "level_2"
+        ) {
         }
-       
-    }
+      }
     });
 
-    Matter.Events.on(engine, "beforeUpdate", function (event) {
-      
-    });
+    Matter.Events.on(engine, "beforeUpdate", function (event) {});
   }
 }

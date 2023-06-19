@@ -39,7 +39,6 @@ class Level_1 {
     background(102, 98, 97);
     rectMode(p5.CENTER);
     this.player.translates();
-    console.log(this.events.level)
     image(
       this.animate.sprite(),
       -window.innerWidth / 2,
@@ -62,7 +61,7 @@ class Level_1 {
       if (mouseX > windowWidth / 2 && mouseY > windowHeight / 2) {
         // console.log(this.player.body[0].position.x)
         this.player.speed = 1;
-      } else if(mouseX < windowWidth / 2 && mouseY > windowHeight / 2){
+      } else if (mouseX < windowWidth / 2 && mouseY > windowHeight / 2) {
         this.player.speed = 2;
       }
     }
@@ -88,7 +87,7 @@ class Level_1 {
       this.player.speed = 2;
     }
     if (e.key === "ArrowUp") {
-        this.player.up = 1;
+      this.player.up = 1;
     } else if (e.key === "ArrowDown") {
       //   this.player.up = 2;
     }
@@ -101,7 +100,7 @@ class Level_1 {
       this.player.speed = 0;
     }
     if (e.key === "ArrowUp") {
-         this.player.up = 0;
+      this.player.up = 0;
     } else if (e.key === "ArrowDown") {
       //     this.player.up = 0;
     }
