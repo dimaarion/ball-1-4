@@ -4,8 +4,16 @@ class Panel {
   y = 10;
   w = 80;
   h = 80;
-  constructor(x, y, w, h) {}
-  preload() {}
+  bg;
+  window;
+  tableNum;
+  levelNum = [{}];
+  preload() {
+    this.bg = loadImage("./asset/panel/BG.png");
+    this.window = loadImage("./asset/panel/Window.png");
+    this.tableNum = loadImage("./asset/panel/Table_03.png");
+    this.levelNum = loadJSON("./asset/panel/level.json");
+  }
 
   create() {}
 
@@ -46,19 +54,35 @@ class Panel {
   };
 
   view() {
-    rect(
-      this.procentX(10),
-      this.procentY(10),
-      this.procentX(80),
-      this.procentY(80)
+    image(this.bg, 0, 0, this.procentX(100), this.procentY(100));
+    image(
+      this.window,
+      this.procentX(this.x),
+      this.procentX(this.y),
+      this.procentX(this.w),
+      this.procentY(this.h)
     );
-    color("blue");
-    rect(
-      this.procentX(10),
-      this.procentY(10),
-      this.procentX(10),
-      this.procentY(10)
-    );
+    let col = 0;
+    let row = 1.6;
+    let index = 0;
+    Object.values(this.levelNum).map((lev) => {
+      col++;
+      image(
+        this.tableNum,
+        this.procentX(col * 12.8),
+        this.procentX(row * 12.8),
+        this.procentX(lev.w),
+        this.procentX(lev.h)
+      );
+      textSize(25);
+      // background(255);
+      text(lev.id, this.procentX(col * 13.5), this.procentY(row * 13));
+      rect(this.procentX(col * 12.8), this.procentY(row * 13), 10, 10);
+      if (col > 5) {
+        col = 0;
+        row++;
+      }
+    });
   }
 
   pressed(e) {
