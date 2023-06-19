@@ -30,6 +30,9 @@ function draw() {
 
   pop();
   panel.view();
+  textSize(20);
+  fill(255);
+  text(panel.level, 200, 300);
 }
 
 function mousePressed(e) {

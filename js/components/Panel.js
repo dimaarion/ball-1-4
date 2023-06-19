@@ -2,11 +2,15 @@ class Panel {
   level = 0;
   x = 10;
   y = 10;
-  w = 80;
-  h = 80;
+  w = 360;
+  h = 500;
   bg;
   window;
   tableNum;
+  tableNumX = 47;
+  tableNumY = 50;
+  tableNumYDop = 80;
+  tableNumSize = 50;
   levelNum = [{}];
   preload() {
     this.bg = loadImage("./asset/panel/BG.png");
@@ -54,30 +58,38 @@ class Panel {
   };
 
   view() {
+    //console.log(TouchList);
     image(this.bg, 0, 0, this.procentX(100), this.procentY(100));
-    image(
-      this.window,
-      this.procentX(this.x),
-      this.procentY(this.y),
-      this.procentX(this.w),
-      this.procentY(this.h)
-    );
+    image(this.window, this.x, this.y, this.w, this.h);
     let col = 0;
-    let row = 1.6;
+    let row = 0;
     let index = 0;
-    Object.values(this.levelNum).map((lev) => {
+    Object.values(this.levelNum).map((lev, i) => {
       col++;
+
       image(
         this.tableNum,
-        this.procentX(this.x + col * 10),
-        this.procentX((row + this.y) * 5),
-        this.procentX(lev.w),
-        this.procentX(lev.h)
+        col * this.tableNumX,
+        row * this.tableNumY + this.tableNumYDop,
+        this.tableNumSize,
+        this.tableNumSize
       );
-      textSize(25);
-      // background(255);
-      text(lev.id, this.procentX(col * 13.5), this.procentY(row * 13));
-      rect(this.procentX(col * 12.8), this.procentY(row * 13), 10, 10);
+      textSize(20);
+      fill(255);
+      if (lev.id < 10) {
+        text(
+          lev.id,
+          col * this.tableNumX + 20,
+          row * this.tableNumY + this.tableNumYDop + 30
+        );
+      } else {
+        text(
+          lev.id,
+          col * this.tableNumX + 14,
+          row * this.tableNumY + this.tableNumYDop + 30
+        );
+      }
+
       if (col > 5) {
         col = 0;
         row++;
