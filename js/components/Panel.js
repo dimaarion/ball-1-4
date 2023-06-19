@@ -7,10 +7,14 @@ class Panel {
   bg;
   window;
   tableNum;
-  tableNumX = 47;
+  tableNumX = 50;
   tableNumY = 50;
   tableNumYDop = 80;
+  tableNumXDop;
   tableNumSize = 50;
+  textX = 10;
+  textY = 110;
+  textSize = 10;
   levelNum = [{}];
   preload() {
     this.bg = loadImage("./asset/panel/BG.png");
@@ -19,7 +23,10 @@ class Panel {
     this.levelNum = loadJSON("./asset/panel/level.json");
   }
 
-  create() {}
+  create() {
+    this.tableNumXDop = windowWidth / 2 - this.tableNumX * 5 + this.tableNumX;
+    this.tableNumYDop = this.tableNumYDop;
+  }
 
   procentIn(n, p) {
     return (n / 100) * p;
@@ -58,9 +65,8 @@ class Panel {
   };
 
   view() {
-    //console.log(TouchList);
     image(this.bg, 0, 0, this.procentX(100), this.procentY(100));
-    image(this.window, this.x, this.y, this.w, this.h);
+    image(this.window, windowWidth / 2 - this.w / 2, this.y, this.w, this.h);
     let col = 0;
     let row = 0;
     let index = 0;
@@ -69,7 +75,7 @@ class Panel {
 
       image(
         this.tableNum,
-        col * this.tableNumX,
+        col * this.tableNumX + this.tableNumXDop,
         row * this.tableNumY + this.tableNumYDop,
         this.tableNumSize,
         this.tableNumSize
@@ -79,14 +85,14 @@ class Panel {
       if (lev.id < 10) {
         text(
           lev.id,
-          col * this.tableNumX + 20,
-          row * this.tableNumY + this.tableNumYDop + 30
+          col * this.tableNumX + this.textX,
+          row * this.tableNumY + this.textY
         );
       } else {
         text(
           lev.id,
-          col * this.tableNumX + 14,
-          row * this.tableNumY + this.tableNumYDop + 30
+          col * this.tableNumX + this.textX - 6,
+          row * this.tableNumY + this.textY
         );
       }
 
@@ -102,7 +108,7 @@ class Panel {
       this.collidePointRect(
         mouseX,
         mouseY,
-        this.procentX(10),
+        this.tableNumX,
         this.procentY(10),
         this.procentX(10),
         this.procentY(10)
