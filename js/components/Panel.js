@@ -16,6 +16,12 @@ class Panel {
   textY = 90;
   textSizes = 10;
   levelNum = [{}];
+  openPanel;
+  bx;
+  by;
+  bw;
+  bh;
+  bImg;
   preload() {
     this.bg = loadImage("./asset/panel/BG.png");
     this.window = loadImage("./asset/panel/Window.png");
@@ -23,6 +29,21 @@ class Panel {
     this.levelNum = loadJSON("./asset/panel/level.json");
   }
 
+  button(bx, by, bw, bh, bImg = "") {
+    this.bx = bx;
+    this.by = by;
+    this.bw = bw;
+    this.bh = bh;
+    this.bImg = bImg;
+    if (this.bImg != "") {
+      this.bImg = loadImage(bImg);
+    }
+  }
+  buttonView() {
+    if (this.bImg != "") {
+      image(this.bImg, this.bx, this.by, this.bw, this.bh);
+    }
+  }
   create() {
     this.tableNumYDop = this.tableNumYDop;
     this.tableNumSize = this.tableNumX;

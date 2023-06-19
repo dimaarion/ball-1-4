@@ -8,6 +8,7 @@ function preload() {
 }
 function preload() {
   panel.preload();
+  panel.button(0, 0, 100, 100, "./asset/panel/Settings_BTN.png");
   level_1.preload();
 }
 
