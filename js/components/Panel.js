@@ -112,17 +112,34 @@ class Panel {
   }
 
   pressed(e) {
-    if (
-      this.collidePointRect(
-        mouseX,
-        mouseY,
-        this.tableNumX,
-        this.procentY(10),
-        this.procentX(10),
-        this.procentY(10)
-      )
-    ) {
-      this.level = 1;
-    }
+    let col = 0;
+    let row = 0;
+    let index = 0;
+    Object.values(this.levelNum).map((lev, i) => {
+      col++;
+      if (i < 9) {
+        this.textX = windowWidth / 1.91 - this.tableNumX * 5 + this.tableNumX;
+      } else {
+        this.textX = windowWidth / 1.95 - this.tableNumX * 5 + this.tableNumX;
+      }
+
+      if (
+        this.collidePointRect(
+          mouseX,
+          mouseY,
+          col * this.tableNumX + this.tableNumXDop,
+          row * this.tableNumY + this.tableNumYDop,
+          this.tableNumSize,
+          this.tableNumSize
+        )
+      ) {
+        this.level = lev.id;
+      }
+
+      if (col > 5) {
+        col = 0;
+        row++;
+      }
+    });
   }
 }

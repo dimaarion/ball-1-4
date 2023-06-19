@@ -23,16 +23,16 @@ function setup() {
 
 function draw() {
   push();
-  console.log(panel.level);
   if (panel.level === 1) {
     level_1.view();
+  } else {
+    panel.view();
+    textSize(20);
+    fill(255);
+    text(panel.level, 200, 300);
   }
 
   pop();
-  panel.view();
-  textSize(20);
-  fill(255);
-  text(panel.level, 200, 300);
 }
 
 function mousePressed(e) {
