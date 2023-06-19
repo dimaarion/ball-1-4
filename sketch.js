@@ -8,7 +8,7 @@ function preload() {
 }
 function preload() {
   panel.preload();
-  panel.button(0, 0, 100, 100, "./asset/panel/Settings_BTN.png");
+  panel.button(90, 0, 10, 10, "./asset/panel/Settings_BTN.png");
   level_1.preload();
 }
 
@@ -23,17 +23,17 @@ function setup() {
 }
 
 function draw() {
-  push();
   if (panel.level === 1) {
+    push();
     level_1.view();
+    pop();
   } else {
     panel.view();
     textSize(20);
     fill(255);
     text(panel.level, 200, 300);
   }
-
-  pop();
+  // panel.level = panel.buttonView(0, panel.level);
 }
 
 function mousePressed(e) {

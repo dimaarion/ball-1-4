@@ -22,6 +22,7 @@ class Panel {
   bw;
   bh;
   bImg;
+  buttons;
   preload() {
     this.bg = loadImage("./asset/panel/BG.png");
     this.window = loadImage("./asset/panel/Window.png");
@@ -39,11 +40,24 @@ class Panel {
       this.bImg = loadImage(bImg);
     }
   }
-  buttonView() {
+  buttonView(buttons, noButtons) {
     if (this.bImg != "") {
-      image(this.bImg, this.bx, this.by, this.bw, this.bh);
+      image(
+        this.bImg,
+        this.procentX(this.bx),
+        this.procentY(this.by),
+        this.procentX(this.bw),
+        this.procentX(this.bh)
+      );
+    }
+    if (mouseIsPressed) {
+    
+    } else {
+      return noButtons;
     }
   }
+  
+
   create() {
     this.tableNumYDop = this.tableNumYDop;
     this.tableNumSize = this.tableNumX;
@@ -162,5 +176,18 @@ class Panel {
         row++;
       }
     });
+    
+      if (
+        this.collidePointRect(
+          mouseX,
+          mouseY,
+          this.procentX(this.bx),
+          this.procentY(this.by),
+          this.procentX(this.bw),
+          this.procentX(this.bh)
+        )
+      ) {
+        this.level = 0;
+      }
   }
 }
