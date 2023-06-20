@@ -47,17 +47,7 @@ function draw() {
     panel.buttonView();
   }
  
-  if(b.isPressed) {
-    print(b);
-  }
-  if (j.isChanged) {
-    // Print a message when Slider 1 is changed
-    // that displays its value.
-    print(j.label + " = {" + j.valX + ", " + j.valY + "}");
-    
-  }
-  
-  // Use Joystick's output to change velocity
+ 
  
 }
 
