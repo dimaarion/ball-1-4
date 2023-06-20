@@ -32,7 +32,7 @@ class Player extends Body {
   soploX = 2;
   soploX2 = 2;
   speedBody = 1;
-  speedBodyDop = 1;
+  speedBodyDop = 8;
   animate = new Animate();
   animateR = new Animate();
   soplo = new Animate();
@@ -62,7 +62,7 @@ class Player extends Body {
     //  this.soplo2.setupAnimate();
     this.createEllipse(world, scena);
     this.speedBody = scena.size(this.speedBody, scena.scale);
-    this.speedBodyDop = scena.size(this.speedBodyDop, scena.scale);
+   // this.speedBodyDop = scena.size(this.speedBodyDop, scena.scale);
     this.gravity = scena.size(this.gravity, scena.scale);
     print(this.joystick)
   }
