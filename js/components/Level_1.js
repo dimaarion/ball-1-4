@@ -60,9 +60,9 @@ class Level_1 {
     if (mouseIsPressed) {
       if (mouseX > windowWidth / 2 && mouseY > windowHeight / 2) {
         // console.log(this.player.body[0].position.x)
-        this.player.speed = 1;
+       // this.player.speed = 1;
       } else if (mouseX < windowWidth / 2 && mouseY > windowHeight / 2) {
-        this.player.speed = 2;
+      //  this.player.speed = 2;
       }
     }
   }

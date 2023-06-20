@@ -24,10 +24,10 @@ function setup() {
   world = engine.world;
   Engine.run(engine);
   panel.create();
-  level_1.create(engine, world);
   j = createJoystick("Joystick", panel.procentX(80), panel.procentY(60) , panel.procentX(20), panel.procentX(20), -1, 1, 1, -1);
-  b = createButton("Button", 50, 50);
 
+  level_1.player.joystick = j;
+  level_1.create(engine, world);
 }
 
 function draw() {
@@ -35,8 +35,8 @@ function draw() {
   if (panel.level === 1) {
     push();
     level_1.view();
-    level_1.player.body.map((b)=>Matter.Body.setVelocity(b,{x:j.valX * 5,y:j.valY * 5}));
     pop();
+    drawGui();
   } else {
     panel.view();
     textSize(20);
@@ -46,7 +46,7 @@ function draw() {
   if (panel.level != 0) {
     panel.buttonView();
   }
-  drawGui();
+ 
   if(b.isPressed) {
     print(b);
   }
