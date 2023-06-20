@@ -93,7 +93,8 @@ class Panel {
     return false;
   };
 
-  view() {
+
+  levelPanel() {
     //  this.y = windowWidth / 15;
     this.textY = windowWidth / 5.4;
     this.tableNumYDop = windowWidth / 7;
@@ -104,7 +105,6 @@ class Panel {
     this.w = windowWidth / 2;
     this.h = this.w * 1.5;
     this.tableNumXDop = windowWidth / 2 - this.tableNumX * 5 + this.tableNumX;
-
     image(this.bg, 0, 0, this.procentX(100), this.procentY(100));
     image(this.window, windowWidth / 2 - this.w / 2, this.y, this.w, this.h);
     let col = 0;
@@ -140,37 +140,45 @@ class Panel {
     });
   }
 
+  view() {
+    this.levelPanel();
+  }
+
   pressed(e) {
-    let col = 0;
-    let row = 0;
-    let index = 0;
-    Object.values(this.levelNum).map((lev, i) => {
-      col++;
-      if (i < 9) {
-        this.textX = windowWidth / 1.91 - this.tableNumX * 5 + this.tableNumX;
-      } else {
-        this.textX = windowWidth / 1.95 - this.tableNumX * 5 + this.tableNumX;
-      }
+    // Выбор уровней
+    if (this.level === 0) {
+      let col = 0;
+      let row = 0;
+      let index = 0;
+      Object.values(this.levelNum).map((lev, i) => {
+        col++;
+        if (i < 9) {
+          this.textX = windowWidth / 1.91 - this.tableNumX * 5 + this.tableNumX;
+        } else {
+          this.textX = windowWidth / 1.95 - this.tableNumX * 5 + this.tableNumX;
+        }
 
-      if (
-        this.collidePointRect(
-          mouseX,
-          mouseY,
-          col * this.tableNumX + this.tableNumXDop,
-          row * this.tableNumY + this.tableNumYDop,
-          this.tableNumSize,
-          this.tableNumSize
-        )
-      ) {
-        this.level = lev.id;
-      }
+        if (
+          this.collidePointRect(
+            mouseX,
+            mouseY,
+            col * this.tableNumX + this.tableNumXDop,
+            row * this.tableNumY + this.tableNumYDop,
+            this.tableNumSize,
+            this.tableNumSize
+          )
+        ) {
+          this.level = lev.id;
+        }
 
-      if (col > 5) {
-        col = 0;
-        row++;
-      }
-    });
+        if (col > 5) {
+          col = 0;
+          row++;
+        }
+      });
+    }
 
+    // Кнопка вызова панели уровней
     if (
       this.collidePointRect(
         mouseX,
