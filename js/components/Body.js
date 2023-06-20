@@ -9,7 +9,7 @@ class Body {
   n = 0;
   scena;
   image;
-  gravity = 3;
+
   animate = new Animate();
   constructor(name) {
     this.name = name;

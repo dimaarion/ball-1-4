@@ -31,8 +31,9 @@ class Player extends Body {
   direction = 0;
   soploX = 2;
   soploX2 = 2;
-  speedBody = 8;
-  speedBodyDop = 8;
+  speedBody = 1;
+  speedBodyDop = 2;
+  gravity = 1;
   animate = new Animate();
   animateR = new Animate();
   soplo = new Animate();
@@ -49,7 +50,7 @@ class Player extends Body {
     // this.animateR.animateD(this.imageR, 13);
     //  this.soplo.setup();
     //  this.soplo.animateD(this.imageS, 29);
-    // this.soplo2.setup();
+    //this.soplo2.setup();
     // this.soplo2.animateD(this.imageS2, 29);
   }
 
@@ -61,9 +62,9 @@ class Player extends Body {
     // this.soplo.setupAnimate();
     //  this.soplo2.setupAnimate();
     this.createEllipse(world, scena);
-  //  this.speedBody = scena.size(this.speedBody, scena.scale);
-   // this.speedBodyDop = scena.size(this.speedBodyDop, scena.scale);
-   // this.gravity = scena.size(this.gravity, scena.scale);
+    this.speedBody = scena.size(this.speedBody, scena.scale);
+    this.speedBodyDop = scena.size(this.speedBodyDop, scena.scale);
+    this.gravity = scena.size(this.gravity, scena.scale);
     print(this.joystick)
   }
 
@@ -83,17 +84,17 @@ class Player extends Body {
 
     if (this.joystick.valX > 0) {
       this.direction = 1;
-    } else if(this.joystick.valX < 0) {
+    } else if (this.joystick.valX < 0) {
       this.direction = 2;
     }
     if (this.up === 1 && this.speed === 1) {
-      this.setVelosity(4, -4);
+      this.setVelosity(this.speedBody, -this.gravity);
       this.direction = 1;
     } else if (this.up === 1 && this.speed === 2) {
       this.direction = 2;
-      this.setVelosity(-4, -4);
+      this.setVelosity(-this.speedBody, -this.gravity);
     } else if (this.up === 1) {
-      this.setVelosity(0, -4);
+      this.setVelosity(0, -this.gravity);
     }
 
     else {
@@ -110,7 +111,7 @@ class Player extends Body {
         this.animateR.animated = true;
         this.animateR.format = 0;
       } else if (this.speed === 1 && this.up === 1) {
-        this.setVelosity(this.speedBody, -4);
+        this.setVelosity(this.speedBody, -this.gravity);
       } else {
         this.description = 0;
         // this.setRotate(0);
