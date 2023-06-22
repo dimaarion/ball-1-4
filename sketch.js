@@ -29,7 +29,7 @@ function setup() {
   Engine.run(engine);
   panel.create();
   if(windowWidth > windowHeight){
-     j = createJoystick("Joystick", panel.procentX(70), panel.procentY(60) , panel.procentX(20), panel.procentX(20), -1, 1, 1, -1);
+     j = createJoystick("Joystick", panel.procentX(70), panel.procentY(50) , panel.procentX(20), panel.procentX(20), -1, 1, 1, -1);
   }else{
      j = createJoystick("Joystick", panel.procentX(70), panel.procentY(80) , panel.procentX(20), panel.procentX(20), -1, 1, 1, -1);
   }
