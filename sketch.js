@@ -7,6 +7,8 @@ let gui;
 let b;
 let j;
 let x, y, velX, velY;
+let joystickDot1;
+let joystickDot2;
 function preload() {
   scena1 = loadJSON("./scena/scena.json");
 }
@@ -14,6 +16,8 @@ function preload() {
   panel.preload();
   panel.button(95, 0, 5, 5, "./asset/panel/Settings_BTN.png");
   level_1.preload();
+  joystickDot1 = loadImage("./asset/panel/Dot_1.png");
+  joystickDot2 = loadImage("./asset/panel/Dot_2.png");
 }
 
 function setup() {
@@ -24,7 +28,12 @@ function setup() {
   world = engine.world;
   Engine.run(engine);
   panel.create();
-  j = createJoystick("Joystick", panel.procentX(80), panel.procentY(60) , panel.procentX(20), panel.procentX(20), -1, 1, 1, -1);
+  if(windowWidth > windowHeight){
+     j = createJoystick("Joystick", panel.procentX(70), panel.procentY(60) , panel.procentX(20), panel.procentX(20), -1, 1, 1, -1);
+  }else{
+     j = createJoystick("Joystick", panel.procentX(70), panel.procentY(80) , panel.procentX(20), panel.procentX(20), -1, 1, 1, -1);
+  }
+ print(j)
 
   level_1.player.joystick = j;
   level_1.create(engine, world);
@@ -36,17 +45,19 @@ function draw() {
     push();
     level_1.view();
     pop();
-    drawGui();
+  //  drawGui();
   } else {
     panel.view();
-    textSize(20);
-    fill(255);
-    text(panel.level, 200, 300);
   }
   if (panel.level != 0) {
     panel.buttonView();
+    image(joystickDot1,j.x,j.y,j.w,j.h);
+    image(joystickDot2,j.x + j.valX * panel.procentX(7),j.y + j.valY * panel.procentX(7),j.w,j.h);
+    print(j.valX)
+  }else{
+     
   }
- 
+
  
  
 }
