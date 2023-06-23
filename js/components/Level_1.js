@@ -49,20 +49,22 @@ class Level_1 {
         window.innerHeight
     );
 
-    this.mapPlatform.view(4);
+    this.mapPlatformF4.view(6);
     this.mapPlatformF.view(1);
     this.mapPlatformF2.view(2);
+
     this.mapPlatformF3.view(3);
-    this.mapPlatformF4.view(6);
     this.mapPlatformF5.view(5);
-    this.portal.view();
     this.player.view();
+    this.mapPlatform.view(4);
+    this.portal.view();
+
     if (mouseIsPressed) {
       if (mouseX > windowWidth / 2 && mouseY > windowHeight / 2) {
         // console.log(this.player.body[0].position.x)
-       // this.player.speed = 1;
+        // this.player.speed = 1;
       } else if (mouseX < windowWidth / 2 && mouseY > windowHeight / 2) {
-      //  this.player.speed = 2;
+        //  this.player.speed = 2;
       }
     }
   }

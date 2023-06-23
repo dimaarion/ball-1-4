@@ -21,45 +21,66 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight); 
+  createCanvas(windowWidth, windowHeight);
   gui = createGui();
   engine = Engine.create();
-  engine.gravity.y = 10;
+
   world = engine.world;
   Engine.run(engine);
   panel.create();
-  if(windowWidth > windowHeight){
-     j = createJoystick("Joystick", panel.procentX(70), panel.procentY(50) , panel.procentX(20), panel.procentX(20), -1, 1, 1, -1);
-  }else{
-     j = createJoystick("Joystick", panel.procentX(70), panel.procentY(80) , panel.procentX(20), panel.procentX(20), -1, 1, 1, -1);
+  if (windowWidth > windowHeight) {
+    j = createJoystick(
+      "Joystick",
+      panel.procentX(70),
+      panel.procentY(50),
+      panel.procentX(20),
+      panel.procentX(20),
+      -1,
+      1,
+      1,
+      -1
+    );
+  } else {
+    j = createJoystick(
+      "Joystick",
+      panel.procentX(70),
+      panel.procentY(80),
+      panel.procentX(20),
+      panel.procentX(20),
+      -1,
+      1,
+      1,
+      -1
+    );
   }
- print(j)
+  print(j);
 
   level_1.player.joystick = j;
   level_1.create(engine, world);
 }
 
 function draw() {
-  
   if (panel.level === 1) {
     push();
     level_1.view();
     pop();
-  //  drawGui();
+    //  drawGui();
   } else {
     panel.view();
   }
   if (panel.level != 0) {
     panel.buttonView();
-    image(joystickDot1,j.x,j.y,j.w,j.h);
-    image(joystickDot2,j.x + j.valX * panel.procentX(7),j.y + j.valY * panel.procentX(7),j.w,j.h);
-    print(j.valX)
-  }else{
-     
+    image(joystickDot1, j.x, j.y, j.w, j.h);
+    image(
+      joystickDot2,
+      j.x + j.valX * panel.procentX(7),
+      j.y + j.valY * panel.procentX(7),
+      j.w,
+      j.h
+    );
+    print(j.valX);
+  } else {
   }
-
- 
- 
 }
 
 function mousePressed(e) {
