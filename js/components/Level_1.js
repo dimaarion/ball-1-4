@@ -9,9 +9,10 @@ class Level_1 {
   mapPlatformF4 = new TileMap(this.scena);
   mapPlatformF5 = new TileMap(this.scena);
   platform = new Body("platform");
-  pointLevel = new Body("point");
+
   events = new Events();
   portal = new Portal("portal");
+  crystal = new Crystal()
   preload() {
     this.scena.preload();
     this.player.loadImg();
@@ -24,6 +25,7 @@ class Level_1 {
     this.mapPlatformF4.loadImg("./asset/portal/tiled5.png");
     this.mapPlatformF5.loadImg("./asset/portal/tiled4.png");
     this.portal.preload();
+    this.crystal.preload()
   }
 
   create(engine, world) {
@@ -32,7 +34,7 @@ class Level_1 {
     this.platform.createRect(world, this.scena);
     this.events.collideStart(engine, this.scena);
     this.portal.create(world, this.scena);
-    this.pointLevel.createRect(world, this.scena);
+    this.crystal.setup(engine, world, this.scena)
   }
 
   view() {
@@ -44,9 +46,9 @@ class Level_1 {
       -window.innerWidth / 2,
       -window.innerHeight / 2,
       this.scena.size(this.scena.scenaWidth, this.scena.scale) +
-        window.innerWidth,
+      window.innerWidth,
       this.scena.size(this.scena.scenaHeigiht, this.scena.scale) +
-        window.innerHeight
+      window.innerHeight
     );
 
     this.mapPlatformF4.view(6);
@@ -58,15 +60,8 @@ class Level_1 {
     this.player.view();
     this.mapPlatform.view(4);
     this.portal.view();
+    this.crystal.view()
 
-    if (mouseIsPressed) {
-      if (mouseX > windowWidth / 2 && mouseY > windowHeight / 2) {
-        // console.log(this.player.body[0].position.x)
-        // this.player.speed = 1;
-      } else if (mouseX < windowWidth / 2 && mouseY > windowHeight / 2) {
-        //  this.player.speed = 2;
-      }
-    }
   }
 
   pressedM() {

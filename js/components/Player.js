@@ -124,7 +124,7 @@ class Player extends Body {
       this.direction === 4;
     } else {
     }
-    print(this.joystick.valY);
+   
 
     if (this.direction === 1) {
       this.animate.animated = true;

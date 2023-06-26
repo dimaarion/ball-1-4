@@ -23,15 +23,15 @@ class Animate {
   speed = 2;
   setup() {}
 
-  animate(name, frame, format, x, y, w, h) {
+  animate(name, frame) {
     this.name = name;
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
     this.frame = frame;
-    this.format = format;
     this.img = loadImage(this.name);
+    this.setupAnimate()
   }
 
   animateA(name, frame, format, x, y, w, h) {

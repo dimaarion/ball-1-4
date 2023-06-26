@@ -9,7 +9,7 @@ class Body {
   n = 0;
   scena;
   image;
-
+  count = 0;
   animate = new Animate();
   constructor(name) {
     this.name = name;
@@ -21,11 +21,16 @@ class Body {
     this.world = world;
   }
 
-  timer(num) {
-    if (this.n > num) {
+  timer(frame,rate) {
+    this.count += 1;
+    if (this.count > rate) {
+      this.n = this.n + 1;
+      this.count = 0;
+    }
+    if (this.n > frame) {
       this.n = 0;
     }
-    return this.n++;
+    return this.n;
   }
 
   loadImage(image, frame = 0) {
