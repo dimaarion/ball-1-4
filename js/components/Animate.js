@@ -24,13 +24,20 @@ class Animate {
   count = 0;
   arrSprite = [];
   arrAnimate = [];
+  imageAll = [
+    {
+      width: 0,
+      height: 0,
+    },
+  ];
   animate(name, frame) {
     this.name = name;
     this.frame = frame;
     this.animated = true;
-    if (Array.isArray(name)) {
-      this.arrAnimate = name.map((img, i) => loadImage(img));
-      this.img = this.arrAnimate[0];
+    if (Array.isArray(name) && Array.isArray(frame)) {
+      this.arrAnimate = name.map((img, i) => [
+        { image: loadImage(img), frame: frame[i] },
+      ]);
     } else {
       this.img = loadImage(this.name);
     }
@@ -75,9 +82,11 @@ class Animate {
     this.img = loadImage(this.name);
   }
 
-  animateAll(name) {
+  animateAll(name, frame) {
     if (Array.isArray(name)) {
-      this.arrAnimate = name.map((img, i) => loadImage(img));
+      this.arrAnimate = name.map((img, i) => {
+        return { image: loadImage(img), frame: frame[i] };
+      });
     }
   }
 
@@ -123,8 +132,50 @@ class Animate {
   }
 
   setupAnimateAll() {
-    this.arrAnimate.map((img) => {
-      console.log(img);
+    this.arrSprite = this.arrAnimate.map((img) => {
+      return img.map((el) => {
+        let arrImage = new Array(el.frame);
+        if (this.orientation === 0) {
+          if (this.widthSp !== 0) {
+            el.image.resize(el.frame * this.widthSp, this.heightI);
+          } else {
+            this.widthSp = this.widthI / el.frame;
+          }
+        } else {
+          if (this.widthSp !== 0) {
+            el.image.resize(this.widthI, el.frame * this.widthSp);
+          } else {
+            this.widthSp = this.heightI / el.frame;
+          }
+        }
+        for (let i = 0; i < arrImage.length; i++) {
+          if (this.orientation === 0) {
+            arrImage[i] = el.image.get(
+              i * this.widthSp,
+              0,
+              this.widthSp,
+              this.heightI
+            );
+          } else {
+            arrImage[i] = el.image.get(
+              0,
+              i * this.widthSp,
+              this.widthI,
+              this.widthSp
+            );
+          }
+        }
+        return [
+          {
+            image: el.image,
+            width: el.image.width,
+            height: el.image.height,
+            frame: el.frame,
+            widthSp: this.heightI / el.frame,
+            arrImage: arrImage,
+          },
+        ];
+      });
     });
   }
 
@@ -183,7 +234,7 @@ class Animate {
       if (this.animated) {
         if (this.arrAnimate.length > 0) {
           console.log(this.count);
-          return this.arrSprite[this.count][this.xp];
+          return this.arrSprite[this.count][0][0].arrImage[this.xp];
         } else {
           return this.newArrImg[this.xp];
         }
