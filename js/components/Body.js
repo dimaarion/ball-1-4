@@ -327,6 +327,7 @@ class Body {
   animateSprite(figure) {
     if (this.world !== undefined && this.animate.animated) {
       this.animate.params();
+      this.count = this.animate.count;
       rectMode(CENTER);
       this.world.bodies
         .filter((f) => f.label === this.name)

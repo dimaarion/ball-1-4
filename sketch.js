@@ -53,7 +53,6 @@ function setup() {
       -1
     );
   }
-  print(j);
 
   level_1.player.joystick = j;
   level_1.create(engine, world);
@@ -78,7 +77,6 @@ function draw() {
       j.w,
       j.h
     );
-    print(j.valX);
   } else {
   }
 }
