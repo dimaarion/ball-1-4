@@ -15,8 +15,9 @@ class Events {
         var pair = pairs[i];
         if (
           pair.bodyA.label === "player" &&
-          pair.bodyB.typeObject === "level_2"
+          pair.bodyB.typeObject === "point"
         ) {
+          
         }
       }
     });

@@ -24,6 +24,7 @@ class Animate {
   count = 0;
   arrSprite = [];
   arrAnimate = [];
+  position = [{ x: 0, y: 0 }];
   imageAll = [
     {
       width: 0,
@@ -191,7 +192,7 @@ class Animate {
         this.count += 1;
       }
 
-      if (this.count > this.arrAnimate.length - 1) {
+      if (this.count > this.position.length - 1) {
         this.count = 0;
       }
     } else if (this.format === 1) {

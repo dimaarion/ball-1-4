@@ -63,6 +63,7 @@ function draw() {
     push();
     level_1.view();
     pop();
+    panel.headBar();
     //  drawGui();
   } else {
     panel.view();

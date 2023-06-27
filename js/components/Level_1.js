@@ -9,10 +9,10 @@ class Level_1 {
   mapPlatformF4 = new TileMap(this.scena);
   mapPlatformF5 = new TileMap(this.scena);
   platform = new Body("platform");
-
   events = new Events();
   portal = new Portal("portal");
   crystal = new Crystal();
+
   preload() {
     this.scena.preload();
     this.player.loadImg();

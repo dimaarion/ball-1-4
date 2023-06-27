@@ -23,11 +23,18 @@ class Panel {
   bh;
   bImg;
   buttons;
+  statsBar;
+  clock;
+  timer;
+  elapsedSeconds = 0;
+  elapsedMinutes = 0;
   preload() {
     this.bg = loadImage("./asset/panel/BG.png");
     this.window = loadImage("./asset/panel/Window.png");
     this.tableNum = loadImage("./asset/panel/Table_03.png");
     this.levelNum = loadJSON("./asset/panel/level.json");
+    this.statsBar = loadImage("./asset/panel/Stats_Bar.png");
+    this.clock = loadImage("./asset/panel/Clock_Icon.png");
   }
 
   button(bx, by, bw, bh, bImg = "") {
@@ -55,6 +62,8 @@ class Panel {
   create() {
     this.tableNumYDop = this.tableNumYDop;
     this.tableNumSize = this.tableNumX;
+    this.timer = new Timer(1000);
+    this.timer.start();
   }
 
   procentIn(n, p) {
@@ -92,7 +101,6 @@ class Panel {
     }
     return false;
   };
-
 
   levelPanel() {
     //  this.y = windowWidth / 15;
@@ -140,10 +148,43 @@ class Panel {
     });
   }
 
+  headBar() {
+    image(
+      this.statsBar,
+      this.procentX(0),
+      this.procentY(0),
+      this.procentX(30),
+      this.procentX(3)
+    );
+    image(
+      this.clock,
+      this.procentX(1),
+      this.procentX(0.5),
+      this.procentX(2),
+      this.procentX(2)
+    );
+    textSize(this.procentX(2));
+    fill(255);
+    this.updateTimer();
+
+    text(this.elapsedMinutes, this.procentX(3.2), this.procentX(2.1));
+  }
   view() {
     this.levelPanel();
   }
-
+  updateTimer() {
+    if (this.timer.expired()) {
+      this.elapsedSeconds++;
+      if (this.elapsedSeconds > 60) {
+        this.elapsedSeconds = 0;
+        this.elapsedMinutes++;
+      }
+      if(this.elapsedMinutes > 60){
+        this.elapsedMinutes = 0
+      }
+      this.timer.start();
+    }
+  }
   pressed(e) {
     // Выбор уровней
     if (this.level === 0) {
