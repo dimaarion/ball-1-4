@@ -123,45 +123,9 @@ class Animate {
   }
 
   setupAnimateAll() {
-    if (this.animated && this.arrAnimate.length > 0) {
-      this.newArrImg = new Array(this.frame);
-      this.arrSprite = new Array(this.arrAnimate.length);
-      this.arrAnimate.map((img, j) => {
-        this.arrSprite[j] = this.newArrImg;
-        this.widthI = img.width;
-        this.heightI = img.height;
-
-        if (this.orientation === 0) {
-          if (this.widthSp !== 0) {
-            img.resize(this.frame * this.widthSp, this.heightI);
-          } else {
-            this.widthSp = this.widthI / this.frame;
-          }
-        } else {
-          if (this.widthSp !== 0) {
-            img.resize(this.widthI, this.frame * this.widthSp);
-          } else {
-            this.widthSp = this.heightI / this.frame;
-          }
-        }
-
-        for (let i = 0; i < this.newArrImg.length; i++) {
-          if (this.orientation === 0) {
-            this.arrSprite[j].push(
-              img.get(i * this.widthSp, 0, this.widthSp, this.heightI)
-            );
-            //  this.arrSprite[j] = this.newArrImg;
-          } else {
-            this.newArrImg[i] = img.get(
-              0,
-              i * this.widthSp,
-              this.widthI,
-              this.widthSp
-            );
-          }
-        }
-      });
-    }
+    this.arrAnimate.map((img) => {
+      console.log(img);
+    });
   }
 
   params() {

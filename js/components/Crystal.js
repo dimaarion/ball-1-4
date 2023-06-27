@@ -39,7 +39,7 @@ class Crystal {
   view() {
     //  this.point.animateSprite();
     //  this.animate.params();
-    image(this.animate.sprite(), 300, 300, 100, 100);
+    //  image(this.animate.sprite(), 300, 300, 100, 100);
     //   this.point.timer(this.pointArr.length - 1, this.t);
     //   this.point2.timer(this.pointArr2.length - 1, this.t);
     //   image(this.animate.spriteEllipse(this.pointArr[this.point.n].width), this.pointArr[this.point.n].position.x, this.pointArr[this.point.n].position.y);
