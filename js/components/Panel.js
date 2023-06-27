@@ -28,6 +28,12 @@ class Panel {
   timer;
   elapsedSeconds = 0;
   elapsedMinutes = 0;
+  elapsedHour = 0;
+  zero = "";
+  zero2 = "";
+  zero3 = "";
+  crystal = new Animate();
+  crystal2 = new Animate();
   preload() {
     this.bg = loadImage("./asset/panel/BG.png");
     this.window = loadImage("./asset/panel/Window.png");
@@ -35,6 +41,8 @@ class Panel {
     this.levelNum = loadJSON("./asset/panel/level.json");
     this.statsBar = loadImage("./asset/panel/Stats_Bar.png");
     this.clock = loadImage("./asset/panel/Clock_Icon.png");
+    this.crystal.animateD("./asset/crystall.png", 189);
+    this.crystal2.animateD("./asset/crystall2.png", 189);
   }
 
   button(bx, by, bw, bh, bImg = "") {
@@ -64,6 +72,8 @@ class Panel {
     this.tableNumSize = this.tableNumX;
     this.timer = new Timer(1000);
     this.timer.start();
+    this.crystal.setupAnimate();
+    this.crystal2.setupAnimate();
   }
 
   procentIn(n, p) {
@@ -163,11 +173,43 @@ class Panel {
       this.procentX(2),
       this.procentX(2)
     );
-    textSize(this.procentX(2));
+    textSize(this.procentX(1.5));
     fill(255);
     this.updateTimer();
-
-    text(this.elapsedMinutes, this.procentX(3.2), this.procentX(2.1));
+    if (this.elapsedSeconds < 10) {
+      this.zero = "0";
+    } else {
+      this.zero = "";
+    }
+    if (this.elapsedMinutes < 10) {
+      this.zero2 = "0";
+    } else {
+      this.zero2 = "";
+    }
+    if (this.elapsedHour < 10) {
+      this.zero3 = "0";
+    } else {
+      this.zero3 = "";
+    }
+    text(
+      this.zero3 +
+        this.elapsedHour +
+        ":" +
+        this.zero2 +
+        this.elapsedMinutes +
+        ":" +
+        this.zero +
+        this.elapsedSeconds,
+      this.procentX(3.5),
+      this.procentX(1.9)
+    );
+    image(
+      this.crystal.sprite(),
+      this.procentX(0),
+      this.procentY(0),
+      this.procentX(30),
+      this.procentX(3)
+    );
   }
   view() {
     this.levelPanel();
@@ -179,8 +221,12 @@ class Panel {
         this.elapsedSeconds = 0;
         this.elapsedMinutes++;
       }
-      if(this.elapsedMinutes > 60){
-        this.elapsedMinutes = 0
+      if (this.elapsedMinutes > 60) {
+        this.elapsedMinutes = 0;
+        this.elapsedHour++;
+      }
+      if (this.elapsedHour > 99) {
+        this.elapsedHour = 0;
       }
       this.timer.start();
     }
