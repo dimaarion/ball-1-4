@@ -21,17 +21,18 @@ class Animate {
   image;
   world;
   speed = 2;
-  setup() {}
-
+  arrImg = [];
+  arrFrame = [];
   animate(name, frame) {
     this.name = name;
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
-    this.frame = frame;
-    this.img = loadImage(this.name);
-    this.setupAnimate()
+    this.animated = true;
+    if (Array.isArray(name) && Array.isArray(frame)) {
+      this.arrImg = name.map((img) => loadImage(img));
+      this.arrFrame = frame.map((fr) => loadImage(fr));
+    } else {
+      this.frame = frame;
+      this.img = loadImage(this.name);
+    }
   }
 
   animateA(name, frame, format, x, y, w, h) {
@@ -74,7 +75,7 @@ class Animate {
   }
 
   setupAnimate() {
-    if (this.animated) {
+    if (this.animated && this.img) {
       this.newArrImg = new Array(this.frame);
 
       this.widthI = this.img.width;
@@ -147,7 +148,7 @@ class Animate {
       if (this.xp < this.frame - 1) {
         //this.xp = 0;
       }
-    }else if (this.format === 3) {
+    } else if (this.format === 3) {
       this.xr += 1;
       if (this.xr > this.rate) {
         this.xp = this.xp - 1;
@@ -160,14 +161,12 @@ class Animate {
   }
 
   sprite() {
-    try {
+    if (this.img) {
       if (this.animated) {
         return this.newArrImg[this.xp];
       } else {
         return this.img;
       }
-    } catch (Exception) {
-      return this.img;
     }
   }
 

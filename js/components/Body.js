@@ -15,13 +15,11 @@ class Body {
     this.name = name;
   }
 
-  ini() {}
-
   main(world) {
     this.world = world;
   }
 
-  timer(frame,rate) {
+  timer(frame, rate) {
     this.count += 1;
     if (this.count > rate) {
       this.n = this.n + 1;
@@ -35,16 +33,11 @@ class Body {
 
   loadImage(image, frame = 0) {
     this.image = image;
-    this.animate.setup();
     if (frame > 0) {
       this.animate.animateD(image, frame);
     } else {
       this.animate.animateE(this.image);
     }
-  }
-
-  setupAnimate() {
-    this.animate.setupAnimate();
   }
 
   translateY(engine, name1, name2, events, n = 10) {
@@ -188,6 +181,7 @@ class Body {
   }
 
   createRect(world, scena) {
+    this.animate.setupAnimate();
     this.world = world;
     this.getObj = scena.getObjects(this.name);
     this.body = this.getObj.map((b) =>
@@ -210,6 +204,7 @@ class Body {
   }
 
   createEllipse(world, scena) {
+    this.animate.setupAnimate();
     this.world = world;
     this.getObj = scena.getObjects(this.name);
     this.body = this.getObj.map((b) =>
@@ -312,8 +307,8 @@ class Body {
     }
   }
 
-  viewImage() {
-    if (this.world !== undefined) {
+  sprite() {
+    if (this.world !== undefined && this.animate.sprite()) {
       rectMode(CENTER);
       this.world.bodies
         .filter((f) => f.label === this.name)
@@ -329,20 +324,31 @@ class Body {
     }
   }
 
-  viewAnimate() {
-    if (this.world !== undefined) {
+  animateSprite(figure) {
+    if (this.world !== undefined && this.animate.animated) {
+      this.animate.params();
       rectMode(CENTER);
       this.world.bodies
         .filter((f) => f.label === this.name)
         .map((b) => {
           this.animate.params();
-          image(
-            this.animate.sprite(),
-            b.position.x - b.width / 2,
-            b.position.y - b.height / 2,
-            b.width,
-            b.height
-          );
+          if (figure === "rect") {
+            image(
+              this.animate.sprite(),
+              b.position.x - b.width / 2,
+              b.position.y - b.height / 2,
+              b.width,
+              b.height
+            );
+          } else {
+            image(
+              this.animate.sprite(),
+              b.position.x - b.width / 2,
+              b.position.y - b.height / 2,
+              b.width,
+              b.width
+            );
+          }
         });
     }
   }

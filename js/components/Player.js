@@ -42,11 +42,8 @@ class Player extends Body {
     super(props);
   }
   loadImg() {
-    this.animate.setup();
     this.animate.animateD(this.image, 48);
-    this.animateR.setup();
     this.animateR.animateD(this.imageR, 32);
-    this.playerUpAnimate.setup();
     this.playerUpAnimate.animateD(this.playerUp, 100);
   }
 
@@ -124,7 +121,6 @@ class Player extends Body {
       this.direction === 4;
     } else {
     }
-   
 
     if (this.direction === 1) {
       this.animate.animated = true;

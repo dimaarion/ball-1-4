@@ -12,7 +12,6 @@ class TileMap {
     this.scena = scena;
   }
   loadImg(name) {
-    this.animate.setup();
     this.animate.animateE(name);
   }
 
