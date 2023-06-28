@@ -205,11 +205,12 @@ class Panel {
     );
     image(
       this.crystal.sprite(),
-      this.procentX(0),
-      this.procentY(0),
-      this.procentX(30),
-      this.procentX(3)
+      this.procentX(10),
+      this.procentX(1),
+      this.procentX(2.5),
+      this.procentX(2.5)
     );
+    text(x, this.procentX(10), this.procentX(1));
   }
   view() {
     this.levelPanel();
