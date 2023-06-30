@@ -39,4 +39,8 @@ class TileMap {
       }
     });
   }
+
+  imageMap(){
+    image(this.animate.sprite(),0,0,this.scena.size(this.scena.scena.width * this.scena.scena.tilewidth, this.scena.scale),this.scena.size(this.scena.scena.height * this.scena.scena.tileheight, this.scena.scale))
+  }
 }

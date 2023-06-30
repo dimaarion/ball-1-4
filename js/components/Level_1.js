@@ -8,6 +8,7 @@ class Level_1 {
   mapPlatformF3 = new TileMap(this.scena);
   mapPlatformF4 = new TileMap(this.scena);
   mapPlatformF5 = new TileMap(this.scena);
+  bg = new TileMap(this.scena);
   platform = new Body("platform");
   events = new Events();
   portal = new Portal("portal");
@@ -18,11 +19,13 @@ class Level_1 {
     this.player.loadImg();
     this.animate.animateE("./asset/level1/f1.jpg");
     this.mapPlatform.loadImg("./asset/level1/1.png");
-    this.mapPlatformF.loadImg("./asset/portal/tiled.png");
-    this.mapPlatformF2.loadImg("./asset/portal/tiled2.png");
+    this.mapPlatformF.loadImg("./asset/portal/0004.png");
+    this.mapPlatformF2.loadImg("./asset/portal/0005.png");
     this.mapPlatformF3.loadImg("./asset/portal/tiled3.png");
     this.mapPlatformF4.loadImg("./asset/portal/tiled5.png");
     this.mapPlatformF5.loadImg("./asset/portal/tiled4.png");
+    this.bg.loadImg("./asset/level1/bg.png")
+
     this.portal.preload();
     this.crystal.preload();
   }
@@ -50,14 +53,15 @@ class Level_1 {
         window.innerHeight
     );
 
-    this.mapPlatformF4.view(6);
-    this.mapPlatformF.view(1);
-    this.mapPlatformF2.view(2);
+   // this.mapPlatformF4.view(6);
+    //this.mapPlatformF.view(1);
+    //this.mapPlatformF2.view(2);
 
-    this.mapPlatformF3.view(3);
-    this.mapPlatformF5.view(5);
+   // this.mapPlatformF3.view(3);
+    //this.mapPlatformF5.view(5);
+    this.bg.imageMap()
     this.player.view();
-    this.mapPlatform.view(4);
+   // this.mapPlatform.view(4);
     this.portal.view();
     this.crystal.view();
   }
