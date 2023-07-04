@@ -65,7 +65,7 @@ class Body {
         .map((b) =>
           translate(
             -b.position.x + (windowWidth / 2 - b.width / 2),
-            -b.position.y + (windowHeight / 2 - b.width / 2)
+            -b.position.y + (windowHeight / 2)
           )
         );
     }
