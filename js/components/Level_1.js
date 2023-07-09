@@ -22,7 +22,7 @@ class Level_1 {
     this.mapPlatformF.loadImg("./asset/level1/Tiles/2.png");
     this.mapPlatformF2.loadImg("./asset/level1/Tiles/4.png");
     this.mapPlatformF3.loadImg("./asset/level1/Tiles/7.png");
-    this.mapPlatformF4.loadImg("./asset/portal/tiled5.png");
+    this.mapPlatformF4.loadImg("./asset/level1/Tiles/8.png");
     this.mapPlatformF5.loadImg("./asset/portal/tiled4.png");
     this.bg.loadImg("./asset/level1/bg.png");
 
@@ -53,12 +53,12 @@ class Level_1 {
         window.innerHeight
     );
 
-    // this.mapPlatformF4.view(6);
     this.mapPlatformF.view(2, "level 1");
 
     //this.mapPlatformF5.view(5);
     // this.bg.imageMap();
     this.player.view();
+    this.mapPlatformF4.view(19, "wall");
     this.mapPlatformF3.view(7, "wall");
     this.mapPlatformF2.view(4, "wall");
     this.mapPlatform.view(1, "level 1");
