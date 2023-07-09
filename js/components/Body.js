@@ -9,33 +9,35 @@ class Body {
   n = 0;
   scena;
   image;
-
+  count = 0;
   animate = new Animate();
   constructor(name) {
     this.name = name;
   }
 
-  ini() {}
-
   main(world) {
     this.world = world;
   }
 
-  timer(num) {
-    if (this.n > num) {
+  timer(frame, rate) {
+    this.count += 1;
+    if (this.count > rate) {
+      this.n = this.n + 1;
+      this.count = 0;
+    }
+    if (this.n > frame) {
       this.n = 0;
     }
-    return this.n++;
+    return this.n;
   }
 
-  loadImage(image) {
+  loadImage(image, frame = 0) {
     this.image = image;
-    this.animate.setup();
-    this.animate.animateE(this.image);
-  }
-
-  setupAnimate() {
-    this.animate.setupAnimate();
+    if (frame > 0) {
+      this.animate.animateD(image, frame);
+    } else {
+      this.animate.animateE(this.image);
+    }
   }
 
   translateY(engine, name1, name2, events, n = 10) {
@@ -43,7 +45,16 @@ class Body {
       x: 0,
       y:
         this.getType(engine, name1).position.y / n -
-        this.getType(engine, name2).position.y / n
+        this.getType(engine, name2).position.y / n,
+    });
+  }
+
+  translateX(engine, name1, name2, events, n = 10) {
+    Matter.Body.translate(this.getType(engine, events), {
+      x:
+        this.getType(engine, name1).position.x / n -
+        this.getType(engine, name2).position.x / n,
+      y: 0,
     });
   }
 
@@ -53,8 +64,8 @@ class Body {
         .filter((f) => f.label === this.name)
         .map((b) =>
           translate(
-            -b.position.x + (windowWidth / 2 - b.width),
-            -b.position.y + (windowHeight / 2 - b.width)
+            -b.position.x + (windowWidth / 2 - b.width / 2),
+            -b.position.y + (windowHeight / 2)
           )
         );
     }
@@ -161,8 +172,16 @@ class Body {
         .map((b) => Matter.Body.setVelocity(b, { x: x, y: y }));
     }
   }
+  setPosition(x, y) {
+    if (this.world !== undefined) {
+      this.world.bodies
+        .filter((f) => f.label === this.name)
+        .map((b) => Matter.Body.setPosition(b, { x: x, y: y }));
+    }
+  }
 
   createRect(world, scena) {
+    this.animate.setupAnimate();
     this.world = world;
     this.getObj = scena.getObjects(this.name);
     this.body = this.getObj.map((b) =>
@@ -177,7 +196,7 @@ class Body {
           label: this.name,
           isStatic: this.static,
           isSensor: this.sensor,
-          typeObject: b.type
+          typeObject: b.type,
         }
       )
     );
@@ -185,6 +204,7 @@ class Body {
   }
 
   createEllipse(world, scena) {
+    this.animate.setupAnimate();
     this.world = world;
     this.getObj = scena.getObjects(this.name);
     this.body = this.getObj.map((b) =>
@@ -197,7 +217,7 @@ class Body {
           label: this.name,
           isStatic: this.static,
           isSensor: this.sensor,
-          typeObject: b.type
+          typeObject: b.type,
         }
       )
     );
@@ -220,7 +240,7 @@ class Body {
           label: this.name,
           isStatic: this.static,
           isSensor: this.sensor,
-          typeObject: b.type
+          typeObject: b.type,
         }
       )
     );
@@ -238,7 +258,7 @@ class Body {
         b.polygon.map((v, i) => {
           a[i] = {
             x: scena.size(v.x, scena.scale),
-            y: scena.size(v.y, scena.scale)
+            y: scena.size(v.y, scena.scale),
           };
           return a;
         }),
@@ -248,7 +268,7 @@ class Body {
           label: this.name,
           isStatic: this.static,
           isSensor: this.sensor,
-          typeObject: b.type
+          typeObject: b.type,
         }
       )
     );
@@ -287,8 +307,8 @@ class Body {
     }
   }
 
-  viewImage() {
-    if (this.world !== undefined) {
+  sprite() {
+    if (this.world !== undefined && this.animate.sprite()) {
       rectMode(CENTER);
       this.world.bodies
         .filter((f) => f.label === this.name)
@@ -304,20 +324,32 @@ class Body {
     }
   }
 
-  viewAnimate() {
-    if (this.world !== undefined) {
+  animateSprite(figure) {
+    if (this.world !== undefined && this.animate.animated) {
+      this.animate.params();
+      this.count = this.animate.count;
       rectMode(CENTER);
       this.world.bodies
         .filter((f) => f.label === this.name)
         .map((b) => {
           this.animate.params();
-          image(
-            this.animate.sprite(),
-            b.position.x - b.width / 2,
-            b.position.y - b.height / 2,
-            b.width,
-            b.height
-          );
+          if (figure === "rect") {
+            image(
+              this.animate.sprite(),
+              b.position.x - b.width / 2,
+              b.position.y - b.height / 2,
+              b.width,
+              b.height
+            );
+          } else {
+            image(
+              this.animate.sprite(),
+              b.position.x - b.width / 2,
+              b.position.y - b.height / 2,
+              b.width,
+              b.width
+            );
+          }
         });
     }
   }

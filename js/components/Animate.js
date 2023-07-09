@@ -21,17 +21,27 @@ class Animate {
   image;
   world;
   speed = 2;
-  setup() {}
-
-  animate(name, frame, format, x, y, w, h) {
+  count = 0;
+  arrSprite = [];
+  arrAnimate = [];
+  position = [{ x: 0, y: 0 }];
+  imageAll = [
+    {
+      width: 0,
+      height: 0,
+    },
+  ];
+  animate(name, frame) {
     this.name = name;
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
     this.frame = frame;
-    this.format = format;
-    this.img = loadImage(this.name);
+    this.animated = true;
+    if (Array.isArray(name) && Array.isArray(frame)) {
+      this.arrAnimate = name.map((img, i) => [
+        { image: loadImage(img), frame: frame[i] },
+      ]);
+    } else {
+      this.img = loadImage(this.name);
+    }
   }
 
   animateA(name, frame, format, x, y, w, h) {
@@ -73,8 +83,16 @@ class Animate {
     this.img = loadImage(this.name);
   }
 
+  animateAll(name, frame) {
+    if (Array.isArray(name)) {
+      this.arrAnimate = name.map((img, i) => {
+        return { image: loadImage(img), frame: frame[i] };
+      });
+    }
+  }
+
   setupAnimate() {
-    if (this.animated) {
+    if (this.animated && this.img) {
       this.newArrImg = new Array(this.frame);
 
       this.widthI = this.img.width;
@@ -114,6 +132,54 @@ class Animate {
     }
   }
 
+  setupAnimateAll() {
+    this.arrSprite = this.arrAnimate.map((img) => {
+      return img.map((el) => {
+        let arrImage = new Array(el.frame);
+        if (this.orientation === 0) {
+          if (this.widthSp !== 0) {
+            el.image.resize(el.frame * this.widthSp, this.heightI);
+          } else {
+            this.widthSp = this.widthI / el.frame;
+          }
+        } else {
+          if (this.widthSp !== 0) {
+            el.image.resize(this.widthI, el.frame * this.widthSp);
+          } else {
+            this.widthSp = this.heightI / el.frame;
+          }
+        }
+        for (let i = 0; i < arrImage.length; i++) {
+          if (this.orientation === 0) {
+            arrImage[i] = el.image.get(
+              i * this.widthSp,
+              0,
+              this.widthSp,
+              this.heightI
+            );
+          } else {
+            arrImage[i] = el.image.get(
+              0,
+              i * this.widthSp,
+              this.widthI,
+              this.widthSp
+            );
+          }
+        }
+        return [
+          {
+            image: el.image,
+            width: el.image.width,
+            height: el.image.height,
+            frame: el.frame,
+            widthSp: this.heightI / el.frame,
+            arrImage: arrImage,
+          },
+        ];
+      });
+    });
+  }
+
   params() {
     if (this.format === 0) {
       this.xr += 1;
@@ -123,6 +189,11 @@ class Animate {
       }
       if (this.xp > this.frame - 1) {
         this.xp = 0;
+        this.count += 1;
+      }
+
+      if (this.count > this.position.length - 1) {
+        this.count = 0;
       }
     } else if (this.format === 1) {
       this.xr += 1;
@@ -147,18 +218,30 @@ class Animate {
       if (this.xp < this.frame - 1) {
         //this.xp = 0;
       }
+    } else if (this.format === 3) {
+      this.xr += 1;
+      if (this.xr > this.rate) {
+        this.xp = this.xp - 1;
+        this.xr = 0;
+      }
+      if (this.xp <= 0) {
+        this.xp = this.frame - 1;
+      }
     }
   }
 
   sprite() {
-    try {
+    if (this.img) {
       if (this.animated) {
-        return this.newArrImg[this.xp];
+        if (this.arrAnimate.length > 0) {
+          console.log(this.count);
+          return this.arrSprite[this.count][0][0].arrImage[this.xp];
+        } else {
+          return this.newArrImg[this.xp];
+        }
       } else {
         return this.img;
       }
-    } catch (Exception) {
-      return this.img;
     }
   }
 
@@ -170,11 +253,12 @@ class Animate {
   spriteRect(w, h) {
     try {
       if (this.animated) {
+        this.params();
         this.newArrImg[this.xp].resize(w, h);
         return this.newArrImg[this.xp];
       } else {
-        this.img.resize(w, h);
-        return this.img;
+        this.newArrImg[0].resize(w, h);
+        return this.newArrImg[0];
       }
     } catch (Exception) {
       return this.img;
