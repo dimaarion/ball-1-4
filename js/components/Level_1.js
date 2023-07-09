@@ -10,6 +10,8 @@ class Level_1 {
   mapPlatformF5 = new TileMap(this.scena);
   map3 = new TileMap(this.scena);
   map8_1 = new TileMap(this.scena);
+  map8_3 = new TileMap(this.scena);
+  map9 = new TileMap(this.scena);
   bg = new TileMap(this.scena);
   platform = new Body("platform");
   events = new Events();
@@ -28,6 +30,8 @@ class Level_1 {
     this.mapPlatformF5.loadImg("./asset/level1/Tiles/7.1.png");
     this.map3.loadImg("./asset/level1/Tiles/3.png");
     this.map8_1.loadImg("./asset/level1/Tiles/8.1.png");
+    this.map8_3.loadImg("./asset/level1/Tiles/8.3.png");
+    this.map9.loadImg("./asset/level1/Tiles/9.png");
     this.bg.loadImg("./asset/level1/bg.png");
 
     this.portal.preload();
@@ -63,7 +67,9 @@ class Level_1 {
     this.player.view();
     this.map3.view(3, "wall");
     this.map8_1.view(23, "wall");
+    this.map8_3.view(20, "wall");
     this.mapPlatformF5.view(6, "wall");
+    this.map9.view(32, "wall");
     this.mapPlatformF4.view(19, "wall");
     this.mapPlatformF3.view(7, "wall");
     this.mapPlatformF2.view(4, "wall");
