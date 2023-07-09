@@ -12,8 +12,12 @@ class Level_1 {
   map8_1 = new TileMap(this.scena);
   map8_3 = new TileMap(this.scena);
   map9 = new TileMap(this.scena);
+  map9_1 = new TileMap(this.scena);
+  map9_2 = new TileMap(this.scena);
+  map9_3 = new TileMap(this.scena);
   bg = new TileMap(this.scena);
   platform = new Body("platform");
+  platform_b = new Body("platform_b");
   events = new Events();
   portal = new Portal("portal");
   crystal = new Crystal();
@@ -32,6 +36,9 @@ class Level_1 {
     this.map8_1.loadImg("./asset/level1/Tiles/8.1.png");
     this.map8_3.loadImg("./asset/level1/Tiles/8.3.png");
     this.map9.loadImg("./asset/level1/Tiles/9.png");
+    this.map9_1.loadImg("./asset/level1/Tiles/9.1.png");
+    this.map9_2.loadImg("./asset/level1/Tiles/9.2.png");
+    this.map9_3.loadImg("./asset/level1/Tiles/9.3.png");
     this.bg.loadImg("./asset/level1/bg.png");
 
     this.portal.preload();
@@ -42,6 +49,7 @@ class Level_1 {
     this.scena.create();
     this.player.setup(engine, world, this.scena);
     this.platform.createRect(world, this.scena);
+    this.platform_b.createRect(world, this.scena);
     this.events.collideStart(engine, this.scena);
     this.portal.create(world, this.scena);
     this.crystal.setup(engine, world, this.scena);
@@ -69,7 +77,10 @@ class Level_1 {
     this.map8_1.view(23, "wall");
     this.map8_3.view(20, "wall");
     this.mapPlatformF5.view(6, "wall");
-    this.map9.view(32, "wall");
+    this.map9.view(28, "wall");
+    this.map9_1.view(25, "wall");
+    this.map9_2.view(26, "wall");
+    this.map9_3.view(27, "wall");
     this.mapPlatformF4.view(19, "wall");
     this.mapPlatformF3.view(7, "wall");
     this.mapPlatformF2.view(4, "wall");
