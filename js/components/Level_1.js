@@ -62,7 +62,7 @@ class Level_1 {
     // this.bg.imageMap();
     this.player.view();
     this.map3.view(3, "wall");
-    this.map8_1.view(20, "wall");
+    this.map8_1.view(23, "wall");
     this.mapPlatformF5.view(6, "wall");
     this.mapPlatformF4.view(19, "wall");
     this.mapPlatformF3.view(7, "wall");
