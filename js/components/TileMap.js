@@ -17,11 +17,11 @@ class TileMap {
 
   create() {}
 
-  view(id) {
+  view(id, layers) {
     let col = 0;
     let row = 0;
     let index = 0;
-    this.scena.getObjectData("level 1").map((x, i) => {
+    this.scena.getObjectData(layers).map((x, i) => {
       col++;
       if (x === id) {
         image(
@@ -40,7 +40,19 @@ class TileMap {
     });
   }
 
-  imageMap(){
-    image(this.animate.sprite(),0,0,this.scena.size(this.scena.scena.width * this.scena.scena.tilewidth, this.scena.scale),this.scena.size(this.scena.scena.height * this.scena.scena.tileheight, this.scena.scale))
+  imageMap() {
+    image(
+      this.animate.sprite(),
+      0,
+      0,
+      this.scena.size(
+        this.scena.scena.width * this.scena.scena.tilewidth,
+        this.scena.scale
+      ),
+      this.scena.size(
+        this.scena.scena.height * this.scena.scena.tileheight,
+        this.scena.scale
+      )
+    );
   }
 }

@@ -18,13 +18,13 @@ class Level_1 {
     this.scena.preload();
     this.player.loadImg();
     this.animate.animateE("./asset/level1/f1.jpg");
-    this.mapPlatform.loadImg("./asset/level1/1.png");
-    this.mapPlatformF.loadImg("./asset/portal/0004.png");
-    this.mapPlatformF2.loadImg("./asset/portal/0005.png");
-    this.mapPlatformF3.loadImg("./asset/portal/tiled3.png");
+    this.mapPlatform.loadImg("./asset/level1/Tiles/1.png");
+    this.mapPlatformF.loadImg("./asset/level1/Tiles/2.png");
+    this.mapPlatformF2.loadImg("./asset/level1/Tiles/4.png");
+    this.mapPlatformF3.loadImg("./asset/level1/Tiles/7.png");
     this.mapPlatformF4.loadImg("./asset/portal/tiled5.png");
     this.mapPlatformF5.loadImg("./asset/portal/tiled4.png");
-    this.bg.loadImg("./asset/level1/bg.png")
+    this.bg.loadImg("./asset/level1/bg.png");
 
     this.portal.preload();
     this.crystal.preload();
@@ -53,15 +53,15 @@ class Level_1 {
         window.innerHeight
     );
 
-   // this.mapPlatformF4.view(6);
-    //this.mapPlatformF.view(1);
-    //this.mapPlatformF2.view(2);
+    // this.mapPlatformF4.view(6);
+    this.mapPlatformF.view(2, "level 1");
 
-   // this.mapPlatformF3.view(3);
     //this.mapPlatformF5.view(5);
-    this.bg.imageMap()
+    // this.bg.imageMap();
     this.player.view();
-   // this.mapPlatform.view(4);
+    this.mapPlatformF3.view(7, "wall");
+    this.mapPlatformF2.view(4, "wall");
+    this.mapPlatform.view(1, "level 1");
     this.portal.view();
     this.crystal.view();
   }
