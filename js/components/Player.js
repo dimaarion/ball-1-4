@@ -59,6 +59,10 @@ class Player extends Body {
     this.speedBody = scena.size(this.speedBody, scena.scale);
     this.speedBodyDop = scena.size(this.speedBodyDop, scena.scale);
     this.gravity = scena.size(this.gravity, scena.scale);
+    this.body.map((b) => {
+      b.speedBodyDop = this.speedBodyDop;
+      console.log(b);
+    });
     Matter.Events.on(engine, "collisionActive", function (event) {
       //  console.log(this.joystick.valX);
       var pairs = event.pairs;
@@ -84,6 +88,7 @@ class Player extends Body {
     this.animate.rate = 0.5;
 
     this.body.map((b) => {
+      //  console.log(b.speed);
       b.jY = this.joystick.valY;
       b.jX = this.joystick.valX;
     });
