@@ -34,6 +34,8 @@ class Panel {
   zero3 = "";
   crystal = new Animate();
   crystal2 = new Animate();
+  body = new Body();
+  world;
   preload() {
     this.bg = loadImage("./asset/panel/BG.png");
     this.window = loadImage("./asset/panel/Window.png");
@@ -67,7 +69,8 @@ class Panel {
     }
   }
 
-  create() {
+  create(world) {
+    this.world = world;
     this.tableNumYDop = this.tableNumYDop;
     this.tableNumSize = this.tableNumX;
     this.timer = new Timer(1000);
@@ -112,7 +115,7 @@ class Panel {
     return false;
   };
 
-  levelPanel() {
+  levelPanel(world) {
     //  this.y = windowWidth / 15;
     this.textY = windowWidth / 5.4;
     this.tableNumYDop = windowWidth / 7;
@@ -265,6 +268,7 @@ class Panel {
           )
         ) {
           this.level = lev.id;
+          this.body.getName(this.world,"player").level = lev.id;
         }
 
         if (col > 5) {
@@ -286,6 +290,7 @@ class Panel {
       )
     ) {
       this.level = 0;
+      this.body.getName(this.world,"player").level = 0;
     }
   }
 }

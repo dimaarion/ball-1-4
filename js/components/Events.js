@@ -1,4 +1,5 @@
 class Events {
+  level = 0;
   getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
@@ -15,9 +16,33 @@ class Events {
         var pair = pairs[i];
         if (
           pair.bodyA.label === "player" &&
-          pair.bodyB.typeObject === "point"
+          pair.bodyB.label === "point" && pair.bodyB.typeObject === "0"
         ) {
-          
+          Matter.Body.setPosition(pair.bodyA,{x:body.getNameType(engine,"point","start").position.x ,y:body.getNameType(engine,"point","start").position.y});
+        }
+
+        if (
+          pair.bodyA.label === "player" &&
+          pair.bodyB.label === "point" && pair.bodyB.typeObject === "1"
+        ) {
+          Matter.Body.setPosition(pair.bodyA,{x:body.getNameType(engine,"point","2").position.x ,y:body.getNameType(engine,"point","2").position.y});
+        }
+
+        if (
+          pair.bodyA.label === "player" &&
+          pair.bodyB.label === "point" && pair.bodyB.typeObject === "3"
+        ) {
+          Matter.Body.setPosition(pair.bodyA,{x:body.getNameType(engine,"point","4").position.x ,y:body.getNameType(engine,"point","4").position.y});
+        }
+
+        if (
+          pair.bodyA.label === "player" &&
+          pair.bodyB.label === "point" && pair.bodyB.typeObject === "level_2"
+        ) {
+         this.level = 2;
+         pair.bodyA.level = 2;
+       
+         Matter.Body.setPosition(pair.bodyA,{x:body.getNameType(engine,"point","start").position.x ,y:body.getNameType(engine,"point","start").position.y});
         }
       }
     });

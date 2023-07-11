@@ -31,9 +31,9 @@ class Player extends Body {
   time = 0;
   time2 = 0;
   direction = 0;
-  speedBody = 1;
-  speedBodyDop = 2;
-  gravity = 1;
+  speedBody = 0.08;
+  speedBodyDop = 1;
+  gravity = 0.06;
   header;
   header2;
   animate = new Animate();
@@ -61,7 +61,6 @@ class Player extends Body {
     this.gravity = scena.size(this.gravity, scena.scale);
     this.body.map((b) => {
       b.speedBodyDop = this.speedBodyDop;
-      console.log(b);
     });
     Matter.Events.on(engine, "collisionActive", function (event) {
       //  console.log(this.joystick.valX);
@@ -73,8 +72,8 @@ class Player extends Body {
           pair.bodyB.label === "platform_b"
         ) {
           Matter.Body.setVelocity(pair.bodyA, {
-            x: pair.bodyA.jX ? pair.bodyA.jX * 15 : 0,
-            y: pair.bodyA.jY ? pair.bodyA.jY * 15 : 0,
+            x: pair.bodyA.jX ? pair.bodyA.jX * pair.bodyA.speedBodyDop : 0,
+            y: pair.bodyA.jY ? pair.bodyA.jY * pair.bodyA.speedBodyDop : 0,
           });
         }
       }
@@ -89,8 +88,8 @@ class Player extends Body {
 
     this.body.map((b) => {
       //  console.log(b.speed);
-      b.jY = this.joystick.valY;
-      b.jX = this.joystick.valX;
+      b.jY = this.up != 0? -this.gravity: this.joystick.valY;
+      b.jX = this.speed === 0 ?this.joystick.valX: this.speed === 1? this.speedBody: -this.speedBody  ;
     });
 
     /*
@@ -148,11 +147,11 @@ class Player extends Body {
 */
     /// console.log(this.joystick.valX);
 
-    if (this.joystick.valX > 0) {
+    if (this.joystick.valX > 0 || this.speed === 1) {
       this.animateR.animated = true;
       this.animateR.format = 3;
       this.direction = 1;
-    } else if (this.joystick.valX < 0) {
+    } else if (this.joystick.valX < 0 || this.speed === 2) {
       this.animateR.animated = true;
       this.animateR.format = 0;
       this.direction = 2;

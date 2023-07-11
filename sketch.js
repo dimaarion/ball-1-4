@@ -1,7 +1,11 @@
 /* eslint-disable no-undef, no-unused-vars */
 let Engine = Matter.Engine;
 let engine, world;
-let level_1 = new Level_1();
+let engine2, world2;
+let scena1 = new Scena("./js/scena/scena.json")
+let level_1 = new Level_1("./js/scena/scena.json");
+let level_2 = new Level_1("./js/scena/scena2.json");
+//let level_2 = new Level_2();
 let panel = new Panel();
 let gui;
 let b;
@@ -9,13 +13,15 @@ let j;
 let x, y, velX, velY;
 let joystickDot1;
 let joystickDot2;
-function preload() {
-  scena1 = loadJSON("./scena/scena.json");
-}
+let body = new Body();
+
+let test = 0;
+
 function preload() {
   panel.preload();
   panel.button(95, 0, 5, 5, "./asset/panel/Settings_BTN.png");
   level_1.preload();
+  level_2.preload();
   joystickDot1 = loadImage("./asset/panel/Dot_1.png");
   joystickDot2 = loadImage("./asset/panel/Dot_2.png");
 }
@@ -23,12 +29,11 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   gui = createGui();
-  engine = Engine.create();
 
-  world = engine.world;
-  Engine.run(engine);
-  panel.create();
-  if (windowWidth > windowHeight) {
+
+
+
+  if (deviceOrientation === LANDSCAPE) {
     j = createJoystick(
       "Joystick",
       panel.procentX(70),
@@ -54,17 +59,29 @@ function setup() {
     );
   }
 
+
   level_1.player.joystick = j;
-  level_1.create(engine, world);
+  level_1.create(panel); 
+  level_2.player.joystick = j;
+  level_2.create(panel); 
+  
 }
 
+
 function draw() {
+
   if (panel.level === 1) {
     push();
-    level_1.view();
+    level_1.view(panel);
     pop();
     panel.headBar();
     //  drawGui();
+  }else if (panel.level === 2) {
+    push();
+    level_2.view(panel);
+    pop();
+   panel.headBar();
+     // drawGui();
   } else {
     panel.view();
   }
@@ -80,19 +97,27 @@ function draw() {
     );
   } else {
   }
+
+  textSize(15)
+  text(window.navigator.userAgent,0,200)
 }
 
 function mousePressed(e) {
   panel.pressed(e);
+ test++
+ 
   level_1.pressedM(e);
+  level_2.pressedM(e);
 }
 
 function mouseReleased(e) {
   level_1.relassedM(e);
+  level_2.relassedM(e);
 }
 
 function keyPressed(e) {
   level_1.pressed(e);
+  level_2.pressed(e);
 }
 
 function touchMoved() {
@@ -102,4 +127,5 @@ function touchMoved() {
 
 function keyReleased(e) {
   level_1.rePressed(e);
+ level_2.rePressed(e);
 }

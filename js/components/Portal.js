@@ -1,22 +1,25 @@
 class Portal extends Body {
-  animate = new Animate();
-  animate2 = new Animate();
+  vertical = new Animate();
+  gorizontal_restart = new Animate();
+  vertical_restart = new Animate();
+  gorizontal = new Animate();
+  level = new Animate()
   scale = 8;
   constructor(props) {
     super(props);
   }
   preload() {
-    this.animate.animateE("./asset/portal/portal.png");
-    this.animate2.animateE("./asset/portal/portal2.png");
+    this.vertical.animateE("./asset/portal/portal_vertical.png");
+    this.gorizontal_restart.animateE("./asset/portal/portal_restart_gorizontal.png");
+    this.vertical_restart.animateE("./asset/portal/portal_restart_vertical.png")
+    this.gorizontal.animateE("./asset/portal/portal_gorizontal.png");
+    this.level.animateE("./asset/portal/portal_level.png");
   }
 
   create(world, scena) {
-    this.animate.setupAnimate();
     this.sensor = true;
     this.createRect(world, scena);
-
     this.body.map((b) => {});
-    console.log(this.body);
   }
 
   view() {
@@ -24,18 +27,56 @@ class Portal extends Body {
       .filter((f) => f.typeObject === "vertical")
       .map((b) =>
         image(
-          this.animate.sprite(),
+          this.vertical.sprite(),
           b.position.x - b.width / 2,
           b.position.y - b.height / 2,
           b.width,
           b.height
         )
       );
+
     this.body
+      .filter((f) => f.typeObject === "gorizontal_restart")
+      .map((b) =>
+        image(
+          this.gorizontal_restart.sprite(),
+          b.position.x - b.width / 2,
+          b.position.y - b.height / 2,
+          b.width,
+          b.height
+        )
+      );
+
+      this.body
+      .filter((f) => f.typeObject === "restaet_vertical")
+      .map((b) =>
+        image(
+          this.vertical_restart.sprite(),
+          b.position.x - b.width / 2,
+          b.position.y - b.height / 2,
+          b.width,
+          b.height
+        )
+      );
+
+      this.body
       .filter((f) => f.typeObject === "gorizontal")
       .map((b) =>
         image(
-          this.animate2.sprite(),
+          this.gorizontal.sprite(),
+          b.position.x - b.width / 2,
+          b.position.y - b.height / 2,
+          b.width,
+          b.height
+        )
+      );
+
+
+      this.body
+      .filter((f) => f.typeObject === "gorizontal_level")
+      .map((b) =>
+        image(
+          this.level.sprite(),
           b.position.x - b.width / 2,
           b.position.y - b.height / 2,
           b.width,
@@ -43,4 +84,6 @@ class Portal extends Body {
         )
       );
   }
+
+
 }

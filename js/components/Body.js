@@ -104,6 +104,18 @@ class Body {
   getType(engine, name, n = 0) {
     return engine.world.bodies.filter((f) => f.typeObject === name)[n];
   }
+
+  getName(world,name){
+    if (this.world !== undefined) {
+     return this.world.bodies.filter((f) => f.label === name)        
+    }else{
+      return world.bodies.filter((f) => f.label === name)[0];
+    }
+    
+  }
+  getNameType(engine, name, type) {
+    return engine.world.bodies.filter((f) => f.label === name).filter((f) => f.typeObject === type)[0];
+  }
   collideRectCircle = function (rx, ry, rw, rh, cx, cy, diameter) {
     //2d
     // temporary variables to set edges for testing
@@ -198,6 +210,7 @@ class Body {
           isSensor: this.sensor,
           typeObject: b.type,
           speedBodyDop: 0,
+          level:0
         }
       )
     );
@@ -220,6 +233,7 @@ class Body {
           isSensor: this.sensor,
           typeObject: b.type,
           speedBodyDop: 0,
+          level:0
         }
       )
     );
@@ -244,6 +258,7 @@ class Body {
           isSensor: this.sensor,
           typeObject: b.type,
           speedBodyDop: 0,
+          level:0
         }
       )
     );
@@ -273,6 +288,7 @@ class Body {
           isSensor: this.sensor,
           typeObject: b.type,
           speedBodyDop: 0,
+          level:0
         }
       )
     );

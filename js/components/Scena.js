@@ -5,12 +5,11 @@ class Scena {
   scenaHeigiht = 0;
   scenaSize = 0;
   scale = 10 ;
-  constructor(name) {
-    this.name = name;
-  }
+  
 
-  preload() {
-    this.scena = loadJSON(this.name);
+  preload(name) {
+    this.name = name;
+    this.scena = loadJSON(name);
   }
 
   create() {
