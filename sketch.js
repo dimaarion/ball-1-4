@@ -14,7 +14,7 @@ let x, y, velX, velY;
 let joystickDot1;
 let joystickDot2;
 let body = new Body();
-
+let md;
 let test = 0;
 
 function preload() {
@@ -30,82 +30,86 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   gui = createGui();
 
+  md = new MobileDetect(window.navigator.userAgent);
+
+  console.log(md.mobile())
 
 
-
-  if (deviceOrientation === LANDSCAPE) {
-    j = createJoystick(
-      "Joystick",
-      panel.procentX(70),
-      panel.procentY(50),
-      panel.procentX(20),
-      panel.procentX(20),
-      -1,
-      1,
-      1,
-      -1
-    );
-  } else {
-    j = createJoystick(
-      "Joystick",
-      panel.procentX(70),
-      panel.procentY(80),
-      panel.procentX(20),
-      panel.procentX(20),
-      -1,
-      1,
-      1,
-      -1
-    );
-  }
-
-
-  level_1.player.joystick = j;
-  level_1.create(panel); 
-  level_2.player.joystick = j;
-  level_2.create(panel); 
+    if (deviceOrientation === LANDSCAPE) {
+      j = createJoystick(
+        "Joystick",
+        panel.procentX(70),
+        panel.procentY(50),
+        panel.procentX(20),
+        panel.procentX(20),
+        -1,
+        1,
+        1,
+        -1
+      );
+    } else {
+      j = createJoystick(
+        "Joystick",
+        panel.procentX(70),
+        panel.procentY(80),
+        panel.procentX(20),
+        panel.procentX(20),
+        -1,
+        1,
+        1,
+        -1
+      );
+    }
   
+  level_1.player.joystick = j;
+  level_1.create(panel);
+  level_2.player.joystick = j;
+  level_2.create(panel);
+
+
 }
 
 
 function draw() {
-
+console.log(level_1.player.body[0].level)
   if (panel.level === 1) {
     push();
     level_1.view(panel);
     pop();
     panel.headBar();
     //  drawGui();
-  }else if (panel.level === 2) {
+  } else if (panel.level === 2) {
     push();
     level_2.view(panel);
     pop();
-   panel.headBar();
-     // drawGui();
+    panel.headBar();
+    // drawGui();
   } else {
     panel.view();
   }
   if (panel.level != 0) {
     panel.buttonView();
-    image(joystickDot1, j.x, j.y, j.w, j.h);
-    image(
-      joystickDot2,
-      j.x + j.valX * panel.procentX(7),
-      j.y + j.valY * panel.procentX(7),
-      j.w,
-      j.h
-    );
+    if (md.mobile()) {
+      image(joystickDot1, j.x, j.y, j.w, j.h);
+      image(
+        joystickDot2,
+        j.x + j.valX * panel.procentX(7),
+        j.y + j.valY * panel.procentX(7),
+        j.w,
+        j.h
+      );
+    }
+
   } else {
   }
 
-  textSize(15)
-  text(window.navigator.userAgent,0,200)
+
 }
 
 function mousePressed(e) {
   panel.pressed(e);
- test++
- 
+  test++
+
   level_1.pressedM(e);
   level_2.pressedM(e);
 }
@@ -127,5 +131,5 @@ function touchMoved() {
 
 function keyReleased(e) {
   level_1.rePressed(e);
- level_2.rePressed(e);
+  level_2.rePressed(e);
 }

@@ -299,6 +299,17 @@
                  "width":31,
                  "x":257.5,
                  "y":234.125
+                }, 
+                {
+                 "height":27,
+                 "id":182,
+                 "name":"point",
+                 "rotation":0,
+                 "type":"level_2",
+                 "visible":true,
+                 "width":27.75,
+                 "x":291.625,
+                 "y":286.25
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -404,6 +415,17 @@
                  "width":32.5,
                  "x":256.75,
                  "y":349.25
+                }, 
+                {
+                 "height":6,
+                 "id":181,
+                 "name":"portal",
+                 "rotation":0,
+                 "type":"gorizontal_restart",
+                 "visible":true,
+                 "width":32.5,
+                 "x":287.625,
+                 "y":284.125
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -447,7 +469,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":181,
+ "nextobjectid":183,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.8.4",

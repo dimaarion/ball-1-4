@@ -66,7 +66,7 @@ constructor(nameScena){
     this.events.collideStart(this.engine, this.scena);
     this.portal.create(this.world, this.scena);
     this.crystal.setup(this.engine, this.world, this.scena);
-      panel.create(this.world);
+    panel.create(this.world);
   }
 
 
