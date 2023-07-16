@@ -44,7 +44,7 @@ class Player extends Body {
   }
   loadImg() {
     this.animate.animateD(this.image, 48);
-    this.animateR.animateD(this.imageR, 32);
+    this.animateR.animateD(this.imageR, 96);
     this.playerUpAnimate.animateD(this.playerUp, 100);
   }
 
@@ -85,11 +85,12 @@ class Player extends Body {
     this.animateR.animated = false;
     this.playerUpAnimate.animated = false;
     this.animate.rate = 0.5;
+    this.animateR.rate = 2;
 
     this.body.map((b) => {
       //  console.log(b.speed);
-      b.jY = this.up != 0? -this.gravity: this.joystick.valY;
-      b.jX = this.speed === 0 ?this.joystick.valX: this.speed === 1? this.speedBody: -this.speedBody  ;
+      b.jY = this.up != 0? -this.gravity:0;
+      b.jX = this.speed === 0 ?0: this.speed === 1? this.speedBody: -this.speedBody  ;
     });
 
     /*
@@ -149,11 +150,11 @@ class Player extends Body {
 
     if (this.joystick.valX > 0 || this.speed === 1) {
       this.animateR.animated = true;
-      this.animateR.format = 3;
+      this.animateR.format = 0;
       this.direction = 1;
     } else if (this.joystick.valX < 0 || this.speed === 2) {
       this.animateR.animated = true;
-      this.animateR.format = 0;
+      this.animateR.format = 3;
       this.direction = 2;
     }
     if (this.direction === 1) {
@@ -171,12 +172,12 @@ class Player extends Body {
         b.position.y - b.width / 2
       );
     });
-    this.body.map((b) => {
+  /*  this.body.map((b) => {
       image(
         this.animate.spriteRect(b.width, b.width / 1.7),
         b.position.x - b.width / 2,
         b.position.y - this.scena.size(1, this.scena.scale) - b.width / 2
       );
-    });
+    });*/
   }
 }

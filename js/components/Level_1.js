@@ -73,7 +73,7 @@ constructor(nameScena){
 
 
 
-  view(panel) {
+  view() {
 //panel.level = this.player.getName(this.world, "player").level
 
     background(102, 98, 97);
