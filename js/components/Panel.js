@@ -2,7 +2,7 @@ class Panel {
   level = 0;
   x = 10;
   y = 10;
-  w = 1500;
+  w = 1900;
   h = 2000;
   bg;
   window;
@@ -268,7 +268,7 @@ class Panel {
           )
         ) {
           this.level = lev.id;
-          this.body.getName(this.world,"player").level = lev.id;
+          this.body.getName(this.world, "player").level = lev.id;
         }
 
         if (col > 5) {
@@ -290,7 +290,7 @@ class Panel {
       )
     ) {
       this.level = 0;
-      this.body.getName(this.world,"player").level = 0;
+      this.body.getName(this.world, "player").level = 0;
     }
   }
 }
