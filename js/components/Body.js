@@ -11,6 +11,7 @@ class Body {
   image;
   count = 0;
   animate = new Animate();
+  rest = 0.2;
   constructor(name) {
     this.name = name;
   }
@@ -105,16 +106,17 @@ class Body {
     return engine.world.bodies.filter((f) => f.typeObject === name)[n];
   }
 
-  getName(world,name){
+  getName(world, name) {
     if (this.world !== undefined) {
-     return this.world.bodies.filter((f) => f.label === name)        
-    }else{
+      return this.world.bodies.filter((f) => f.label === name);
+    } else {
       return world.bodies.filter((f) => f.label === name)[0];
     }
-    
   }
   getNameType(engine, name, type) {
-    return engine.world.bodies.filter((f) => f.label === name).filter((f) => f.typeObject === type)[0];
+    return engine.world.bodies
+      .filter((f) => f.label === name)
+      .filter((f) => f.typeObject === type)[0];
   }
   collideRectCircle = function (rx, ry, rw, rh, cx, cy, diameter) {
     //2d
@@ -208,9 +210,10 @@ class Body {
           label: this.name,
           isStatic: this.static,
           isSensor: this.sensor,
+          restitution: this.rest,
           typeObject: b.type,
           speedBodyDop: 0,
-          level:0
+          level: 0,
         }
       )
     );
@@ -231,9 +234,10 @@ class Body {
           label: this.name,
           isStatic: this.static,
           isSensor: this.sensor,
+          restitution: this.rest,
           typeObject: b.type,
           speedBodyDop: 0,
-          level:0
+          level: 0,
         }
       )
     );
@@ -256,9 +260,10 @@ class Body {
           label: this.name,
           isStatic: this.static,
           isSensor: this.sensor,
+          restitution: this.rest,
           typeObject: b.type,
           speedBodyDop: 0,
-          level:0
+          level: 0,
         }
       )
     );
@@ -286,9 +291,10 @@ class Body {
           label: this.name,
           isStatic: this.static,
           isSensor: this.sensor,
+          restitution: this.rest,
           typeObject: b.type,
           speedBodyDop: 0,
-          level:0
+          level: 0,
         }
       )
     );

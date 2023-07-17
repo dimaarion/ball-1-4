@@ -118,6 +118,15 @@ class Panel {
     return false;
   };
 
+  levelEnd() {
+    image(
+      this.window,
+      this.procentX(25),
+      this.procentY(10),
+      this.procentX(50),
+      this.procentY(80)
+    );
+  }
   levelPanel(world) {
     //  this.y = windowWidth / 15;
     this.textY = windowWidth / 5.4;
@@ -294,7 +303,7 @@ class Panel {
       )
     ) {
       //  this.level = 0;
-      //  this.body.getName(this.world, "player").level = 0;
+      // this.body.getName(this.world, "player").level = 0;
       this.buttonActive = this.active;
     } else {
       this.buttonActive = NaN;
@@ -313,7 +322,7 @@ class Panel {
       )
     ) {
       //  this.level = 0;
-      //  this.body.getName(this.world, "player").level = 0;
+      //this.body.getName(this.world, "player").level = 0;
       this.buttonActive = 0;
     } else {
       this.buttonActive = NaN;

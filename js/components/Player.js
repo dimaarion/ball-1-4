@@ -75,6 +75,25 @@ class Player extends Body {
             x: pair.bodyA.jX ? pair.bodyA.jX * pair.bodyA.speedBodyDop : 0,
             y: pair.bodyA.jY ? pair.bodyA.jY * pair.bodyA.speedBodyDop : 0,
           });
+          //  Matter.Body.setRotate(pair.bodyA, pair.bodyA.jX);
+        }
+      }
+    });
+
+    Matter.Events.on(engine, "collisionStart", function (event) {
+      //  console.log(this.joystick.valX);
+      var pairs = event.pairs;
+      for (var i = 0; i < pairs.length; i++) {
+        var pair = pairs[i];
+        if (
+          pair.bodyA.label === "player" &&
+          pair.bodyB.label === "platform_b"
+        ) {
+          Matter.Body.setVelocity(pair.bodyA, {
+            x: pair.bodyA.jX ? pair.bodyA.jX * pair.bodyA.speedBodyDop : 0,
+            y: pair.bodyA.jY ? pair.bodyA.jY * pair.bodyA.speedBodyDop : 0,
+          });
+          //  Matter.Body.setRotate(pair.bodyA, pair.bodyA.jX);
         }
       }
     });
@@ -86,11 +105,24 @@ class Player extends Body {
     this.playerUpAnimate.animated = false;
     this.animate.rate = 0.5;
     this.animateR.rate = 2;
+    if (this.speed === 1) {
+      // this.setRotate(0.1);
+    } else if (this.speed === 2) {
+      //  this.setRotate(-0.1);
+    } else {
+      //  this.setRotate(0);
+    }
 
     this.body.map((b) => {
       //  console.log(b.speed);
-      b.jY = this.up != 0? -this.gravity:0;
-      b.jX = this.speed === 0 ?0: this.speed === 1? this.speedBody: -this.speedBody  ;
+
+      b.jY = this.up != 0 ? -this.gravity : 0;
+      b.jX =
+        this.speed === 0
+          ? 0
+          : this.speed === 1
+          ? this.speedBody
+          : -this.speedBody;
     });
 
     /*
@@ -148,11 +180,11 @@ class Player extends Body {
 */
     /// console.log(this.joystick.valX);
 
-    if (this.joystick.valX > 0 || this.speed === 1) {
+    if (this.speed === 1) {
       this.animateR.animated = true;
       this.animateR.format = 0;
       this.direction = 1;
-    } else if (this.joystick.valX < 0 || this.speed === 2) {
+    } else if (this.speed === 2) {
       this.animateR.animated = true;
       this.animateR.format = 3;
       this.direction = 2;
@@ -172,7 +204,7 @@ class Player extends Body {
         b.position.y - b.width / 2
       );
     });
-  /*  this.body.map((b) => {
+    /*  this.body.map((b) => {
       image(
         this.animate.spriteRect(b.width, b.width / 1.7),
         b.position.x - b.width / 2,

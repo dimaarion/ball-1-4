@@ -22,9 +22,16 @@ let test = 0;
 
 function preload() {
   panel.preload();
-  panel.button(92, 0, 8, 8, "./asset/panel/Settings_BTN.png", 0);
-  playRight.button(30, 80, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
-  playLeft.button(10, 80, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
+  if (deviceOrientation === LANDSCAPE) {
+    panel.button(92, 0, 8, 8, "./asset/panel/Settings_BTN.png", 0);
+    playRight.button(30, 75, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
+    playLeft.button(10, 75, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
+  } else {
+    panel.button(92, 0, 8, 8, "./asset/panel/Settings_BTN.png", 0);
+    playRight.button(30, 85, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
+    playLeft.button(10, 85, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
+  }
+
   level_1.preload();
   level_2.preload();
   joystickDot1 = loadImage("./asset/panel/Dot_1.png");
@@ -35,31 +42,6 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   gui = createGui();
   md = new MobileDetect(window.navigator.userAgent);
-  if (deviceOrientation === LANDSCAPE) {
-    j = createJoystick(
-      "Joystick",
-      panel.procentX(70),
-      panel.procentY(50),
-      panel.procentX(20),
-      panel.procentX(20),
-      -1,
-      1,
-      1,
-      -1
-    );
-  } else {
-    j = createJoystick(
-      "Joystick",
-      panel.procentX(70),
-      panel.procentY(80),
-      panel.procentX(20),
-      panel.procentX(20),
-      -1,
-      1,
-      1,
-      -1
-    );
-  }
 
   level_1.player.joystick = j;
   level_1.create(panel);
@@ -77,11 +59,14 @@ function draw() {
     if (playLeft.buttonActive === 2) {
       level_1.player.speed = playLeft.buttonActive;
     }
-
     pop();
     panel.headBar();
     playRight.buttonView();
     playLeft.buttonView();
+    if (level_1.player.body[0].level === 2) {
+      panel.levelEnd();
+    }
+
     //  drawGui();
   } else if (panel.level === 2) {
     push();
@@ -105,20 +90,13 @@ function draw() {
   if (panel.level !== 0) {
     panel.buttonView();
     if (md.mobile()) {
-      image(joystickDot1, j.x, j.y, j.w, j.h);
-      image(
-        joystickDot2,
-        j.x + j.valX * panel.procentX(7),
-        j.y + j.valY * panel.procentX(7),
-        j.w,
-        j.h
-      );
     }
   } else {
   }
   if (panel.buttonActive == 0) {
     panel.level = 0;
   }
+  // panel.levelEnd();
 }
 
 function mousePressed(e) {
