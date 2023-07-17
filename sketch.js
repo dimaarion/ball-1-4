@@ -2,11 +2,12 @@
 let Engine = Matter.Engine;
 let engine, world;
 let engine2, world2;
-let scena1 = new Scena("./js/scena/scena.json")
+let scena1 = new Scena("./js/scena/scena.json");
 let level_1 = new Level_1("./js/scena/scena.json");
 let level_2 = new Level_1("./js/scena/scena2.json");
 //let level_2 = new Level_2();
 let panel = new Panel();
+
 let gui;
 let b;
 let j;
@@ -19,7 +20,7 @@ let test = 0;
 
 function preload() {
   panel.preload();
-  panel.button(95, 0, 5, 5, "./asset/panel/Settings_BTN.png");
+  panel.button(92, 0, 8, 8, "./asset/panel/Settings_BTN.png", 0);
   level_1.preload();
   level_2.preload();
   joystickDot1 = loadImage("./asset/panel/Dot_1.png");
@@ -29,49 +30,41 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   gui = createGui();
-
   md = new MobileDetect(window.navigator.userAgent);
+  if (deviceOrientation === LANDSCAPE) {
+    j = createJoystick(
+      "Joystick",
+      panel.procentX(70),
+      panel.procentY(50),
+      panel.procentX(20),
+      panel.procentX(20),
+      -1,
+      1,
+      1,
+      -1
+    );
+  } else {
+    j = createJoystick(
+      "Joystick",
+      panel.procentX(70),
+      panel.procentY(80),
+      panel.procentX(20),
+      panel.procentX(20),
+      -1,
+      1,
+      1,
+      -1
+    );
+  }
 
-  console.log(md.mobile())
-
-
-    if (deviceOrientation === LANDSCAPE) {
-      j = createJoystick(
-        "Joystick",
-        panel.procentX(70),
-        panel.procentY(50),
-        panel.procentX(20),
-        panel.procentX(20),
-        -1,
-        1,
-        1,
-        -1
-      );
-    } else {
-      j = createJoystick(
-        "Joystick",
-        panel.procentX(70),
-        panel.procentY(80),
-        panel.procentX(20),
-        panel.procentX(20),
-        -1,
-        1,
-        1,
-        -1
-      );
-    }
-  
   level_1.player.joystick = j;
   level_1.create(panel);
   level_2.player.joystick = j;
   level_2.create(panel);
-
-
 }
 
-
 function draw() {
-console.log(level_1.player.body[0].level)
+  console.log(panel.level);
   if (panel.level === 1) {
     push();
     level_1.view(panel);
@@ -87,7 +80,8 @@ console.log(level_1.player.body[0].level)
   } else {
     panel.view();
   }
-  if (panel.level != 0) {
+  // panel.level = panel.buttonActive;
+  if (panel.level !== 0) {
     panel.buttonView();
     if (md.mobile()) {
       image(joystickDot1, j.x, j.y, j.w, j.h);
@@ -99,16 +93,14 @@ console.log(level_1.player.body[0].level)
         j.h
       );
     }
-
   } else {
   }
-
-
 }
 
 function mousePressed(e) {
+  panel.level = panel.buttonActive;
   panel.pressed(e);
-  test++
+  test++;
 
   level_1.pressedM(e);
   level_2.pressedM(e);

@@ -36,6 +36,8 @@ class Panel {
   crystal2 = new Animate();
   body = new Body();
   world;
+  buttonActive = NaN;
+  active;
   preload() {
     this.bg = loadImage("./asset/panel/BG.png");
     this.window = loadImage("./asset/panel/Window.png");
@@ -47,7 +49,8 @@ class Panel {
     this.crystal2.animateD("./asset/crystall2.png", 189);
   }
 
-  button(bx, by, bw, bh, bImg = "") {
+  button(bx, by, bw, bh, bImg = "", active) {
+    this.active = active;
     this.bx = bx;
     this.by = by;
     this.bw = bw;
@@ -126,7 +129,8 @@ class Panel {
     this.w = windowWidth / 2;
     this.h = this.w * 1.5;
     this.tableNumXDop = windowWidth / 2 - this.tableNumX * 5 + this.tableNumX;
-    image(this.bg, 0, 0, this.procentX(100), this.procentY(100));
+    // image(this.bg, 0, 0, this.procentX(100), this.procentY(100));
+    background("#F39986");
     image(this.window, windowWidth / 2 - this.w / 2, this.y, this.w, this.h);
     let col = 0;
     let row = 0;
@@ -289,8 +293,9 @@ class Panel {
         this.procentX(this.bh)
       )
     ) {
-      this.level = 0;
-      this.body.getName(this.world, "player").level = 0;
+      //  this.level = 0;
+      //  this.body.getName(this.world, "player").level = 0;
+      this.buttonActive = this.active;
     }
   }
 }
