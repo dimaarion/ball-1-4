@@ -296,6 +296,8 @@ class Panel {
       //  this.level = 0;
       //  this.body.getName(this.world, "player").level = 0;
       this.buttonActive = this.active;
+    } else {
+      this.buttonActive = NaN;
     }
   }
 }

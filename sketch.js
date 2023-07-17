@@ -98,7 +98,9 @@ function draw() {
 }
 
 function mousePressed(e) {
-  panel.level = panel.buttonActive;
+  if (panel.buttonActive == 0) {
+    panel.level = 0;
+  }
   panel.pressed(e);
   test++;
 
