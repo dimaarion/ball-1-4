@@ -74,8 +74,6 @@ constructor(nameScena){
 
 
   view() {
-//panel.level = this.player.getName(this.world, "player").level
-
     background(102, 98, 97);
     rectMode(p5.CENTER);
     this.player.translates();

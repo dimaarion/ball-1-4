@@ -7,6 +7,8 @@ let level_1 = new Level_1("./js/scena/scena.json");
 let level_2 = new Level_1("./js/scena/scena2.json");
 //let level_2 = new Level_2();
 let panel = new Panel();
+let playRight = new Panel();
+let playLeft = new Panel();
 
 let gui;
 let b;
@@ -21,6 +23,8 @@ let test = 0;
 function preload() {
   panel.preload();
   panel.button(92, 0, 8, 8, "./asset/panel/Settings_BTN.png", 0);
+  playRight.button(30, 80, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
+  playLeft.button(10, 80, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
   level_1.preload();
   level_2.preload();
   joystickDot1 = loadImage("./asset/panel/Dot_1.png");
@@ -64,23 +68,40 @@ function setup() {
 }
 
 function draw() {
-  console.log(panel.level);
   if (panel.level === 1) {
     push();
     level_1.view(panel);
+    if (playRight.buttonActive === 1) {
+      level_1.player.speed = playRight.buttonActive;
+    }
+    if (playLeft.buttonActive === 2) {
+      level_1.player.speed = playLeft.buttonActive;
+    }
+
     pop();
     panel.headBar();
+    playRight.buttonView();
+    playLeft.buttonView();
     //  drawGui();
   } else if (panel.level === 2) {
     push();
     level_2.view(panel);
+    if (playRight.buttonActive === 1) {
+      level_2.player.speed = playRight.buttonActive;
+    }
+    if (playLeft.buttonActive === 2) {
+      level_2.player.speed = playLeft.buttonActive;
+    }
     pop();
     panel.headBar();
+    playRight.buttonView();
+    playLeft.buttonView();
     // drawGui();
   } else {
     panel.view();
   }
   // panel.level = panel.buttonActive;
+
   if (panel.level !== 0) {
     panel.buttonView();
     if (md.mobile()) {
@@ -95,15 +116,15 @@ function draw() {
     }
   } else {
   }
-}
-
-function mousePressed(e) {
   if (panel.buttonActive == 0) {
     panel.level = 0;
   }
-  panel.pressed(e);
-  test++;
+}
 
+function mousePressed(e) {
+  panel.pressed(e);
+  playRight.pressed(e);
+  playLeft.pressed(e);
   level_1.pressedM(e);
   level_2.pressedM(e);
 }
@@ -111,6 +132,8 @@ function mousePressed(e) {
 function mouseReleased(e) {
   level_1.relassedM(e);
   level_2.relassedM(e);
+  playRight.rePressed(e);
+  playLeft.rePressed(e);
 }
 
 function keyPressed(e) {

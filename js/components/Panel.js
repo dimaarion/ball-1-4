@@ -300,4 +300,23 @@ class Panel {
       this.buttonActive = NaN;
     }
   }
+
+  rePressed(e) {
+    if (
+      this.collidePointRect(
+        mouseX,
+        mouseY,
+        this.procentX(this.bx),
+        this.procentY(this.by),
+        this.procentX(this.bw),
+        this.procentX(this.bh)
+      )
+    ) {
+      //  this.level = 0;
+      //  this.body.getName(this.world, "player").level = 0;
+      this.buttonActive = 0;
+    } else {
+      this.buttonActive = NaN;
+    }
+  }
 }
