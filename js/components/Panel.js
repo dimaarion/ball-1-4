@@ -242,11 +242,11 @@ class Panel {
   updateTimer() {
     if (this.timer.expired()) {
       this.elapsedSeconds++;
-      if (this.elapsedSeconds > 60) {
+      if (this.elapsedSeconds > 59) {
         this.elapsedSeconds = 0;
         this.elapsedMinutes++;
       }
-      if (this.elapsedMinutes > 60) {
+      if (this.elapsedMinutes > 59) {
         this.elapsedMinutes = 0;
         this.elapsedHour++;
       }

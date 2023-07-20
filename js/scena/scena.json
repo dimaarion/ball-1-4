@@ -305,7 +305,7 @@
                  "id":182,
                  "name":"point",
                  "rotation":0,
-                 "type":"level_2",
+                 "type":"0",
                  "visible":true,
                  "width":27.75,
                  "x":291.625,
@@ -459,8 +459,8 @@
                  "type":"player",
                  "visible":true,
                  "width":14.25,
-                 "x":264.174242424242,
-                 "y":235.954545454545
+                 "x":296.174242424242,
+                 "y":336.454545454545
                 }],
          "opacity":1,
          "type":"objectgroup",

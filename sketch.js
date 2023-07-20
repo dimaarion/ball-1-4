@@ -9,6 +9,8 @@ let level_2 = new Level_1("./js/scena/scena2.json");
 let panel = new Panel();
 let playRight = new Panel();
 let playLeft = new Panel();
+let levelStep_1 = new Panel();
+
 
 let gui;
 let b;
@@ -30,8 +32,9 @@ function preload() {
     panel.button(92, 0, 8, 8, "./asset/panel/Settings_BTN.png", 0);
     playRight.button(30, 85, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
     playLeft.button(10, 85, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
-  }
 
+  }
+  levelStep_1.button(0, 85, 8, 8, "./asset/panel/PlayRight_BTN.png", 2);
   level_1.preload();
   level_2.preload();
   joystickDot1 = loadImage("./asset/panel/Dot_1.png");
@@ -59,14 +62,21 @@ function draw() {
     if (playLeft.buttonActive === 2) {
       level_1.player.speed = playLeft.buttonActive;
     }
+
+    // level_1.player.body[0].level = panel.level;
+
     pop();
     panel.headBar();
     playRight.buttonView();
     playLeft.buttonView();
     if (level_1.player.body[0].level === 2) {
       panel.levelEnd();
+      levelStep_1.buttonView();
+      if(levelStep_1.buttonActive === 2){
+        panel.level = 2;
+      }
+      console.log(levelStep_1.buttonActive)
     }
-
     //  drawGui();
   } else if (panel.level === 2) {
     push();
@@ -81,6 +91,9 @@ function draw() {
     panel.headBar();
     playRight.buttonView();
     playLeft.buttonView();
+    if (level_2.player.body[0].level === 3) {
+      panel.levelEnd();
+    }
     // drawGui();
   } else {
     panel.view();
@@ -105,6 +118,7 @@ function mousePressed(e) {
   playLeft.pressed(e);
   level_1.pressedM(e);
   level_2.pressedM(e);
+  levelStep_1.pressed(e);
 }
 
 function mouseReleased(e) {
@@ -112,6 +126,7 @@ function mouseReleased(e) {
   level_2.relassedM(e);
   playRight.rePressed(e);
   playLeft.rePressed(e);
+  levelStep_1.rePressed(e);
 }
 
 function keyPressed(e) {
