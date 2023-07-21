@@ -34,7 +34,7 @@ function preload() {
     playLeft.button(10, 85, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
 
   }
-  levelStep_1.button(35, 50, 8, 8, "./asset/panel/PlayRight_BTN.png", 2);
+  levelStep_1.button(60, 60, 8, 8, "./asset/panel/step_level.png", 2);
   level_1.preload();
   level_2.preload();
   joystickDot1 = loadImage("./asset/panel/Dot_1.png");
