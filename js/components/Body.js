@@ -193,6 +193,37 @@ class Body {
         .map((b) => Matter.Body.setPosition(b, { x: x, y: y }));
     }
   }
+  getAngularSpeed() {
+    if (this.world !== undefined) {
+      return this.world.bodies
+        .filter((f) => f.label === this.name)
+        .map((b) => Matter.Body.getAngularSpeed(b));
+    }
+  }
+
+  getSpeed() {
+    if (this.world !== undefined) {
+      return this.world.bodies
+        .filter((f) => f.label === this.name)
+        .map((b) => Matter.Body.getSpeed(b));
+    }
+  }
+
+  getVelocity() {
+    if (this.world !== undefined) {
+      return this.world.bodies
+        .filter((f) => f.label === this.name)
+        .map((b) => Matter.Body.getVelocity(b));
+    }
+  }
+
+  getAngularVelocity() {
+    if (this.world !== undefined) {
+      return this.world.bodies
+        .filter((f) => f.label === this.name)
+        .map((b) => Matter.Body.getAngularVelocity(b));
+    }
+  }
 
   createRect(world, scena) {
     this.animate.setupAnimate();

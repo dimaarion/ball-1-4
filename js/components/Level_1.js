@@ -2,7 +2,7 @@ class Level_1 {
   engine;
   world;
   scena = new Scena();
-  nameScena = "./js/scena/scena.json"
+  nameScena = "./js/scena/scena.json";
   player = new Player("player");
   animate = new Animate();
   mapPlatform = new TileMap(this.scena);
@@ -26,9 +26,9 @@ class Level_1 {
   portal = new Portal("portal");
   crystal = new Crystal();
 
-constructor(nameScena){
- this.nameScena = nameScena;
-}
+  constructor(nameScena) {
+    this.nameScena = nameScena;
+  }
 
   preload() {
     this.scena.preload(this.nameScena);
@@ -55,7 +55,6 @@ constructor(nameScena){
   }
 
   create(panel) {
-  
     this.engine = Engine.create();
     this.world = this.engine.world;
     Engine.run(this.engine);
@@ -68,10 +67,6 @@ constructor(nameScena){
     this.crystal.setup(this.engine, this.world, this.scena);
     panel.create(this.world);
   }
-
-
-
-
 
   view() {
     background(102, 98, 97);
@@ -94,10 +89,9 @@ constructor(nameScena){
     this.mapPlatformF2.view(4, "wall");
     this.mapPlatform.view(1, "level 1");
     this.portal.view();
-   // this.crystal.view();
+    // this.crystal.view();
     //this.platform.viewRect()
   }
-  
 
   pressedM() {
     if (mouseX > windowWidth / 2) {

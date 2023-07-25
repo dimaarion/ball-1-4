@@ -38,14 +38,24 @@ class Player extends Body {
   header2;
   animate = new Animate();
   animateR = new Animate();
+  animateL = new Animate();
+  stopRight = new Animate();
+  stopLeft = new Animate();
   playerUpAnimate = new Animate();
+  jamp = new Animate();
+  jampLeft = new Animate();
   constructor(props) {
     super(props);
   }
   loadImg() {
     this.animate.animateD(this.image, 48);
-    this.animateR.animateD(this.imageR, 6);
+    this.animateR.animateD("./asset/Player/playerR.png", 30);
+    this.animateL.animateD("./asset/Player/playerL.png", 30);
     this.playerUpAnimate.animateD(this.playerUp, 100);
+    this.stopRight.animateE("./asset/Player/playerStopRight.png");
+    this.stopLeft.animateE("./asset/Player/playerStopLeft.png");
+    this.jamp.animateE("./asset/Player/playerJamp.png");
+    this.jampLeft.animateE("./asset/Player/playerJampLeft.png");
   }
 
   setup(engine, world, scena) {
@@ -54,11 +64,19 @@ class Player extends Body {
     this.animate.setupAnimate();
     this.animateR.setupAnimate();
     this.playerUpAnimate.setupAnimate();
-
+    this.stopRight.setupAnimate();
+    this.stopLeft.setupAnimate();
+    this.animateL.setupAnimate();
+    this.jamp.setupAnimate();
+    this.jampLeft.setupAnimate();
     this.createEllipse(world, scena);
-    this.speedBody = scena.size(this.speedBody, scena.scale);
+    // this.speedBody = scena.size(this.speedBody, scena.scale);
     this.speedBodyDop = scena.size(this.speedBodyDop, scena.scale);
-    this.gravity = scena.size(this.gravity, scena.scale);
+    // this.gravity = 15;
+    this.speedBody = scena.procent(1);
+    this.gravity = scena.procent(1);
+    this.animateR.rate = 1;
+    this.animateL.rate = 1;
     this.body.map((b) => {
       b.speedBodyDop = this.speedBodyDop;
     });
@@ -72,8 +90,8 @@ class Player extends Body {
           pair.bodyB.label === "platform_b"
         ) {
           Matter.Body.setVelocity(pair.bodyA, {
-            x: pair.bodyA.jX ? pair.bodyA.jX * pair.bodyA.speedBodyDop : 0,
-            y: pair.bodyA.jY ? pair.bodyA.jY * pair.bodyA.speedBodyDop : 0,
+            x: pair.bodyA.jX ? pair.bodyA.jX : 0,
+            y: pair.bodyA.jY ? pair.bodyA.jY : 0,
           });
           //  Matter.Body.setRotate(pair.bodyA, pair.bodyA.jX);
         }
@@ -90,8 +108,8 @@ class Player extends Body {
           pair.bodyB.label === "platform_b"
         ) {
           Matter.Body.setVelocity(pair.bodyA, {
-            x: pair.bodyA.jX ? pair.bodyA.jX * pair.bodyA.speedBodyDop : 0,
-            y: pair.bodyA.jY ? pair.bodyA.jY * pair.bodyA.speedBodyDop : 0,
+            x: pair.bodyA.jX ? pair.bodyA.jX : 0,
+            y: pair.bodyA.jY ? pair.bodyA.jY : 0,
           });
           //  Matter.Body.setRotate(pair.bodyA, pair.bodyA.jX);
         }
@@ -104,7 +122,7 @@ class Player extends Body {
     this.animateR.animated = false;
     this.playerUpAnimate.animated = false;
     this.animate.rate = 0.5;
-    this.animateR.rate = 2;
+    // this.animateR.rate = 2;
     if (this.speed === 1) {
       // this.setRotate(0.1);
     } else if (this.speed === 2) {
@@ -198,11 +216,62 @@ class Player extends Body {
     }
 
     this.body.map((b) => {
-      image(
-        this.animateR.spriteEllipse(b.width),
-        b.position.x - b.width / 2,
-        b.position.y - b.width / 2
-      );
+      if (this.up == 0 && this.speed == 1) {
+        image(
+          this.animateR.spriteEllipse(b.width),
+          b.position.x - b.width / 2,
+          b.position.y - b.width / 2
+        );
+      } else if (this.up == 0 && this.direction == 1) {
+        image(
+          this.stopRight.sprite(),
+          b.position.x - b.width / 2,
+          b.position.y - b.width / 2,
+          b.width,
+          b.width
+        );
+      } else if (this.up != 0 && this.direction == 1) {
+        image(
+          this.jamp.sprite(),
+          b.position.x - b.width / 2,
+          b.position.y - b.width / 2,
+          b.width,
+          b.width
+        );
+      }
+
+      if (this.up == 0 && this.speed == 2) {
+        image(
+          this.animateL.spriteEllipse(b.width),
+          b.position.x - b.width / 2,
+          b.position.y - b.width / 2
+        );
+      } else if (this.up == 0 && this.direction == 2) {
+        image(
+          this.stopLeft.sprite(),
+          b.position.x - b.width / 2,
+          b.position.y - b.width / 2,
+          b.width,
+          b.width
+        );
+      } else if (this.up != 0 && this.direction == 2) {
+        image(
+          this.jampLeft.sprite(),
+          b.position.x - b.width / 2,
+          b.position.y - b.width / 2,
+          b.width,
+          b.width
+        );
+      }
+      if (this.direction == 0) {
+        image(
+          this.stopRight.sprite(),
+          b.position.x - b.width / 2,
+          b.position.y - b.width / 2,
+          b.width,
+          b.width
+        );
+      }
     });
     /*  this.body.map((b) => {
       image(
