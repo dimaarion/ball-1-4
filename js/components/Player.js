@@ -18,7 +18,7 @@ class Player extends Body {
   friction = 1;
   getObj;
   image = "./asset/Player/playerHeader.png";
-  imageR = "./asset/Player/player.png";
+  imageR = "./asset/Player/playerGolem.png";
   imageS = "./asset/Player/soplo.png";
   imageS2 = "./asset/Player/soplo2.png";
   playerUp = "./asset/Player/playerUp.png";
@@ -44,7 +44,7 @@ class Player extends Body {
   }
   loadImg() {
     this.animate.animateD(this.image, 48);
-    this.animateR.animateD(this.imageR, 96);
+    this.animateR.animateD(this.imageR, 6);
     this.playerUpAnimate.animateD(this.playerUp, 100);
   }
 
