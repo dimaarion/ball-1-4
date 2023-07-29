@@ -75,8 +75,8 @@ class Player extends Body {
     // this.gravity = 15;
     this.speedBody = scena.procent(1);
     this.gravity = scena.procent(1);
-    this.animateR.rate = 1;
-    this.animateL.rate = 1;
+    this.animateR.rate = 0;
+    this.animateL.rate = 0;
     this.body.map((b) => {
       b.speedBodyDop = this.speedBodyDop;
     });
