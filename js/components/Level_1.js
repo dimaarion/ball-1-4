@@ -25,9 +25,11 @@ class Level_1 {
   events = new Events();
   portal = new Portal("portal");
   crystal = new Crystal();
+  level = 0;
 
-  constructor(nameScena) {
+  constructor(nameScena,level) {
     this.nameScena = nameScena;
+    this.level = level;
   }
 
   preload() {
@@ -79,8 +81,9 @@ class Level_1 {
     this.map8_1.view(23, "wall");
     this.map8_2.view(21, "wall");
     this.map8_3.view(22, "wall");
-    this.mapPlatformF5.view(6, "wall");
-    this.map9.view(24, "wall");
+    this.map8_3.view(20, "wall");
+    this.mapPlatformF5.view(8, "wall");
+    this.map9.view(28, "wall");
     this.map9_1.view(25, "wall");
     this.map9_2.view(26, "wall");
     this.map9_3.view(27, "wall");

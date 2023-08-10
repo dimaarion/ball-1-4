@@ -245,6 +245,7 @@ class Body {
           typeObject: b.type,
           speedBodyDop: 0,
           level: 0,
+          display:"start"
         }
       )
     );
@@ -269,6 +270,7 @@ class Body {
           typeObject: b.type,
           speedBodyDop: 0,
           level: 0,
+          display:"start"
         }
       )
     );
@@ -295,6 +297,7 @@ class Body {
           typeObject: b.type,
           speedBodyDop: 0,
           level: 0,
+          display:"start"
         }
       )
     );
@@ -326,6 +329,7 @@ class Body {
           typeObject: b.type,
           speedBodyDop: 0,
           level: 0,
+          display:"start"
         }
       )
     );

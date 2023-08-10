@@ -38,6 +38,7 @@ class Panel {
   world;
   buttonActive = NaN;
   active;
+  display = "start";
   preload() {
     this.bg = loadImage("./asset/panel/BG.png");
     this.window = loadImage("./asset/panel/Window.png");
@@ -236,9 +237,7 @@ class Panel {
     text("x", this.procentX(12), this.procentX(2));
     text("1", this.procentX(12.9), this.procentX(2));
   }
-  view() {
-    this.levelPanel();
-  }
+  
   updateTimer() {
     if (this.timer.expired()) {
       this.elapsedSeconds++;
@@ -281,7 +280,7 @@ class Panel {
           )
         ) {
           this.level = lev.id;
-          this.body.getName(this.world, "player").level = lev.id;
+          this.display = "start";
         }
 
         if (col > 5) {

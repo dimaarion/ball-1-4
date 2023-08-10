@@ -3,7 +3,8 @@ class Portal extends Body {
   gorizontal_restart = new Animate();
   vertical_restart = new Animate();
   gorizontal = new Animate();
-  level = new Animate()
+  level = new Animate();
+  level_vertical = new Animate();
   scale = 8;
   constructor(props) {
     super(props);
@@ -13,7 +14,8 @@ class Portal extends Body {
     this.gorizontal_restart.animateE("./asset/portal/portal_restart_gorizontal.png");
     this.vertical_restart.animateE("./asset/portal/portal_restart_vertical.png")
     this.gorizontal.animateE("./asset/portal/portal_gorizontal.png");
-    this.level.animateE("./asset/portal/portal_level.png");
+    this.level.animateE("./asset/portal/portal_level_gorizontal.png");
+    this.level_vertical.animateE("./asset/portal/portal_level_gorizontal.png");
   }
 
   create(world, scena) {
@@ -77,6 +79,18 @@ class Portal extends Body {
       .map((b) =>
         image(
           this.level.sprite(),
+          b.position.x - b.width / 2,
+          b.position.y - b.height / 2,
+          b.width,
+          b.height
+        )
+      );
+
+      this.body
+      .filter((f) => f.typeObject === "vertical_level")
+      .map((b) =>
+        image(
+          this.level_vertical.sprite(),
           b.position.x - b.width / 2,
           b.position.y - b.height / 2,
           b.width,
