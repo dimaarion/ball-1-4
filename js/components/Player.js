@@ -34,6 +34,7 @@ class Player extends Body {
   speedBody = 0.08;
   speedBodyDop = 1;
   gravity = 0.06;
+  rotate = 0;
   header;
   header2;
   animate = new Animate();
@@ -43,7 +44,9 @@ class Player extends Body {
   stopLeft = new Animate();
   playerUpAnimate = new Animate();
   jamp = new Animate();
+  jampBR = new Animate();
   jampLeft = new Animate();
+  ball = new Animate();
   constructor(props) {
     super(props);
   }
@@ -54,11 +57,14 @@ class Player extends Body {
     this.playerUpAnimate.animateD(this.playerUp, 100);
     this.stopRight.animateE("./asset/Player/playerStopRight.png");
     this.stopLeft.animateE("./asset/Player/playerStopLeft.png");
-    this.jamp.animateE("./asset/Player/playerJamp.png");
+    this.jamp.animateD("./asset/Player/jampAnimate.png", 20);
+    this.jampBR.animateD("./asset/Player/jampBRAnimate.png", 12);
     this.jampLeft.animateE("./asset/Player/playerJampLeft.png");
+    this.ball.animateE("./asset/Player/ball.png");
   }
 
   setup(engine, world, scena) {
+
     this.engine = engine;
     this.scena = scena;
     this.animate.setupAnimate();
@@ -68,15 +74,18 @@ class Player extends Body {
     this.stopLeft.setupAnimate();
     this.animateL.setupAnimate();
     this.jamp.setupAnimate();
+    this.jampBR.setupAnimate();
     this.jampLeft.setupAnimate();
+    this.fric = 1;
     this.createEllipse(world, scena);
     // this.speedBody = scena.size(this.speedBody, scena.scale);
     this.speedBodyDop = scena.size(this.speedBodyDop, scena.scale);
     // this.gravity = 15;
-    this.speedBody = scena.procent(1);
-    this.gravity = scena.procent(1);
+    this.speedBody = scena.procentXY(0.5);
+    this.gravity = scena.procentXY(0.5);
     this.animateR.rate = 0;
     this.animateL.rate = 0;
+    this.jamp.rate = 0
     this.body.map((b) => {
       b.speedBodyDop = this.speedBodyDop;
     });
@@ -89,14 +98,33 @@ class Player extends Body {
           pair.bodyA.label === "player" &&
           pair.bodyB.label === "platform_b"
         ) {
-          Matter.Body.setVelocity(pair.bodyA, {
-            x: pair.bodyA.jX ? pair.bodyA.jX : 0,
-            y: pair.bodyA.jY ? pair.bodyA.jY : 0,
-          });
+
+          pair.bodyA.activeB = 1;
+
+          // this.jamp.format = 2
           //  Matter.Body.setRotate(pair.bodyA, pair.bodyA.jX);
         }
       }
     });
+
+    Matter.Events.on(engine, "collisionEnd", function (event) {
+      //  console.log(this.joystick.valX);
+      var pairs = event.pairs;
+      for (var i = 0; i < pairs.length; i++) {
+        var pair = pairs[i];
+        if (
+          pair.bodyA.label === "player" &&
+          pair.bodyB.label === "platform_b"
+        ) {
+
+
+          pair.bodyA.activeB = 0;
+          // this.jamp.format = 2
+          //  Matter.Body.setRotate(pair.bodyA, pair.bodyA.jX);
+        }
+      }
+    });
+
 
     Matter.Events.on(engine, "collisionStart", function (event) {
       //  console.log(this.joystick.valX);
@@ -107,11 +135,10 @@ class Player extends Body {
           pair.bodyA.label === "player" &&
           pair.bodyB.label === "platform_b"
         ) {
-          Matter.Body.setVelocity(pair.bodyA, {
-            x: pair.bodyA.jX ? pair.bodyA.jX : 0,
-            y: pair.bodyA.jY ? pair.bodyA.jY : 0,
-          });
+          pair.bodyA.activeB = 1;
           //  Matter.Body.setRotate(pair.bodyA, pair.bodyA.jX);
+        } else {
+
         }
       }
     });
@@ -132,15 +159,17 @@ class Player extends Body {
     }
 
     this.body.map((b) => {
-      //  console.log(b.speed);
+      //  console.log(b.activeB);
 
       b.jY = this.up != 0 ? -this.gravity : 0;
       b.jX =
         this.speed === 0
           ? 0
           : this.speed === 1
-          ? this.speedBody
-          : -this.speedBody;
+            ? this.up != 0 ? this.speedBody : 0
+            : this.up != 0 ? -this.speedBody : 0;
+
+
     });
 
     /*
@@ -215,63 +244,33 @@ class Player extends Body {
       this.animate.format = 2;
     }
 
-    this.body.map((b) => {
-      if (this.up == 0 && this.speed == 1) {
-        image(
-          this.animateR.spriteEllipse(b.width),
-          b.position.x - b.width / 2,
-          b.position.y - b.width / 2
-        );
-      } else if (this.up == 0 && this.direction == 1) {
-        image(
-          this.stopRight.sprite(),
-          b.position.x - b.width / 2,
-          b.position.y - b.width / 2,
-          b.width,
-          b.width
-        );
-      } else if (this.up != 0 && this.direction == 1) {
-        image(
-          this.jamp.sprite(),
-          b.position.x - b.width / 2,
-          b.position.y - b.width / 2,
-          b.width,
-          b.width
-        );
-      }
+    /// console.log(this.getVelocity()[0].y)
 
-      if (this.up == 0 && this.speed == 2) {
-        image(
-          this.animateL.spriteEllipse(b.width),
-          b.position.x - b.width / 2,
-          b.position.y - b.width / 2
-        );
-      } else if (this.up == 0 && this.direction == 2) {
-        image(
-          this.stopLeft.sprite(),
-          b.position.x - b.width / 2,
-          b.position.y - b.width / 2,
-          b.width,
-          b.width
-        );
-      } else if (this.up != 0 && this.direction == 2) {
-        image(
-          this.jampLeft.sprite(),
-          b.position.x - b.width / 2,
-          b.position.y - b.width / 2,
-          b.width,
-          b.width
-        );
-      }
-      if (this.direction == 0) {
-        image(
-          this.stopRight.sprite(),
-          b.position.x - b.width / 2,
-          b.position.y - b.width / 2,
-          b.width,
-          b.width
-        );
-      }
+    if (this.speed == 1 && this.up == 0 && this.body[0].activeB == 1) {
+      this.setVelosity(this.speedBody, 0)
+    } else if (this.speed == 1 && this.up != 0 && this.body[0].activeB == 1) {
+      this.setVelosity(this.speedBody, -this.gravity)
+    }
+    if (this.speed == 2 && this.up == 0 && this.body[0].activeB == 1) {
+      this.setVelosity(-this.speedBody, 0)
+    } else if (this.speed == 2 && this.up != 0 && this.body[0].activeB == 1) {
+      this.setVelosity(-this.speedBody, -this.gravity)
+    } else if (this.speed != 1 && this.speed != 2 && this.up != 0 && this.body[0].activeB == 1) {
+      this.setVelosity(0, -this.gravity)
+    }
+
+    this.body.map((b) => {
+      push();
+      translate(b.position.x, b.position.y)
+      rotate(b.angle)
+      image(
+        this.ball.sprite(),
+        - b.width / 2,
+        - b.width / 2,
+        b.width,
+        b.width
+      );
+      pop();
     });
     /*  this.body.map((b) => {
       image(

@@ -9,6 +9,7 @@ class Body {
   n = 0;
   scena;
   image;
+  fric = 0.1;
   count = 0;
   animate = new Animate();
   rest = 0.2;
@@ -242,10 +243,12 @@ class Body {
           isStatic: this.static,
           isSensor: this.sensor,
           restitution: this.rest,
+          friction:this.fric,
           typeObject: b.type,
           speedBodyDop: 0,
           level: 0,
-          display:"start"
+          display:"start",
+          activeB:0
         }
       )
     );
@@ -267,10 +270,12 @@ class Body {
           isStatic: this.static,
           isSensor: this.sensor,
           restitution: this.rest,
+          friction:this.fric,
           typeObject: b.type,
           speedBodyDop: 0,
           level: 0,
-          display:"start"
+          display:"start",
+          activeB:0
         }
       )
     );
@@ -294,10 +299,12 @@ class Body {
           isStatic: this.static,
           isSensor: this.sensor,
           restitution: this.rest,
+          friction:this.fric,
           typeObject: b.type,
           speedBodyDop: 0,
           level: 0,
-          display:"start"
+          display:"start",
+          activeB:0
         }
       )
     );
@@ -326,10 +333,12 @@ class Body {
           isStatic: this.static,
           isSensor: this.sensor,
           restitution: this.rest,
+          friction:this.fric,
           typeObject: b.type,
           speedBodyDop: 0,
           level: 0,
-          display:"start"
+          display:"start",
+          activeB:0
         }
       )
     );
