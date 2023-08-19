@@ -307,7 +307,7 @@
                  "y":1474.70948030303
                 }, 
                 {
-                 "height":30.5522727272728,
+                 "height":61.1772727272728,
                  "id":189,
                  "name":"platform",
                  "rotation":0,
@@ -775,7 +775,7 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":6.204518181818,
+                 "width":33.204518181818,
                  "x":1695.17046818182,
                  "y":1504.20190454545
                 }, 
@@ -1035,15 +1035,15 @@
                  "y":1696.26515151515
                 }, 
                 {
-                 "height":29.9242424242423,
+                 "height":5.36174242424227,
                  "id":134,
                  "name":"point",
                  "rotation":0,
                  "type":"in_1",
                  "visible":true,
-                 "width":22.590909090909,
-                 "x":1702.67891554656,
-                 "y":1506.21397600809
+                 "width":28.022727272727,
+                 "x":1730.09368827383,
+                 "y":1532.74806691718
                 }, 
                 {
                  "height":32.6136363636364,
@@ -1119,8 +1119,8 @@
                  "type":"ex_1",
                  "visible":true,
                  "width":31,
-                 "x":1441.125,
-                 "y":1308.604165
+                 "x":1632.94318181818,
+                 "y":1335.33143772727
                 }, 
                 {
                  "height":29.9242,
@@ -1209,6 +1209,17 @@
                  "width":30.5606545454547,
                  "x":1376.37019973649,
                  "y":1887.03022523056
+                }, 
+                {
+                 "height":6.09089999999992,
+                 "id":280,
+                 "name":"point",
+                 "rotation":0,
+                 "type":"0",
+                 "visible":true,
+                 "width":32.0152,
+                 "x":1663.8674,
+                 "y":1468.03788333333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1360,50 +1371,6 @@
                  "y":718.25
                 }, 
                 {
-                 "height":32.5,
-                 "id":170,
-                 "name":"portal",
-                 "rotation":0,
-                 "type":"vertical",
-                 "visible":true,
-                 "width":6,
-                 "x":1725.53977272727,
-                 "y":1504.41666666667
-                }, 
-                {
-                 "height":6,
-                 "id":175,
-                 "name":"portal",
-                 "rotation":0,
-                 "type":"gorizontal",
-                 "visible":true,
-                 "width":32.5,
-                 "x":1439.76811594203,
-                 "y":1309.59782608696
-                }, 
-                {
-                 "height":32.5,
-                 "id":234,
-                 "name":"portal",
-                 "rotation":0,
-                 "type":"vertical",
-                 "visible":true,
-                 "width":6,
-                 "x":1692.45454545455,
-                 "y":1441.02272727273
-                }, 
-                {
-                 "height":32.5,
-                 "id":236,
-                 "name":"portal",
-                 "rotation":0,
-                 "type":"vertical",
-                 "visible":true,
-                 "width":6,
-                 "x":1725.36363636364,
-                 "y":1440.84090909091
-                }, 
-                {
                  "height":6,
                  "id":240,
                  "name":"portal",
@@ -1501,6 +1468,28 @@
                  "width":32.5,
                  "x":1375.8079710145,
                  "y":1885.22661396574
+                }, 
+                {
+                 "height":32,
+                 "id":279,
+                 "name":"portal",
+                 "rotation":0,
+                 "type":"gorizontal",
+                 "visible":true,
+                 "width":32,
+                 "x":1727.93499396135,
+                 "y":1504.01265096618
+                }, 
+                {
+                 "height":32,
+                 "id":281,
+                 "name":"portal",
+                 "rotation":0,
+                 "type":"gorizontal_restart",
+                 "visible":true,
+                 "width":32,
+                 "x":1792.05434782609,
+                 "y":1504.07246376812
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1544,7 +1533,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":279,
+ "nextobjectid":282,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"2021.03.23",

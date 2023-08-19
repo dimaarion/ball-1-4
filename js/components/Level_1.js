@@ -11,6 +11,7 @@ class Level_1 {
   mapPlatformF3 = new TileMap(this.scena);
   mapPlatformF4 = new TileMap(this.scena);
   mapPlatformF5 = new TileMap(this.scena);
+  map7_3 = new TileMap(this.scena);
   map3 = new TileMap(this.scena);
   map8_1 = new TileMap(this.scena);
   map8_2 = new TileMap(this.scena);
@@ -42,6 +43,7 @@ class Level_1 {
     this.mapPlatformF3.loadImg("./asset/level1/Tiles/7.png");
     this.mapPlatformF4.loadImg("./asset/level1/Tiles/8.png");
     this.mapPlatformF5.loadImg("./asset/level1/Tiles/7.1.png");
+    this.map7_3.loadImg("./asset/level1/Tiles/7.3.png");
     this.map3.loadImg("./asset/level1/Tiles/3.png");
     this.map8_1.loadImg("./asset/level1/Tiles/8.1.png");
     this.map8_2.loadImg("./asset/level1/Tiles/8.2.png");
@@ -83,6 +85,7 @@ class Level_1 {
     this.map8_3.view(22, "wall");
     this.map8_3.view(20, "wall");
     this.mapPlatformF5.view(8, "wall");
+    this.map7_3.view(9, "wall");
     this.map9.view(28, "wall");
     this.map9_1.view(25, "wall");
     this.map9_2.view(26, "wall");
