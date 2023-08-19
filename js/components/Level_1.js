@@ -37,7 +37,7 @@ class Level_1 {
     this.scena.preload(this.nameScena);
     this.player.loadImg();
     this.animate.animateE("./asset/level1/f1.jpg");
-    this.mapPlatform.loadImg("./asset/level1/Tiles/1.png");
+    this.mapPlatform.loadImg("./asset/level1/Tiles/1_2.png");
     this.mapPlatformF.loadImg("./asset/level1/Tiles/2.png");
     this.mapPlatformF2.loadImg("./asset/level1/Tiles/4.png");
     this.mapPlatformF3.loadImg("./asset/level1/Tiles/7.png");
