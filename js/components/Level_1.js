@@ -20,6 +20,7 @@ class Level_1 {
   map9_1 = new TileMap(this.scena);
   map9_2 = new TileMap(this.scena);
   map9_3 = new TileMap(this.scena);
+
   bg = new TileMap(this.scena);
   platform = new Body("platform");
   platform_b = new Body("platform_b");
@@ -37,7 +38,7 @@ class Level_1 {
     this.scena.preload(this.nameScena);
     this.player.loadImg();
     this.animate.animateE("./asset/level1/f1.jpg");
-    this.mapPlatform.loadImg("./asset/level1/Tiles/1_2.png");
+    this.mapPlatform.loadImg("./asset/level1/Tiles/1.png");
     this.mapPlatformF.loadImg("./asset/level1/Tiles/2.png");
     this.mapPlatformF2.loadImg("./asset/level1/Tiles/4.png");
     this.mapPlatformF3.loadImg("./asset/level1/Tiles/7.png");
@@ -94,6 +95,7 @@ class Level_1 {
     this.mapPlatformF3.view(7, "wall");
     this.mapPlatformF2.view(4, "wall");
     this.mapPlatform.view(1, "level 1");
+   
     this.portal.view();
     // this.crystal.view();
     //this.platform.viewRect()

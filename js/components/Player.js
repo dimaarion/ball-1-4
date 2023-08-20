@@ -81,8 +81,8 @@ class Player extends Body {
     // this.speedBody = scena.size(this.speedBody, scena.scale);
     this.speedBodyDop = scena.size(this.speedBodyDop, scena.scale);
     // this.gravity = 15;
-    this.speedBody = scena.procentXY(0.5);
-    this.gravity = scena.procentXY(0.5);
+    this.speedBody = scena.size(2,scena.scale);
+    this.gravity = scena.size(1.5,scena.scale);
     this.animateR.rate = 0;
     this.animateL.rate = 0;
     this.jamp.rate = 0

@@ -47,12 +47,13 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   gui = createGui();
   md = new MobileDetect(window.navigator.userAgent);
-
+  level_1.scena.scale = 2;
   level_1.player.joystick = j;
   level_1.create(panel);
   level_2.player.joystick = j;
+  level_2.scena.scale = 2;
   level_2.create(panel);
-  level_3.scena.scale = 50;
+  level_3.scena.scale = 10;
   level_3.create(panel);
   
 }

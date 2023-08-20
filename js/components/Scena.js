@@ -4,7 +4,7 @@ class Scena {
   scenaWidth = 0;
   scenaHeigiht = 0;
   scenaSize = 0;
-  scale = 10 ;
+  scale = 5 ;
   
 
   preload(name) {
@@ -78,8 +78,7 @@ class Scena {
   }
 
   procent(x, scale = 1) {
-    let r = window.innerWidth * scale;
-    return this.procentIn(r, x);
+    return this.procentXY(x) * scale ;
   }
 
   procentX(x) {
