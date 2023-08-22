@@ -27,9 +27,11 @@ class Level_1 {
   events = new Events();
   portal = new Portal("portal");
   crystal = new Crystal();
+
+  restart = new Panel();
   level = 0;
 
-  constructor(nameScena,level) {
+  constructor(nameScena, level) {
     this.nameScena = nameScena;
     this.level = level;
   }
@@ -54,7 +56,7 @@ class Level_1 {
     this.map9_2.loadImg("./asset/level1/Tiles/9.2.png");
     this.map9_3.loadImg("./asset/level1/Tiles/9.3.png");
     this.bg.loadImg("./asset/level1/bg.png");
-
+    this.restart.button(89, 0, 5, 5, "./asset/panel/restart_level.png", "restart");
     this.portal.preload();
     this.crystal.preload();
   }
@@ -70,12 +72,15 @@ class Level_1 {
     this.events.collideStart(this.engine, this.scena);
     this.portal.create(this.world, this.scena);
     this.crystal.setup(this.engine, this.world, this.scena);
+    this.player.body[0].level = this.level;
     panel.create(this.world);
+console.log(this.scena.getObjects("player")[0])
   }
 
-  view() {
+  view(panel) {
     background(102, 98, 97);
     rectMode(p5.CENTER);
+    push();
     this.player.translates();
     this.mapPlatformF.view(2, "level 1");
     // this.bg.imageMap();
@@ -95,23 +100,34 @@ class Level_1 {
     this.mapPlatformF3.view(7, "wall");
     this.mapPlatformF2.view(4, "wall");
     this.mapPlatform.view(1, "level 1");
-   
     this.portal.view();
+    pop();
     // this.crystal.view();
     //this.platform.viewRect()
+    if (this.player.body[0].level == this.level + 1) {
+      panel.level = this.player.body[0].level;
+    }
+    if(this.restart.buttonActive === "restart"){
+      this.scena.getObjects("player").map((p)=>this.player.setPosition(this.scena.size(p.x + p.width / 2, this.scena.scale) ,this.scena.size(p.y + p.width / 2, this.scena.scale))) 
+    }
+    
+    this.restart.buttonView();
+    
   }
 
-  pressedM() {
+  pressedM(e) {
     if (mouseX > windowWidth / 2) {
       // console.log(this.player.body[0].position.x)
       //  this.player.speed = 1;
     } else {
       // this.player.speed = 2;
     }
+    this.restart.pressed(e);
   }
 
   relassedM(e) {
     this.player.speed = 0;
+    this.restart.rePressed(e);
   }
 
   pressed(e) {
@@ -125,6 +141,7 @@ class Level_1 {
     } else if (e.key === "ArrowDown") {
       //   this.player.up = 2;
     }
+    
   }
 
   rePressed(e) {
@@ -138,5 +155,6 @@ class Level_1 {
     } else if (e.key === "ArrowDown") {
       //     this.player.up = 0;
     }
+  // 
   }
 }

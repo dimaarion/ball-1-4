@@ -3,9 +3,9 @@ let Engine = Matter.Engine;
 let engine, world;
 let engine2, world2;
 let scena1 = new Scena("./js/scena/scena.json");
-let level_1 = new Level_1("./js/scena/scena.json",1);
-let level_2 = new Level_1("./js/scena/scena2.json",2);
-let level_3 = new Level_1("./js/scena/scena3.json",3);
+let level_1 = new Level_1("./js/scena/scena.json", 1);
+let level_2 = new Level_1("./js/scena/scena2.json", 2);
+let level_3 = new Level_1("./js/scena/scena3.json", 3);
 //let level_2 = new Level_2();
 let panel = new Panel();
 let playRight = new Panel();
@@ -26,7 +26,7 @@ let test = 0;
 function preload() {
   panel.preload();
   if (deviceOrientation === LANDSCAPE) {
-    panel.button(92, 0, 8, 8, "./asset/panel/Settings_BTN.png", 0);
+    panel.button(95, 0, 5, 5, "./asset/panel/Settings_BTN.png", 0);
     playRight.button(30, 75, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
     playLeft.button(10, 75, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
   } else {
@@ -48,6 +48,7 @@ function setup() {
   gui = createGui();
   md = new MobileDetect(window.navigator.userAgent);
   level_1.scena.scale = 2;
+
   level_1.player.joystick = j;
   level_1.create(panel);
   level_2.player.joystick = j;
@@ -55,12 +56,12 @@ function setup() {
   level_2.create(panel);
   level_3.scena.scale = 10;
   level_3.create(panel);
-  
+
 }
 
 function draw() {
 
-  if (panel.level === 1 && level_1.player.body[0].level == 0) {
+  if (panel.level === 1) {
     push();
     level_1.view(panel);
     if (playRight.buttonActive === 1) {
@@ -69,7 +70,10 @@ function draw() {
     if (playLeft.buttonActive === 2) {
       level_1.player.speed = playLeft.buttonActive;
     }
-    // level_1.player.body[0].level = panel.level;
+    if (level_1.player.body[0].level == 2) {
+   //   panel.level = level_1.player.body[0].level;
+    }
+
     pop();
     panel.headBar();
     playRight.buttonView();
@@ -77,13 +81,13 @@ function draw() {
     if (level_1.player.body[0].level === 2 && panel.display !== "start") {
       panel.levelEnd();
       levelStep_1.buttonView();
-      if(levelStep_1.buttonActive === 2){
+      if (levelStep_1.buttonActive === 2) {
         panel.level = 2;
       }
-     
+
     }
     //  drawGui();
-  } else if (panel.level === 2 || level_1.player.body[0].level == 2) {
+  } else if (panel.level === 2) {
     push();
     level_2.view(panel);
     if (playRight.buttonActive === 1) {
@@ -97,10 +101,10 @@ function draw() {
     playRight.buttonView();
     playLeft.buttonView();
     if (level_2.player.body[0].level === 3 && panel.display !== "start") {
-    //  panel.levelEnd();
+      //  panel.levelEnd();
     }
     // drawGui();
-  }else if (panel.level === 3 || level_2.player.body[0].level == 3) {
+  } else if (panel.level === 3) {
     push();
     level_3.view(panel);
     if (playRight.buttonActive === 1) {
@@ -129,12 +133,15 @@ function draw() {
   } else {
   }
   if (panel.buttonActive == 0) {
+    level_1.player.body[0].level = 0;
+    level_2.player.body[0].level = 0;
+    level_3.player.body[0].level = 0;
     panel.level = 0;
   }
   // panel.levelEnd();
 }
 
-function mousePressed(e) { 
+function mousePressed(e) {
   panel.pressed(e);
   playRight.pressed(e);
   playLeft.pressed(e);

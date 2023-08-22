@@ -4,12 +4,24 @@ class Events {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+
+
   collideStart(engine, scena) {
     let body = new Body();
     let d = 0;
     let d2 = 0;
     let r = 0;
     let speed = 3;
+    let pointIn = ["in_1", "in_2", "in_3", "in_4", "in_5", "in_6"];
+    let pointEx = ["ex_1", "ex_2", "ex_3", "ex_4", "ex_5", "ex_6"];
+    function setPositionPoint(body, pair, el1, el2) {
+      if (
+        pair.bodyA.label === "player" &&
+        pair.bodyB.typeObject === el1
+      ) {
+        Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", el2).position.x, y: body.getNameType(engine, "point", el2).position.y });
+      }
+    }
     Matter.Events.on(engine, "collisionActive", function (event) {
       var pairs = event.pairs;
       for (var i = 0; i < pairs.length; i++) {
@@ -76,29 +88,25 @@ class Events {
         }
 
         //Перемещение из in в ex
+pointIn.map((p,i)=>setPositionPoint(body, pair, p, pointEx[i]));
+/*
         if (
           pair.bodyA.label === "player" &&
-          pair.bodyB.label === "point" && pair.bodyB.typeObject === "in_1"
-        ) {
-          Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "ex_1").position.x, y: body.getNameType(engine, "point", "ex_1").position.y });
-        }
-        if (
-          pair.bodyA.label === "player" &&
-          pair.bodyB.label === "point" && pair.bodyB.typeObject === "in_2"
+          pair.bodyB.typeObject === "in_2"
         ) {
           Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "ex_2").position.x, y: body.getNameType(engine, "point", "ex_2").position.y });
         }
 
         if (
           pair.bodyA.label === "player" &&
-          pair.bodyB.label === "point" && pair.bodyB.typeObject === "in_3"
+          pair.bodyB.typeObject === "in_3"
         ) {
           Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "ex_3").position.x, y: body.getNameType(engine, "point", "ex_3").position.y });
         }
 
         if (
           pair.bodyA.label === "player" &&
-          pair.bodyB.label === "point" && pair.bodyB.typeObject === "in_4"
+          pair.bodyB.typeObject === "in_4"
         ) {
           Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "ex_4").position.x, y: body.getNameType(engine, "point", "ex_4").position.y });
         }
@@ -106,12 +114,19 @@ class Events {
 
         if (
           pair.bodyA.label === "player" &&
-          pair.bodyB.label === "point" && pair.bodyB.typeObject === "in_5"
+          pair.bodyB.typeObject === "in_5"
         ) {
           Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "ex_5").position.x, y: body.getNameType(engine, "point", "ex_5").position.y });
         }
-        //
 
+        if (
+          pair.bodyA.label === "player" &&
+          pair.bodyB.typeObject === "in_6"
+        ) {
+          Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "ex_6").position.x, y: body.getNameType(engine, "point", "ex_6").position.y });
+        }
+
+*/
         if (
           pair.bodyA.label === "player" &&
           pair.bodyB.label === "point" && pair.bodyB.typeObject === "start"
