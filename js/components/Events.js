@@ -14,6 +14,10 @@ class Events {
     let speed = 3;
     let pointIn = ["in_1", "in_2", "in_3", "in_4", "in_5", "in_6"];
     let pointEx = ["ex_1", "ex_2", "ex_3", "ex_4", "ex_5", "ex_6"];
+    let pointLevel = [2, 3];
+
+
+
     function setPositionPoint(body, pair, el1, el2) {
       if (
         pair.bodyA.label === "player" &&
@@ -47,6 +51,11 @@ class Events {
           Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "4").position.x, y: body.getNameType(engine, "point", "4").position.y });
         }
 
+
+
+
+      
+/*
         if (
           pair.bodyA.label === "player" &&
           pair.bodyB.label === "point" && pair.bodyB.typeObject === "level_2"
@@ -59,7 +68,7 @@ class Events {
           pair.bodyB.label === "point" && pair.bodyB.typeObject === "level_3") {
           this.level = 3;
           pair.bodyA.level = 3;
-        }
+        }*/
         if (
           pair.bodyA.label === "player" &&
           pair.bodyB.label === "point" && pair.bodyB.typeObject === "start"
@@ -74,6 +83,18 @@ class Events {
       for (var i = 0; i < pairs.length; i++) {
         var pair = pairs[i];
 
+        pointLevel.map((lev) => {
+          if (
+            pair.bodyA.label === "player" &&
+            pair.bodyB.label === "point" && pair.bodyB.typeObject === "level_" + lev
+          ) {
+            this.level = lev;
+            pair.bodyA.level = lev;
+  
+            //Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "start").position.x, y: body.getNameType(engine, "point", "start").position.y });
+          } 
+        })
+/*
         if (
           pair.bodyA.label === "player" &&
           pair.bodyB.label === "point" && pair.bodyB.typeObject === "level_2"
@@ -86,47 +107,10 @@ class Events {
           Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "start").position.x, y: body.getNameType(engine, "point", "start").position.y });
 
         }
-
-        //Перемещение из in в ex
-pointIn.map((p,i)=>setPositionPoint(body, pair, p, pointEx[i]));
-/*
-        if (
-          pair.bodyA.label === "player" &&
-          pair.bodyB.typeObject === "in_2"
-        ) {
-          Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "ex_2").position.x, y: body.getNameType(engine, "point", "ex_2").position.y });
-        }
-
-        if (
-          pair.bodyA.label === "player" &&
-          pair.bodyB.typeObject === "in_3"
-        ) {
-          Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "ex_3").position.x, y: body.getNameType(engine, "point", "ex_3").position.y });
-        }
-
-        if (
-          pair.bodyA.label === "player" &&
-          pair.bodyB.typeObject === "in_4"
-        ) {
-          Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "ex_4").position.x, y: body.getNameType(engine, "point", "ex_4").position.y });
-        }
-
-
-        if (
-          pair.bodyA.label === "player" &&
-          pair.bodyB.typeObject === "in_5"
-        ) {
-          Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "ex_5").position.x, y: body.getNameType(engine, "point", "ex_5").position.y });
-        }
-
-        if (
-          pair.bodyA.label === "player" &&
-          pair.bodyB.typeObject === "in_6"
-        ) {
-          Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "ex_6").position.x, y: body.getNameType(engine, "point", "ex_6").position.y });
-        }
-
 */
+        //Перемещение из in в ex
+        pointIn.map((p, i) => setPositionPoint(body, pair, p, pointEx[i]));
+
         if (
           pair.bodyA.label === "player" &&
           pair.bodyB.label === "point" && pair.bodyB.typeObject === "start"

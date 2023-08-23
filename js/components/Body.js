@@ -21,6 +21,9 @@ class Body {
     this.world = world;
   }
 
+
+
+
   timer(frame, rate) {
     this.count += 1;
     if (this.count > rate) {
@@ -107,11 +110,11 @@ class Body {
     return engine.world.bodies.filter((f) => f.typeObject === name)[n];
   }
 
-  getName(world, name) {
+  getName(world, name, n = 0) {
     if (this.world !== undefined) {
       return this.world.bodies.filter((f) => f.label === name);
     } else {
-      return world.bodies.filter((f) => f.label === name)[0];
+      return world.bodies.filter((f) => f.label === name)[n];
     }
   }
   getNameType(engine, name, type) {

@@ -28,7 +28,10 @@ class Level_1 {
   portal = new Portal("portal");
   crystal = new Crystal();
 
+  playRight = new Panel();
+  playLeft = new Panel();
   restart = new Panel();
+
   level = 0;
 
   constructor(nameScena, level) {
@@ -56,7 +59,18 @@ class Level_1 {
     this.map9_2.loadImg("./asset/level1/Tiles/9.2.png");
     this.map9_3.loadImg("./asset/level1/Tiles/9.3.png");
     this.bg.loadImg("./asset/level1/bg.png");
-    this.restart.button(89, 0, 5, 5, "./asset/panel/restart_level.png", "restart");
+    if (deviceOrientation === LANDSCAPE) {
+
+      this.playRight.button(30, 75, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
+      this.playLeft.button(10, 75, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
+      this.restart.button(89, 0, 5, 5, "./asset/panel/restart_level.png", "restart");
+    } else {
+      this.playRight.button(30, 85, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
+      this.playLeft.button(10, 85, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
+      this.restart.button(89, 0, 5, 5, "./asset/panel/restart_level.png", "restart");
+
+    }
+
     this.portal.preload();
     this.crystal.preload();
   }
@@ -74,7 +88,7 @@ class Level_1 {
     this.crystal.setup(this.engine, this.world, this.scena);
     this.player.body[0].level = this.level;
     panel.create(this.world);
-console.log(this.scena.getObjects("player")[0])
+    console.log(this.scena.getObjects("player")[0])
   }
 
   view(panel) {
@@ -107,12 +121,26 @@ console.log(this.scena.getObjects("player")[0])
     if (this.player.body[0].level == this.level + 1) {
       panel.level = this.player.body[0].level;
     }
-    if(this.restart.buttonActive === "restart"){
-      this.scena.getObjects("player").map((p)=>this.player.setPosition(this.scena.size(p.x + p.width / 2, this.scena.scale) ,this.scena.size(p.y + p.width / 2, this.scena.scale))) 
+    if (this.restart.buttonActive === "restart") {
+      this.scena.getObjects("player").map((p) => this.player.setPosition(this.scena.size(p.x + p.width / 2, this.scena.scale), this.scena.size(p.y + p.width / 2, this.scena.scale)))
     }
-    
+    if (this.playRight.buttonActive === 1) {
+      this.player.speed = this.playRight.buttonActive;
+    }
+    if (this.playLeft.buttonActive === 2) {
+      this.player.speed = this.playLeft.buttonActive;
+    }
+    this.playRight.buttonView();
+    this.playLeft.buttonView();
     this.restart.buttonView();
-    
+
+    let display = touches.length + ' touches';
+    textSize(20)
+    text(display, 105, 100);
+    if (touches.length == 1) {
+      this.playRight.pressed();
+      this.playLeft.pressed();
+    }
   }
 
   pressedM(e) {
@@ -123,11 +151,15 @@ console.log(this.scena.getObjects("player")[0])
       // this.player.speed = 2;
     }
     this.restart.pressed(e);
+
+
   }
 
   relassedM(e) {
     this.player.speed = 0;
     this.restart.rePressed(e);
+    this.playRight.rePressed(e);
+    this.playLeft.rePressed(e);
   }
 
   pressed(e) {
@@ -141,7 +173,7 @@ console.log(this.scena.getObjects("player")[0])
     } else if (e.key === "ArrowDown") {
       //   this.player.up = 2;
     }
-    
+
   }
 
   rePressed(e) {
@@ -155,6 +187,6 @@ console.log(this.scena.getObjects("player")[0])
     } else if (e.key === "ArrowDown") {
       //     this.player.up = 0;
     }
-  // 
+    // 
   }
 }

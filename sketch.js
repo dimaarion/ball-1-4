@@ -8,8 +8,6 @@ let level_2 = new Level_1("./js/scena/scena2.json", 2);
 let level_3 = new Level_1("./js/scena/scena3.json", 3);
 //let level_2 = new Level_2();
 let panel = new Panel();
-let playRight = new Panel();
-let playLeft = new Panel();
 let levelStep_1 = new Panel();
 
 
@@ -27,13 +25,8 @@ function preload() {
   panel.preload();
   if (deviceOrientation === LANDSCAPE) {
     panel.button(95, 0, 5, 5, "./asset/panel/Settings_BTN.png", 0);
-    playRight.button(30, 75, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
-    playLeft.button(10, 75, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
   } else {
     panel.button(92, 0, 8, 8, "./asset/panel/Settings_BTN.png", 0);
-    playRight.button(30, 85, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
-    playLeft.button(10, 85, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
-
   }
   levelStep_1.button(60, 60, 8, 8, "./asset/panel/step_level.png", 2);
   level_1.preload();
@@ -64,63 +57,18 @@ function draw() {
   if (panel.level === 1) {
     push();
     level_1.view(panel);
-    if (playRight.buttonActive === 1) {
-      level_1.player.speed = playRight.buttonActive;
-    }
-    if (playLeft.buttonActive === 2) {
-      level_1.player.speed = playLeft.buttonActive;
-    }
-    if (level_1.player.body[0].level == 2) {
-   //   panel.level = level_1.player.body[0].level;
-    }
-
     pop();
     panel.headBar();
-    playRight.buttonView();
-    playLeft.buttonView();
-    if (level_1.player.body[0].level === 2 && panel.display !== "start") {
-      panel.levelEnd();
-      levelStep_1.buttonView();
-      if (levelStep_1.buttonActive === 2) {
-        panel.level = 2;
-      }
-
-    }
-    //  drawGui();
   } else if (panel.level === 2) {
     push();
     level_2.view(panel);
-    if (playRight.buttonActive === 1) {
-      level_2.player.speed = playRight.buttonActive;
-    }
-    if (playLeft.buttonActive === 2) {
-      level_2.player.speed = playLeft.buttonActive;
-    }
     pop();
     panel.headBar();
-    playRight.buttonView();
-    playLeft.buttonView();
-    if (level_2.player.body[0].level === 3 && panel.display !== "start") {
-      //  panel.levelEnd();
-    }
-    // drawGui();
   } else if (panel.level === 3) {
     push();
     level_3.view(panel);
-    if (playRight.buttonActive === 1) {
-      level_3.player.speed = playRight.buttonActive;
-    }
-    if (playLeft.buttonActive === 2) {
-      level_3.player.speed = playLeft.buttonActive;
-    }
     pop();
     panel.headBar();
-    playRight.buttonView();
-    playLeft.buttonView();
-    if (level_3.player.body[0].level === 3 && panel.display !== "start") {
-      //panel.levelEnd();
-    }
-    // drawGui();
   } else {
     panel.levelPanel();
   }
@@ -143,8 +91,7 @@ function draw() {
 
 function mousePressed(e) {
   panel.pressed(e);
-  playRight.pressed(e);
-  playLeft.pressed(e);
+
   level_1.pressedM(e);
   level_2.pressedM(e);
   level_3.pressedM(e);
@@ -156,8 +103,7 @@ function mouseReleased(e) {
   level_1.relassedM(e);
   level_2.relassedM(e);
   level_3.relassedM(e);
-  playRight.rePressed(e);
-  playLeft.rePressed(e);
+
   levelStep_1.rePressed(e);
 }
 

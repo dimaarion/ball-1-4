@@ -255,7 +255,7 @@ class Panel {
       this.timer.start();
     }
   }
-  pressed(e) {
+  pressed() {
     // Выбор уровней
     if (this.level === 0) {
       let col = 0;
