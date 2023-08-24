@@ -19,23 +19,31 @@ let body = new Body();
 let md;
 let test = 0;
 let playerImage;
-let tile_1;
 let tile_2;
-let tile_3;
-let tile_4;
+let playRight = new Panel();
+let playLeft = new Panel();
+let restart = new Panel();
 
 let tilesImage = new Animate();
 let portalImage = new Animate();
+
 function preload() {
-    tilesImage.animateD("/asset/level1/Tiles/tilesD.png",28);
-    portalImage.animateD("/asset/level1/Tiles/portalD.png",12);
+    tilesImage.animateD("/asset/level1/Tiles/tilesD.png", 28);
+    portalImage.animateD("/asset/level1/Tiles/portalD.png", 12);
     playerImage = loadImage("/asset/Player/ball.png");
 
     panel.preload();
     if (deviceOrientation === LANDSCAPE) {
         panel.button(95, 0, 5, 5, "./asset/panel/Settings_BTN.png", 0);
+        playRight.button(30, 75, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
+        playLeft.button(10, 75, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
+        restart.button(89, 0, 5, 5, "./asset/panel/restart_level.png", "restart");
     } else {
         panel.button(92, 0, 8, 8, "./asset/panel/Settings_BTN.png", 0);
+        playRight.button(30, 85, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
+        playLeft.button(10, 85, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
+        restart.button(89, 0, 5, 5, "./asset/panel/restart_level.png", "restart");
+
     }
     levelStep_1.button(60, 60, 8, 8, "./asset/panel/step_level.png", 2);
     level_1.preload();
@@ -50,23 +58,21 @@ function setup() {
     md = new MobileDetect(window.navigator.userAgent);
     tilesImage.setupAnimate();
 
-    let images = {playerImage:playerImage,tiles:tilesImage,portalImage:portalImage};
+    let images = {
+        playerImage: playerImage,
+        tiles: tilesImage,
+        portalImage: portalImage,
+        playRight:playRight,
+        playLeft:playLeft,
+        restart:restart
+    };
     // level 1
 
-    level_1.scena.scale = 2;
-    level_1.player.joystick = j;
-    level_1.create(panel,images);
-
+    level_1.create(panel, images);
     // level 2
-
-    level_2.player.joystick = j;
-    level_2.scena.scale = 2;
-    level_2.create(panel,images);
-
+    level_2.create(panel, images);
     // level 3
-
-    level_3.scena.scale = 10;
-    level_3.create(panel,images);
+    level_3.create(panel, images);
 
 }
 
@@ -90,7 +96,7 @@ function draw() {
     } else {
         panel.levelPanel();
     }
-image(tilesImage.newArrImg[0],0,0)
+
 
     if (panel.level !== 0) {
         panel.buttonView();

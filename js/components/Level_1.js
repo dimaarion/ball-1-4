@@ -31,28 +31,19 @@ class Level_1 {
     preload() {
         this.scena.preload(this.nameScena);
 
-
-        if (deviceOrientation === LANDSCAPE) {
-
-            this.playRight.button(30, 75, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
-            this.playLeft.button(10, 75, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
-            this.restart.button(89, 0, 5, 5, "./asset/panel/restart_level.png", "restart");
-        } else {
-            this.playRight.button(30, 85, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
-            this.playLeft.button(10, 85, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
-            this.restart.button(89, 0, 5, 5, "./asset/panel/restart_level.png", "restart");
-
-        }
-
         this.portal.preload();
         this.crystal.preload();
     }
 
-    create(panel, images) {
+    create(panel, props) {
 
-        this.player.img = images.playerImage;
-        this.mapTileImages.image = images.tiles.newArrImg;
-        this.mapPortalImages.image = images.portalImage.newArrImg;
+        this.playRight = props.playRight;
+        this.playLeft = props.playLeft;
+        this.restart = props.restart;
+
+        this.player.img = props.playerImage;
+        this.mapTileImages.image = props.tiles.newArrImg;
+        this.mapPortalImages.image = props.portalImage.newArrImg;
         this.engine = Engine.create();
         this.world = this.engine.world;
         Engine.run(this.engine);
@@ -97,8 +88,11 @@ class Level_1 {
         if (this.playLeft.buttonActive === 2) {
             this.player.speed = this.playLeft.buttonActive;
         }
-        this.playRight.buttonView();
-        this.playLeft.buttonView();
+        if (md.mobile()) {
+            this.playRight.buttonView();
+            this.playLeft.buttonView();
+
+        }
         this.restart.buttonView();
 
         let display = touches.length + ' touches';

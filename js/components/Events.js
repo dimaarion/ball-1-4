@@ -73,8 +73,8 @@ class Events {
           ) {
             this.level = lev;
             pair.bodyA.level = lev;
-  
-            //Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "start").position.x, y: body.getNameType(engine, "point", "start").position.y });
+            scena.getObjects("player").map((p) => Matter.Body.setPosition(pair.bodyA,{x:scena.size(p.x + p.width / 2, scena.scale),y: scena.size(p.y + p.width / 2, scena.scale)}))
+          //  Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "start").position.x, y: body.getNameType(engine, "point", "start").position.y });
           } 
         })
 /*
