@@ -96,13 +96,13 @@ class Level_1 {
             this.player.up = 0;
         }
         if (md.mobile()) {
-
+            this.playRight.buttonView();
+            this.playLeft.buttonView();
+            this.playUp.buttonView();
+            this.restart.buttonView();
 
         }
-        this.playRight.buttonView();
-        this.playLeft.buttonView();
-        this.playUp.buttonView();
-        this.restart.buttonView();
+
 
         let display = touches.length + ' touches';
         textSize(20)
