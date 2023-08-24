@@ -24,7 +24,7 @@ class Player extends Body {
   playerUp = "./asset/Player/playerUp.png";
   frame = 1;
   baseY = 0;
-  img = 0;
+  img;
   world;
   engine;
   p5;
@@ -37,45 +37,16 @@ class Player extends Body {
   rotate = 0;
   header;
   header2;
-  animate = new Animate();
-  animateR = new Animate();
-  animateL = new Animate();
-  stopRight = new Animate();
-  stopLeft = new Animate();
-  playerUpAnimate = new Animate();
-  jamp = new Animate();
-  jampBR = new Animate();
-  jampLeft = new Animate();
-  ball = new Animate();
+
   constructor(props) {
     super(props);
-  }
-  loadImg() {
-    this.animate.animateD(this.image, 48);
-    this.animateR.animateD("./asset/Player/playerR.png", 30);
-    this.animateL.animateD("./asset/Player/playerL.png", 30);
-    this.playerUpAnimate.animateD(this.playerUp, 100);
-    this.stopRight.animateE("./asset/Player/playerStopRight.png");
-    this.stopLeft.animateE("./asset/Player/playerStopLeft.png");
-    this.jamp.animateD("./asset/Player/jampAnimate.png", 20);
-    this.jampBR.animateD("./asset/Player/jampBRAnimate.png", 12);
-    this.jampLeft.animateE("./asset/Player/playerJampLeft.png");
-    this.ball.animateE("./asset/Player/ball.png");
   }
 
   setup(engine, world, scena) {
 
     this.engine = engine;
     this.scena = scena;
-    this.animate.setupAnimate();
-    this.animateR.setupAnimate();
-    this.playerUpAnimate.setupAnimate();
-    this.stopRight.setupAnimate();
-    this.stopLeft.setupAnimate();
-    this.animateL.setupAnimate();
-    this.jamp.setupAnimate();
-    this.jampBR.setupAnimate();
-    this.jampLeft.setupAnimate();
+
     this.fric = 1;
     this.createEllipse(world, scena);
     // this.speedBody = scena.size(this.speedBody, scena.scale);
@@ -83,9 +54,7 @@ class Player extends Body {
     // this.gravity = 15;
     this.speedBody = scena.size(2,scena.scale);
     this.gravity = scena.size(1.5,scena.scale);
-    this.animateR.rate = 0;
-    this.animateL.rate = 0;
-    this.jamp.rate = 0
+
     this.body.map((b) => {
       b.speedBodyDop = this.speedBodyDop;
     });
@@ -98,11 +67,8 @@ class Player extends Body {
           pair.bodyA.label === "player" &&
           pair.bodyB.label === "platform_b"
         ) {
-
           pair.bodyA.activeB = 1;
 
-          // this.jamp.format = 2
-          //  Matter.Body.setRotate(pair.bodyA, pair.bodyA.jX);
         }
       }
     });
@@ -116,11 +82,7 @@ class Player extends Body {
           pair.bodyA.label === "player" &&
           pair.bodyB.label === "platform_b"
         ) {
-
-
           pair.bodyA.activeB = 0;
-          // this.jamp.format = 2
-          //  Matter.Body.setRotate(pair.bodyA, pair.bodyA.jX);
         }
       }
     });
@@ -145,106 +107,21 @@ class Player extends Body {
   }
 
   view() {
-    this.animate.animated = false;
-    this.animateR.animated = false;
-    this.playerUpAnimate.animated = false;
-    this.animate.rate = 0.5;
-    // this.animateR.rate = 2;
-    if (this.speed === 1) {
-      // this.setRotate(0.1);
-    } else if (this.speed === 2) {
-      //  this.setRotate(-0.1);
-    } else {
-      //  this.setRotate(0);
-    }
-
-    this.body.map((b) => {
-      //  console.log(b.activeB);
-
-      b.jY = this.up != 0 ? -this.gravity : 0;
-      b.jX =
-        this.speed === 0
-          ? 0
-          : this.speed === 1
-            ? this.up != 0 ? this.speedBody : 0
-            : this.up != 0 ? -this.speedBody : 0;
-
-
-    });
-
-    /*
-    if (this.up === 1 && this.speed === 1) {
-      this.setVelosity(this.speedBody, -this.gravity);
-      this.direction = 1;
-    } else if (this.up === 1 && this.speed === 2) {
-      this.direction = 2;
-      this.setVelosity(-this.speedBody, -this.gravity);
-    } else if (this.up === 1) {
-      this.setVelosity(0, -this.gravity);
-    } else {
-      if (this.speed === 1) {
-        this.setVelosity(this.speedBody, this.gravity);
-
-        this.direction = 1;
-        this.animateR.animated = true;
-        this.animateR.format = 3;
-      } else if (
-        this.speed === 2) {
-     //   this.setVelosity(-this.speedBody, this.gravity);
-        this.direction = 2;
-        this.animateR.animated = true;
-        this.animateR.format = 0;
-      } else if (this.speed === 1 && this.up === 1) {
-      //  this.setVelosity(this.speedBody, -this.gravity);
-      } else {
-        this.description = 0;
-      }
-    }
-*/
-    /*
-    if (this.joystick.valX > 0) {
-      this.animate.animated = true;
-      this.animate.format = 1;
-      this.direction = 1;
-    } else if (this.joystick.valX < 0) {
-      this.direction = 2;
-    }
-
-    if (this.joystick.valY < 0) {
-      this.playerUpAnimate.animated = true;
-      this.playerUpAnimate.format = 1;
-      this.direction === 4;
-    } else {
-    }
-
-    if (this.direction === 1) {
-      this.animate.animated = true;
-      this.animate.format = 1;
-    } else if (this.direction === 2) {
-      this.animate.animated = true;
-      this.animate.format = 2;
-    }
-*/
-    /// console.log(this.joystick.valX);
 
     if (this.speed === 1) {
-      this.animateR.animated = true;
-      this.animateR.format = 0;
+
       this.direction = 1;
     } else if (this.speed === 2) {
-      this.animateR.animated = true;
-      this.animateR.format = 3;
+
       this.direction = 2;
     }
     if (this.direction === 1) {
-      this.animate.animated = true;
-      this.animate.format = 1;
+
     } else if (this.direction === 2) {
-      this.animate.animated = true;
-      this.animate.format = 2;
+
     }
 
-    /// console.log(this.getVelocity()[0].y)
+
 
     if (this.speed == 1 && this.up == 0 && this.body[0].activeB == 1) {
       this.setVelosity(this.speedBody, 0)
@@ -264,7 +141,7 @@ class Player extends Body {
       translate(b.position.x, b.position.y)
       rotate(b.angle)
       image(
-        this.ball.sprite(),
+        this.img,
         - b.width / 2,
         - b.width / 2,
         b.width,
@@ -272,12 +149,6 @@ class Player extends Body {
       );
       pop();
     });
-    /*  this.body.map((b) => {
-      image(
-        this.animate.spriteRect(b.width, b.width / 1.7),
-        b.position.x - b.width / 2,
-        b.position.y - this.scena.size(1, this.scena.scale) - b.width / 2
-      );
-    });*/
+
   }
 }

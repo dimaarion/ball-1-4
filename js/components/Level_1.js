@@ -1,192 +1,154 @@
 class Level_1 {
-  engine;
-  world;
-  scena = new Scena();
-  nameScena = "./js/scena/scena.json";
-  player = new Player("player");
-  animate = new Animate();
-  mapPlatform = new TileMap(this.scena);
-  mapPlatformF = new TileMap(this.scena);
-  mapPlatformF2 = new TileMap(this.scena);
-  mapPlatformF3 = new TileMap(this.scena);
-  mapPlatformF4 = new TileMap(this.scena);
-  mapPlatformF5 = new TileMap(this.scena);
-  map7_3 = new TileMap(this.scena);
-  map3 = new TileMap(this.scena);
-  map8_1 = new TileMap(this.scena);
-  map8_2 = new TileMap(this.scena);
-  map8_3 = new TileMap(this.scena);
-  map9 = new TileMap(this.scena);
-  map9_1 = new TileMap(this.scena);
-  map9_2 = new TileMap(this.scena);
-  map9_3 = new TileMap(this.scena);
+    engine;
+    world;
+    scena = new Scena();
+    nameScena = "./js/scena/scena.json";
+    player = new Player("player");
 
-  bg = new TileMap(this.scena);
-  platform = new Body("platform");
-  platform_b = new Body("platform_b");
-  events = new Events();
-  portal = new Portal("portal");
-  crystal = new Crystal();
+    mapPlatform = new TileMap(this.scena);
+    mapTileImages = new TileMap(this.scena);
+    mapPortalImages = new TileMap(this.scena);
 
-  playRight = new Panel();
-  playLeft = new Panel();
-  restart = new Panel();
+    bg = new TileMap(this.scena);
+    platform = new Body("platform");
+    platform_b = new Body("platform_b");
+    events = new Events();
+    portal = new Portal("portal");
+    point = new Body("point");
+    crystal = new Crystal();
 
-  level = 0;
+    playRight = new Panel();
+    playLeft = new Panel();
+    restart = new Panel();
 
-  constructor(nameScena, level) {
-    this.nameScena = nameScena;
-    this.level = level;
-  }
+    level = 0;
 
-  preload() {
-    this.scena.preload(this.nameScena);
-    this.player.loadImg();
-    this.animate.animateE("./asset/level1/f1.jpg");
-    this.mapPlatform.loadImg("./asset/level1/Tiles/1.png");
-    this.mapPlatformF.loadImg("./asset/level1/Tiles/2.png");
-    this.mapPlatformF2.loadImg("./asset/level1/Tiles/4.png");
-    this.mapPlatformF3.loadImg("./asset/level1/Tiles/7.png");
-    this.mapPlatformF4.loadImg("./asset/level1/Tiles/8.png");
-    this.mapPlatformF5.loadImg("./asset/level1/Tiles/7.1.png");
-    this.map7_3.loadImg("./asset/level1/Tiles/7.3.png");
-    this.map3.loadImg("./asset/level1/Tiles/3.png");
-    this.map8_1.loadImg("./asset/level1/Tiles/8.1.png");
-    this.map8_2.loadImg("./asset/level1/Tiles/8.2.png");
-    this.map8_3.loadImg("./asset/level1/Tiles/8.3.png");
-    this.map9.loadImg("./asset/level1/Tiles/9.png");
-    this.map9_1.loadImg("./asset/level1/Tiles/9.1.png");
-    this.map9_2.loadImg("./asset/level1/Tiles/9.2.png");
-    this.map9_3.loadImg("./asset/level1/Tiles/9.3.png");
-    this.bg.loadImg("./asset/level1/bg.png");
-    if (deviceOrientation === LANDSCAPE) {
+    constructor(nameScena, level) {
+        this.nameScena = nameScena;
+        this.level = level;
+    }
 
-      this.playRight.button(30, 75, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
-      this.playLeft.button(10, 75, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
-      this.restart.button(89, 0, 5, 5, "./asset/panel/restart_level.png", "restart");
-    } else {
-      this.playRight.button(30, 85, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
-      this.playLeft.button(10, 85, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
-      this.restart.button(89, 0, 5, 5, "./asset/panel/restart_level.png", "restart");
+    preload() {
+        this.scena.preload(this.nameScena);
+
+
+        if (deviceOrientation === LANDSCAPE) {
+
+            this.playRight.button(30, 75, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
+            this.playLeft.button(10, 75, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
+            this.restart.button(89, 0, 5, 5, "./asset/panel/restart_level.png", "restart");
+        } else {
+            this.playRight.button(30, 85, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
+            this.playLeft.button(10, 85, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
+            this.restart.button(89, 0, 5, 5, "./asset/panel/restart_level.png", "restart");
+
+        }
+
+        this.portal.preload();
+        this.crystal.preload();
+    }
+
+    create(panel, images) {
+
+        this.player.img = images.playerImage;
+        this.mapTileImages.image = images.tiles.newArrImg;
+        this.mapPortalImages.image = images.portalImage.newArrImg;
+        this.engine = Engine.create();
+        this.world = this.engine.world;
+        Engine.run(this.engine);
+        this.scena.create();
+        this.player.setup(this.engine, this.world, this.scena);
+        this.platform.createRect(this.world, this.scena);
+        this.platform_b.createRect(this.world, this.scena);
+        this.events.collideStart(this.engine, this.scena);
+        this.portal.create(this.world, this.scena);
+        this.crystal.setup(this.engine, this.world, this.scena);
+        this.player.body[0].level = this.level;
+        this.point.sensor = true;
+        this.point.createRect(this.world, this.scena);
+       // this.point.sensor = true
+        panel.create(this.world);
 
     }
 
-    this.portal.preload();
-    this.crystal.preload();
-  }
+    view(panel) {
+        background(102, 98, 97);
+        rectMode(p5.CENTER);
+        push();
+        this.player.translates();
 
-  create(panel) {
-    this.engine = Engine.create();
-    this.world = this.engine.world;
-    Engine.run(this.engine);
-    this.scena.create();
-    this.player.setup(this.engine, this.world, this.scena);
-    this.platform.createRect(this.world, this.scena);
-    this.platform_b.createRect(this.world, this.scena);
-    this.events.collideStart(this.engine, this.scena);
-    this.portal.create(this.world, this.scena);
-    this.crystal.setup(this.engine, this.world, this.scena);
-    this.player.body[0].level = this.level;
-    panel.create(this.world);
-    console.log(this.scena.getObjects("player")[0])
-  }
+        this.mapTileImages.newArray(28).map((x) => this.mapTileImages.view(x, "wall"))
+        this.player.view();
+        this.mapTileImages.newArray(28).map((x) => this.mapTileImages.view(x, "level 1"))
+        this.mapTileImages.newArray(28).map((x) => this.mapTileImages.view(x, "portal"))
 
-  view(panel) {
-    background(102, 98, 97);
-    rectMode(p5.CENTER);
-    push();
-    this.player.translates();
-    this.mapPlatformF.view(2, "level 1");
-    // this.bg.imageMap();
-    this.player.view();
-    this.map3.view(3, "wall");
-    this.map8_1.view(23, "wall");
-    this.map8_2.view(21, "wall");
-    this.map8_3.view(22, "wall");
-    this.map8_3.view(20, "wall");
-    this.mapPlatformF5.view(8, "wall");
-    this.map7_3.view(9, "wall");
-    this.map9.view(28, "wall");
-    this.map9_1.view(25, "wall");
-    this.map9_2.view(26, "wall");
-    this.map9_3.view(27, "wall");
-    this.mapPlatformF4.view(19, "wall");
-    this.mapPlatformF3.view(7, "wall");
-    this.mapPlatformF2.view(4, "wall");
-    this.mapPlatform.view(1, "level 1");
-    this.portal.view();
-    pop();
-    // this.crystal.view();
-    //this.platform.viewRect()
-    if (this.player.body[0].level == this.level + 1) {
-      panel.level = this.player.body[0].level;
-    }
-    if (this.restart.buttonActive === "restart") {
-      this.scena.getObjects("player").map((p) => this.player.setPosition(this.scena.size(p.x + p.width / 2, this.scena.scale), this.scena.size(p.y + p.width / 2, this.scena.scale)))
-    }
-    if (this.playRight.buttonActive === 1) {
-      this.player.speed = this.playRight.buttonActive;
-    }
-    if (this.playLeft.buttonActive === 2) {
-      this.player.speed = this.playLeft.buttonActive;
-    }
-    this.playRight.buttonView();
-    this.playLeft.buttonView();
-    this.restart.buttonView();
+        this.portal.view();
+        pop();
 
-    let display = touches.length + ' touches';
-    textSize(20)
-    text(display, 105, 100);
-    if (touches.length == 1) {
-      this.playRight.pressed();
-      this.playLeft.pressed();
-    }
-  }
+        if (this.player.body[0].level == this.level + 1) {
+            panel.level = this.player.body[0].level;
+        }
+        if (this.restart.buttonActive === "restart") {
+            this.scena.getObjects("player").map((p) => this.player.setPosition(this.scena.size(p.x + p.width / 2, this.scena.scale), this.scena.size(p.y + p.width / 2, this.scena.scale)))
+        }
+        if (this.playRight.buttonActive === 1) {
+            this.player.speed = this.playRight.buttonActive;
+        }
+        if (this.playLeft.buttonActive === 2) {
+            this.player.speed = this.playLeft.buttonActive;
+        }
+        this.playRight.buttonView();
+        this.playLeft.buttonView();
+        this.restart.buttonView();
 
-  pressedM(e) {
-    if (mouseX > windowWidth / 2) {
-      // console.log(this.player.body[0].position.x)
-      //  this.player.speed = 1;
-    } else {
-      // this.player.speed = 2;
-    }
-    this.restart.pressed(e);
-
-
-  }
-
-  relassedM(e) {
-    this.player.speed = 0;
-    this.restart.rePressed(e);
-    this.playRight.rePressed(e);
-    this.playLeft.rePressed(e);
-  }
-
-  pressed(e) {
-    if (e.key === "ArrowRight") {
-      this.player.speed = 1;
-    } else if (e.key === "ArrowLeft") {
-      this.player.speed = 2;
-    }
-    if (e.key === "ArrowUp") {
-      this.player.up = 1;
-    } else if (e.key === "ArrowDown") {
-      //   this.player.up = 2;
+        let display = touches.length + ' touches';
+        textSize(20)
+        text(display, 105, 100);
+        if (touches.length == 1) {
+            this.playRight.pressed();
+            this.playLeft.pressed();
+        }
     }
 
-  }
+    pressedM(e) {
 
-  rePressed(e) {
-    if (e.key === "ArrowRight") {
-      this.player.speed = 0;
-    } else if (e.key === "ArrowLeft") {
-      this.player.speed = 0;
+        this.restart.pressed(e);
+
+
     }
-    if (e.key === "ArrowUp") {
-      this.player.up = 0;
-    } else if (e.key === "ArrowDown") {
-      //     this.player.up = 0;
+
+    relassedM(e) {
+        this.player.speed = 0;
+        this.restart.rePressed(e);
+        this.playRight.rePressed(e);
+        this.playLeft.rePressed(e);
     }
-    // 
-  }
+
+    pressed(e) {
+        if (e.key === "ArrowRight") {
+            this.player.speed = 1;
+        } else if (e.key === "ArrowLeft") {
+            this.player.speed = 2;
+        }
+        if (e.key === "ArrowUp") {
+            this.player.up = 1;
+        } else if (e.key === "ArrowDown") {
+            //   this.player.up = 2;
+        }
+
+    }
+
+    rePressed(e) {
+        if (e.key === "ArrowRight") {
+            this.player.speed = 0;
+        } else if (e.key === "ArrowLeft") {
+            this.player.speed = 0;
+        }
+        if (e.key === "ArrowUp") {
+            this.player.up = 0;
+        } else if (e.key === "ArrowDown") {
+            //     this.player.up = 0;
+        }
+        //
+    }
 }

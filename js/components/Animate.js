@@ -80,7 +80,14 @@ class Animate {
   animateE(name) {
     this.name = name;
     this.animated = false;
-    this.img = loadImage(this.name);
+
+    if(typeof name === "string"){
+      console.log(this.name)
+      this.img = loadImage(this.name);
+    }else {
+      this.img = this.name;
+    }
+
   }
 
   animateAll(name, frame) {

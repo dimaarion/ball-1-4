@@ -30,26 +30,9 @@ class Events {
       var pairs = event.pairs;
       for (var i = 0; i < pairs.length; i++) {
         var pair = pairs[i];
-        if (
-          pair.bodyA.label === "player" &&
-          pair.bodyB.label === "point" && pair.bodyB.typeObject === "0"
-        ) {
-          Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "start").position.x, y: body.getNameType(engine, "point", "start").position.y });
-        }
 
-        if (
-          pair.bodyA.label === "player" &&
-          pair.bodyB.label === "point" && pair.bodyB.typeObject === "1"
-        ) {
-          Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "2").position.x, y: body.getNameType(engine, "point", "2").position.y });
-        }
 
-        if (
-          pair.bodyA.label === "player" &&
-          pair.bodyB.label === "point" && pair.bodyB.typeObject === "3"
-        ) {
-          Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "4").position.x, y: body.getNameType(engine, "point", "4").position.y });
-        }
+
 
 
 
@@ -110,6 +93,15 @@ class Events {
 */
         //Перемещение из in в ex
         pointIn.map((p, i) => setPositionPoint(body, pair, p, pointEx[i]));
+
+        if (
+            pair.bodyA.label === "player" &&
+            pair.bodyB.label === "point" && pair.bodyB.typeObject === "0"
+        ) {
+          scena.getObjects("player").map((p) => Matter.Body.setPosition(pair.bodyA,{x:scena.size(p.x + p.width / 2, scena.scale),y: scena.size(p.y + p.width / 2, scena.scale)}))
+         // Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "start").position.x, y: body.getNameType(engine, "point", "start").position.y });
+        }
+
 
         if (
           pair.bodyA.label === "player" &&

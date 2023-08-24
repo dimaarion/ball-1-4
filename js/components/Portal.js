@@ -17,7 +17,7 @@ class Portal extends Body {
     super(props);
   }
   preload() {
-    this.portal_vertical_l.animateE("./asset/portal/portal_vertical_l.png");
+  /*  this.portal_vertical_l.animateE("./asset/portal/portal_vertical_l.png");
     this.portal_vertical_r.animateE("./asset/portal/portal_vertical_r.png");
     this.gorizontal_restart.animateE("./asset/portal/portal_restart_gorizontal.png");
     this.gorizontal_restart_up.animateE("./asset/portal/portal_restart_gorizontal_up.png");
@@ -28,7 +28,7 @@ class Portal extends Body {
     this.portal_level_b.animateE("./asset/portal/portal_level_b.png");
     this.level_vertical.animateE("./asset/portal/portal_level_gorizontal.png");
     this.portal_restart_vertical_l.animateE("./asset/portal/portal_restart_vertical_l.png");
-    this.portal_restart_vertical_r.animateE("./asset/portal/portal_restart_vertical_r.png");
+    this.portal_restart_vertical_r.animateE("./asset/portal/portal_restart_vertical_r.png");*/
   }
 
   create(world, scena) {
@@ -38,6 +38,7 @@ class Portal extends Body {
   }
 
   view() {
+    /*
     this.body
       .filter((f) => f.typeObject === "portal_vertical_l")
       .map((b) =>
@@ -168,7 +169,7 @@ class Portal extends Body {
           b.width,
           b.height
         )
-      );
+      );*/
   }
 
 
