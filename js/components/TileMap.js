@@ -35,7 +35,7 @@ class TileMap {
             col++;
             if (x === id) {
                 if (this.image) {
-
+/*
                    image(
                         this.image[x - 1],
                         this.scena.size(col * this.scena.scena.tilewidth, this.scena.scale) -
@@ -43,7 +43,9 @@ class TileMap {
                         this.scena.size(row * this.scena.scena.tileheight, this.scena.scale),
                         this.scena.size(this.scena.scena.tilewidth, this.scena.scale),
                         this.scena.size(this.scena.scena.tileheight, this.scena.scale)
-                    );
+                    );*/
+
+
                 }else {
 
                    /* image(
@@ -62,6 +64,8 @@ class TileMap {
                 row++;
             }
         });
+
+        image(0,0, this.scena.size(this.scena, this.scena.scale))
     }
 
     view2(images) {

@@ -106,6 +106,10 @@ class Body {
     return false;
   }
 
+  getTtypeObject(name,n){
+   return  this.body.filter((f) => f.typeObject === name)[n];
+  }
+
   getType(engine, name, n = 0) {
     return engine.world.bodies.filter((f) => f.typeObject === name)[n];
   }

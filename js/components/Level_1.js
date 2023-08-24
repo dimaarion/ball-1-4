@@ -16,12 +16,14 @@ class Level_1 {
     portal = new Portal("portal");
     point = new Body("point");
     crystal = new Crystal();
+    money = new Money("money")
 
     playRight;
     playLeft;
     restart;
     playUp;
 
+    tilesImage;
     level = 0;
 
     constructor(nameScena, level) {
@@ -59,6 +61,7 @@ class Level_1 {
         this.player.body[0].level = this.level;
         this.point.sensor = true;
         this.point.createRect(this.world, this.scena);
+        this.money.create(this.world, this.scena)
         // this.point.sensor = true
         panel.create(this.world);
 
@@ -70,10 +73,16 @@ class Level_1 {
         push();
         this.player.translates();
 
-        this.mapTileImages.newArray(28).map((x) => this.mapTileImages.view(x, "wall"))
+        //  this.mapTileImages.newArray(28).map((x) => this.mapTileImages.view(x, "wall"))
+
+
+        //  this.mapTileImages.newArray(28).map((x) => this.mapTileImages.view(x, "level 1"))
+        //  this.mapTileImages.newArray(28).map((x) => this.mapTileImages.view(x, "portal"))
+        this.money.view();
         this.player.view();
-        this.mapTileImages.newArray(28).map((x) => this.mapTileImages.view(x, "level 1"))
-        this.mapTileImages.newArray(28).map((x) => this.mapTileImages.view(x, "portal"))
+        image(this.tilesImage, 0, 0,
+            this.scena.size(this.scena.scena.width * this.scena.scena.tilewidth, this.scena.scale),
+            this.scena.size(this.scena.scena.height * this.scena.scena.tileheight, this.scena.scale));
 
         this.portal.view();
         pop();

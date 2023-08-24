@@ -53,7 +53,7 @@ class Player extends Body {
     this.speedBodyDop = scena.size(this.speedBodyDop, scena.scale);
     // this.gravity = 15;
     this.speedBody = scena.size(2,scena.scale);
-    this.gravity = scena.size(1.5,scena.scale);
+    this.gravity = scena.size(2,scena.scale);
 
     this.body.map((b) => {
       b.speedBodyDop = this.speedBodyDop;
