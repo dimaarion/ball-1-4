@@ -40,7 +40,7 @@ class Panel {
   active;
   display = "start";
   preload() {
-    this.bg = loadImage("../asset/panel/BG.png");
+    this.bg = loadImage("../game/asset/panel/BG.png");
     this.window = loadImage("../asset/panel/Window.png");
     this.tableNum = loadImage("../asset/panel/Table_03.png");
     this.levelNum = loadJSON("../asset/panel/level.json");
