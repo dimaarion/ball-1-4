@@ -2,9 +2,9 @@
 let Engine = Matter.Engine;
 let engine, world;
 
-let level_1 = new Level_1("../js/scena/scena.json", 1);
-let level_2 = new Level_1("../js/scena/scena2.json", 2);
-let level_3 = new Level_1("../js/scena/scena3.json", 3);
+let level_1 = new Level_1("/js/scena/scena.json", 1);
+let level_2 = new Level_1("./js/scena/scena2.json", 2);
+let level_3 = new Level_1("./js/scena/scena3.json", 3);
 let panel = new Panel();
 let levelStep_1 = new Panel();
 
@@ -30,26 +30,26 @@ let portalImage = new Animate();
 let money = new Animate();
 
 function preload() {
-    tilesImage.animateD("../asset/level1/Tiles/tilesD.png", 28);
-    portalImage.animateD("../asset/level1/Tiles/portalD.png", 12);
-    playerImage = loadImage("../asset/Player/ball.png");
+    tilesImage.animateD("./asset/level1/Tiles/tilesD.png", 28);
+    portalImage.animateD("./asset/level1/Tiles/portalD.png", 12);
+    playerImage = loadImage("./asset/Player/ball.png");
 
     panel.preload();
     if (deviceOrientation === LANDSCAPE) {
-        panel.button(95, 0, 5, 5, "../asset/panel/Settings_BTN.png", 0);
-        playRight.button(30, 75, 8, 8, "../asset/panel/PlayRight_BTN.png", 1);
-        playUp.button(70, 75, 8, 8, "../asset/panel/PlayUp_BTN.png", 1);
-        playLeft.button(10, 75, 8, 8, "../asset/panel/PlayLeft_BTN.png", 2);
-        restart.button(89, 0, 5, 5, "../asset/panel/restart_level.png", "restart");
+        panel.button(95, 0, 5, 5, "./asset/panel/Settings_BTN.png", 0);
+        playRight.button(30, 75, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
+        playUp.button(70, 75, 8, 8, "./asset/panel/PlayUp_BTN.png", 1);
+        playLeft.button(10, 75, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
+        restart.button(89, 0, 5, 5, "./asset/panel/restart_level.png", "restart");
     } else {
-        panel.button(92, 0, 5, 5, "../asset/panel/Settings_BTN.png", 0);
-        playRight.button(30, 85, 8, 8, "../asset/panel/PlayRight_BTN.png", 1);
-        playUp.button(70, 85, 8, 8, "../asset/panel/PlayUp_BTN.png", 1);
-        playLeft.button(10, 85, 8, 8, "../asset/panel/PlayLeft_BTN.png", 2);
-        restart.button(85, 0, 5, 5, "../asset/panel/restart_level.png", "restart");
+        panel.button(92, 0, 5, 5, "./asset/panel/Settings_BTN.png", 0);
+        playRight.button(30, 85, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
+        playUp.button(70, 85, 8, 8, "./asset/panel/PlayUp_BTN.png", 1);
+        playLeft.button(10, 85, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
+        restart.button(85, 0, 5, 5, "./asset/panel/restart_level.png", "restart");
 
     }
-    levelStep_1.button(60, 60, 8, 8, "../asset/panel/step_level.png", 2);
+    levelStep_1.button(60, 60, 8, 8, "./asset/panel/step_level.png", 2);
     level_1.preload();
     level_2.preload();
     level_3.preload();

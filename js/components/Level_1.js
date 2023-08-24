@@ -59,7 +59,7 @@ class Level_1 {
         this.player.body[0].level = this.level;
         this.point.sensor = true;
         this.point.createRect(this.world, this.scena);
-       // this.point.sensor = true
+        // this.point.sensor = true
         panel.create(this.world);
 
     }
@@ -92,17 +92,16 @@ class Level_1 {
         }
         if (this.playUp.buttonActive === 1) {
             this.player.up = this.playUp.buttonActive;
-        }else {
+        } else {
             this.player.up = 0;
         }
         if (md.mobile()) {
             this.playRight.buttonView();
             this.playLeft.buttonView();
             this.playUp.buttonView();
-            this.restart.buttonView();
 
         }
-
+        this.restart.buttonView();
 
         let display = touches.length + ' touches';
         textSize(20)
@@ -113,9 +112,9 @@ class Level_1 {
             this.playUp.pressed();
 
         }
-        if(touches.length == 2){
-                this.player.up = 1;
-        }else {
+        if (touches.length == 2) {
+            this.player.up = 1;
+        } else {
 
         }
     }

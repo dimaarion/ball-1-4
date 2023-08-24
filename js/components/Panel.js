@@ -40,14 +40,14 @@ class Panel {
   active;
   display = "start";
   preload() {
-    this.bg = loadImage("../game/asset/panel/BG.png");
-    this.window = loadImage("../asset/panel/Window.png");
-    this.tableNum = loadImage("../asset/panel/Table_03.png");
-    this.levelNum = loadJSON("../asset/panel/level.json");
-    this.statsBar = loadImage("../asset/panel/Stats_Bar.png");
-    this.clock = loadImage("../asset/panel/Clock_Icon.png");
-    this.crystal.animateD("../asset/crystall.png", 189);
-    this.crystal2.animateD("../asset/crystall2.png", 189);
+    this.bg = loadImage("./asset/panel/BG.png");
+    this.window = loadImage("./asset/panel/Window.png");
+    this.tableNum = loadImage("./asset/panel/Table_03.png");
+    this.levelNum = loadJSON("./asset/panel/level.json");
+    this.statsBar = loadImage("./asset/panel/Stats_Bar.png");
+    this.clock = loadImage("./asset/panel/Clock_Icon.png");
+    this.crystal.animateD("./asset/crystall.png", 189);
+    this.crystal2.animateD("./asset/crystall2.png", 189);
   }
 
   button(bx, by, bw, bh, bImg = "", active) {
