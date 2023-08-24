@@ -22,6 +22,7 @@ let playerImage;
 let tile_2;
 let playRight = new Panel();
 let playLeft = new Panel();
+let playUp = new Panel();
 let restart = new Panel();
 
 let tilesImage = new Animate();
@@ -36,13 +37,15 @@ function preload() {
     if (deviceOrientation === LANDSCAPE) {
         panel.button(95, 0, 5, 5, "./asset/panel/Settings_BTN.png", 0);
         playRight.button(30, 75, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
+        playUp.button(70, 75, 8, 8, "./asset/panel/PlayUp_BTN.png", 1);
         playLeft.button(10, 75, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
         restart.button(89, 0, 5, 5, "./asset/panel/restart_level.png", "restart");
     } else {
-        panel.button(92, 0, 8, 8, "./asset/panel/Settings_BTN.png", 0);
+        panel.button(92, 0, 5, 5, "./asset/panel/Settings_BTN.png", 0);
         playRight.button(30, 85, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
+        playUp.button(70, 85, 8, 8, "./asset/panel/PlayUp_BTN.png", 1);
         playLeft.button(10, 85, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
-        restart.button(89, 0, 5, 5, "./asset/panel/restart_level.png", "restart");
+        restart.button(85, 0, 5, 5, "./asset/panel/restart_level.png", "restart");
 
     }
     levelStep_1.button(60, 60, 8, 8, "./asset/panel/step_level.png", 2);
@@ -64,7 +67,8 @@ function setup() {
         portalImage: portalImage,
         playRight:playRight,
         playLeft:playLeft,
-        restart:restart
+        restart:restart,
+        playUp:playUp
     };
     // level 1
 

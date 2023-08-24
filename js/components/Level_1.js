@@ -17,9 +17,10 @@ class Level_1 {
     point = new Body("point");
     crystal = new Crystal();
 
-    playRight = new Panel();
-    playLeft = new Panel();
-    restart = new Panel();
+    playRight;
+    playLeft;
+    restart;
+    playUp;
 
     level = 0;
 
@@ -40,6 +41,7 @@ class Level_1 {
         this.playRight = props.playRight;
         this.playLeft = props.playLeft;
         this.restart = props.restart;
+        this.playUp = props.playUp;
 
         this.player.img = props.playerImage;
         this.mapTileImages.image = props.tiles.newArrImg;
@@ -88,11 +90,18 @@ class Level_1 {
         if (this.playLeft.buttonActive === 2) {
             this.player.speed = this.playLeft.buttonActive;
         }
+        if (this.playUp.buttonActive === 1) {
+            this.player.up = this.playUp.buttonActive;
+        }else {
+            this.player.up = 0;
+        }
         if (md.mobile()) {
-            this.playRight.buttonView();
-            this.playLeft.buttonView();
+
 
         }
+        this.playRight.buttonView();
+        this.playLeft.buttonView();
+        this.playUp.buttonView();
         this.restart.buttonView();
 
         let display = touches.length + ' touches';
@@ -101,6 +110,13 @@ class Level_1 {
         if (touches.length == 1) {
             this.playRight.pressed();
             this.playLeft.pressed();
+            this.playUp.pressed();
+
+        }
+        if(touches.length == 2){
+                this.player.up = 1;
+        }else {
+
         }
     }
 
@@ -116,6 +132,8 @@ class Level_1 {
         this.restart.rePressed(e);
         this.playRight.rePressed(e);
         this.playLeft.rePressed(e);
+        this.playUp.rePressed(e);
+        this.player.up = 0;
     }
 
     pressed(e) {
