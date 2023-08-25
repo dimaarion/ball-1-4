@@ -25,6 +25,9 @@ class Level_1 {
 
     tilesImage;
     level = 0;
+    level_1_img;
+    portal_img;
+    wall_img;
 
     constructor(nameScena, level) {
         this.nameScena = nameScena;
@@ -80,9 +83,8 @@ class Level_1 {
         //  this.mapTileImages.newArray(28).map((x) => this.mapTileImages.view(x, "portal"))
         this.money.view();
         this.player.view();
-        image(this.tilesImage, 0, 0,
-            this.scena.size(this.scena.scena.width * this.scena.scena.tilewidth, this.scena.scale),
-            this.scena.size(this.scena.scena.height * this.scena.scena.tileheight, this.scena.scale));
+        this.level_1_img.imageMap();
+        this.wall_img.imageMap();
 
         this.portal.view();
         pop();

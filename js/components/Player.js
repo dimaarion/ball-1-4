@@ -38,6 +38,7 @@ class Player extends Body {
   header;
   header2;
 
+
   constructor(props) {
     super(props);
   }
@@ -52,8 +53,14 @@ class Player extends Body {
     // this.speedBody = scena.size(this.speedBody, scena.scale);
     this.speedBodyDop = scena.size(this.speedBodyDop, scena.scale);
     // this.gravity = 15;
-    this.speedBody = scena.size(2,scena.scale);
-    this.gravity = scena.size(2,scena.scale);
+    if (md.mobile()) {
+      this.speedBody = scena.size(5,scena.scale);
+      this.gravity = scena.size(7,scena.scale);
+    }else {
+      this.speedBody = scena.size(3,scena.scale);
+      this.gravity = scena.size(5,scena.scale);
+    }
+
 
     this.body.map((b) => {
       b.speedBodyDop = this.speedBodyDop;

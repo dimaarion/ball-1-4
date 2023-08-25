@@ -13,7 +13,11 @@ class TileMap {
         this.scena = scena;
     }
 
+    preload(name){
+        this.animate.animateE(name);
+    }
     create() {
+
     }
     loadImg(s){
 
