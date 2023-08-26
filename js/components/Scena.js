@@ -83,12 +83,12 @@ class Scena {
     }
 
     procentX(x) {
-        let r = window.innerWidth;
+        let r = windowWidth;
         return this.procentIn(r, x);
     }
 
     procentY(x) {
-        let r = window.innerHeight;
+        let r = windowHeight;
         return this.procentIn(r, x);
     }
 

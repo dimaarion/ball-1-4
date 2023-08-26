@@ -32,7 +32,7 @@ class Panel {
     zero = "";
     zero2 = "";
     zero3 = "";
-    crystal = new Animate();
+    money = new Animate();
     crystal2 = new Animate();
     body = new Body();
     world;
@@ -48,7 +48,7 @@ class Panel {
         this.levelNum = loadJSON("./asset/panel/level.json");
         this.statsBar = loadImage("./asset/panel/Stats_Bar.png");
         this.clock = loadImage("./asset/panel/Clock_Icon.png");
-        this.crystal.animateD("./asset/crystall.png", 189);
+        this.money.animateE("./asset/level1/Tiles/moneyStatic.png");
         this.crystal2.animateD("./asset/crystall2.png", 189);
     }
 
@@ -68,10 +68,10 @@ class Panel {
         if (this.bImg != "") {
             image(
                 this.bImg,
-                this.procentX(this.bx),
-                this.procentY(this.by),
-                this.procentX(this.bw),
-                this.procentX(this.bh)
+                this.scena.procentX(this.bx),
+                this.scena.procentY(this.by),
+                this.scena.procentXY(this.bw),
+                this.scena.procentXY(this.bh)
             );
         }
     }
@@ -82,7 +82,6 @@ class Panel {
         this.tableNumSize = this.tableNumX;
         this.timer = new Timer(1000);
         this.timer.start();
-        this.crystal.setupAnimate();
         this.crystal2.setupAnimate();
     }
 
@@ -186,17 +185,17 @@ class Panel {
             this.statsBar,
             this.scena.procentXY(0),
             this.scena.procentXY(0),
-            this.scena.procentXY(20),
-            this.scena.procentXY(3)
+            this.scena.procentXY(25),
+            this.scena.procentXY(5)
         );
         image(
             this.clock,
             this.scena.procentXY(1),
-            this.scena.procentXY(0.5),
-            this.scena.procentXY(2),
-            this.scena.procentXY(2)
+            this.scena.procentXY(1),
+            this.scena.procentXY(3),
+            this.scena.procentXY(3)
         );
-        textSize(this.scena.procentXY(1.5));
+        textSize(this.scena.procentXY(2));
         fill(255);
         this.updateTimer();
         if (this.elapsedSeconds < 10) {
@@ -223,20 +222,20 @@ class Panel {
             ":" +
             this.zero +
             this.elapsedSeconds,
-            this.scena.procentXY(3.5),
-            this.scena.procentXY(1.9)
+            this.scena.procentXY(5),
+            this.scena.procentXY(3.3)
         );
-        props.moneyImg.params()
+
         image(
-            props.moneyImg.sprite(),
-            this.scena.procentXY(10),
-            this.scena.procentXY(0.3),
-            this.scena.procentXY(2.5),
-            this.scena.procentXY(2.5)
+            this.money.sprite(),
+            this.scena.procentXY(15),
+            this.scena.procentXY(2),
+            this.scena.procentXY(1.2),
+            this.scena.procentXY(1.2)
         );
 
       //  text("x", this.scena.procentXY(11.2), this.scena.procentXY(2));
-        text(props.money, this.scena.procentXY(12.2), this.scena.procentXY(2));
+        text(props.money, this.scena.procentXY(16.5), this.scena.procentXY(3.3));
     }
 
     updateTimer() {
@@ -297,10 +296,10 @@ class Panel {
             this.collidePointRect(
                 mouseX,
                 mouseY,
-                this.procentX(this.bx),
-                this.procentY(this.by),
-                this.procentX(this.bw),
-                this.procentX(this.bh)
+                this.scena.procentX(this.bx),
+                this.scena.procentY(this.by),
+                this.scena.procentXY(this.bw),
+                this.scena.procentXY(this.bh)
             )
         ) {
             //  this.level = 0;
@@ -316,10 +315,10 @@ class Panel {
             this.collidePointRect(
                 mouseX,
                 mouseY,
-                this.procentX(this.bx),
-                this.procentY(this.by),
-                this.procentX(this.bw),
-                this.procentX(this.bh)
+                this.scena.procentX(this.bx),
+                this.scena.procentY(this.by),
+                this.scena.procentXY(this.bw),
+                this.scena.procentXY(this.bh)
             )
         ) {
             this.buttonActive = 0;
