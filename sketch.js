@@ -29,6 +29,10 @@ let tilesImage = new Animate();
 let portalImage = new Animate();
 let money = new Animate();
 
+
+let scena_2_level_1 = new TileMap(level_2.scena);
+let scena_2_wall = new TileMap(level_2.scena);
+
 let scena_3_level_1 = new TileMap(level_3.scena);
 let scena_3_wall = new TileMap(level_3.scena);
 
@@ -37,8 +41,13 @@ function preload() {
     portalImage.animateD("./asset/level1/Tiles/portalD.png", 12);
     playerImage = loadImage("./asset/Player/ball.png");
     money.animateD("./asset/level1/Tiles/money.png",100);
+
+    scena_2_level_1.preload("./js/scena/scena2.png");
+    scena_2_wall.preload("./js/scena/wall2.png")
+
     scena_3_level_1.preload("./js/scena/scena3.png");
-    scena_3_wall.preload("./js/scena/wall3.png")
+    scena_3_wall.preload("./js/scena/wall3.png");
+
 
     panel.preload();
     if (deviceOrientation === LANDSCAPE) {
@@ -85,7 +94,7 @@ function setup() {
     // level 2
     level_2.create(panel, images);
     // level 3
-    level_3.scena.scale = 7
+
     level_3.create(panel, images);
 
 }
@@ -99,6 +108,8 @@ function draw() {
         panel.headBar();
     } else if (panel.level === 2) {
         push();
+        level_2.level_1_img = scena_2_level_1;
+        level_2.wall_img = scena_2_wall;
         level_2.view(panel);
         pop();
         panel.headBar();
