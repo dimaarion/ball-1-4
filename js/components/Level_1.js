@@ -81,10 +81,11 @@ class Level_1 {
 
         //  this.mapTileImages.newArray(28).map((x) => this.mapTileImages.view(x, "level 1"))
         //  this.mapTileImages.newArray(28).map((x) => this.mapTileImages.view(x, "portal"))
+        this.wall_img.imageMap();
         this.money.view();
         this.player.view();
         this.level_1_img.imageMap();
-        this.wall_img.imageMap();
+
 
         this.portal.view();
         pop();
