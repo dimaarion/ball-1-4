@@ -143,7 +143,7 @@
          "name":"level 1",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":62,
          "x":0,
          "y":0
@@ -216,7 +216,7 @@
          "name":"portal",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":62,
          "x":0,
          "y":0
@@ -703,19 +703,19 @@
          "objects":[
                 {
                  "ellipse":true,
-                 "height":31.5632984901278,
+                 "height":40,
                  "id":84,
                  "name":"money",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":31.5632984901278,
+                 "width":40,
                  "x":866.577855207124,
                  "y":622.052574525744
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 

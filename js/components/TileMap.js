@@ -72,31 +72,7 @@ class TileMap {
         image(0,0, this.scena.size(this.scena, this.scena.scale))
     }
 
-    view2(images) {
-        let col = 0;
-        let row = 0;
-        let index = 0;
-        this.scena.getObjectData(layers).map((x, i) => {
-            col++;
-            if (x === id) {
-                if (images.length > 0) {
-                    image(
-                        images[x],
-                        this.scena.size(col * this.scena.scena.tilewidth, this.scena.scale) -
-                        this.scena.size(this.scena.scena.tilewidth, this.scena.scale),
-                        this.scena.size(row * this.scena.scena.tileheight, this.scena.scale),
-                        this.scena.size(this.scena.scena.tilewidth, this.scena.scale),
-                        this.scena.size(this.scena.scena.tileheight, this.scena.scale)
-                    );
-                }
 
-            }
-            if (col > this.scena.scena.width - 1) {
-                col = 0;
-                row++;
-            }
-        });
-    }
     imageMap() {
         image(
             this.animate.sprite(),

@@ -18,6 +18,7 @@ class Level_1 {
     crystal = new Crystal();
     money = new Money("money")
 
+    props;
     playRight;
     playLeft;
     restart;
@@ -28,6 +29,7 @@ class Level_1 {
     level_1_img;
     portal_img;
     wall_img;
+
 
     constructor(nameScena, level) {
         this.nameScena = nameScena;
@@ -43,14 +45,19 @@ class Level_1 {
 
     create(panel, props) {
 
-        this.playRight = props.playRight;
-        this.playLeft = props.playLeft;
-        this.restart = props.restart;
-        this.playUp = props.playUp;
+        this.props = props
 
-        this.player.img = props.playerImage;
-        this.mapTileImages.image = props.tiles.newArrImg;
-        this.mapPortalImages.image = props.portalImage.newArrImg;
+        this.playRight = this.props.playRight;
+        this.playLeft = this.props.playLeft;
+        this.restart = this.props.restart;
+        this.playUp = this.props.playUp;
+
+        this.player.img = this.props.playerImage;
+        this.mapTileImages.image = this.props.tiles.newArrImg;
+        this.mapPortalImages.image = this.props.portalImage.newArrImg;
+
+
+
         this.engine = Engine.create();
         this.world = this.engine.world;
         Engine.run(this.engine);
@@ -82,20 +89,22 @@ class Level_1 {
         //  this.mapTileImages.newArray(28).map((x) => this.mapTileImages.view(x, "level 1"))
         //  this.mapTileImages.newArray(28).map((x) => this.mapTileImages.view(x, "portal"))
         this.wall_img.imageMap();
-        this.money.view();
+        this.money.view(this.props.money);
         this.player.view();
         this.level_1_img.imageMap();
 
 
         this.portal.view();
         pop();
-
+        this.restart.buttonView();
+        console.log(this.player.up)
         if (this.player.body[0].level == this.level + 1) {
             panel.level = this.player.body[0].level;
         }
         if (this.restart.buttonActive === "restart") {
             this.scena.getObjects("player").map((p) => this.player.setPosition(this.scena.size(p.x + p.width / 2, this.scena.scale), this.scena.size(p.y + p.width / 2, this.scena.scale)))
         }
+        if (md.mobile()) {
         if (this.playRight.buttonActive === 1) {
             this.player.speed = this.playRight.buttonActive;
         }
@@ -107,17 +116,18 @@ class Level_1 {
         } else {
             this.player.up = 0;
         }
-        if (md.mobile()) {
+
+
+
+
             this.playRight.buttonView();
             this.playLeft.buttonView();
             this.playUp.buttonView();
 
-        }
-        this.restart.buttonView();
 
-        let display = touches.length + ' touches';
-        textSize(20)
-        text(display, 105, 100);
+
+
+
         if (touches.length == 1) {
             this.playRight.pressed();
             this.playLeft.pressed();
@@ -129,6 +139,9 @@ class Level_1 {
         } else {
 
         }
+        }
+
+
     }
 
     pressedM(e) {
@@ -144,7 +157,9 @@ class Level_1 {
         this.playRight.rePressed(e);
         this.playLeft.rePressed(e);
         this.playUp.rePressed(e);
-        this.player.up = 0;
+        if (md.mobile()) {
+            this.player.up = 0;
+        }
     }
 
     pressed(e) {

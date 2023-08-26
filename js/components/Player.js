@@ -89,7 +89,7 @@ class Player extends Body {
           pair.bodyA.label === "player" &&
           pair.bodyB.label === "platform_b"
         ) {
-          pair.bodyA.activeB = 0;
+        pair.bodyA.activeB = 0;
         }
       }
     });

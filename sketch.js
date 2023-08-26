@@ -29,6 +29,8 @@ let tilesImage = new Animate();
 let portalImage = new Animate();
 let money = new Animate();
 
+let scena_1_level_1 = new TileMap(level_1.scena);
+let scena_1_wall = new TileMap(level_1.scena);
 
 let scena_2_level_1 = new TileMap(level_2.scena);
 let scena_2_wall = new TileMap(level_2.scena);
@@ -42,8 +44,11 @@ function preload() {
     playerImage = loadImage("./asset/Player/ball.png");
     money.animateD("./asset/level1/Tiles/money.png",100);
 
+    scena_1_level_1.preload("./js/scena/scena1.png");
+    scena_1_wall.preload("./js/scena/wall1.png");
+
     scena_2_level_1.preload("./js/scena/scena2.png");
-    scena_2_wall.preload("./js/scena/wall2.png")
+    scena_2_wall.preload("./js/scena/wall2.png");
 
     scena_3_level_1.preload("./js/scena/scena3.png");
     scena_3_wall.preload("./js/scena/wall3.png");
@@ -86,7 +91,7 @@ function setup() {
         restart: restart,
         playUp: playUp,
         money: money,
-        scena_3:scena_3_level_1
+
     };
     // level 1
 
@@ -103,6 +108,8 @@ function draw() {
 
     if (panel.level === 1) {
         push();
+        level_1.level_1_img = scena_1_level_1;
+        level_1.wall_img = scena_1_wall;
         level_1.view(panel);
         pop();
         panel.headBar();
