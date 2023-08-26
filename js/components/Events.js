@@ -74,7 +74,8 @@ class Events {
             this.level = lev;
             pair.bodyA.level = lev;
             scena.getObjects("player").map((p) => Matter.Body.setPosition(pair.bodyA,{x:scena.size(p.x + p.width / 2, scena.scale),y: scena.size(p.y + p.width / 2, scena.scale)}))
-          //  Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "start").position.x, y: body.getNameType(engine, "point", "start").position.y });
+
+            //  Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "start").position.x, y: body.getNameType(engine, "point", "start").position.y });
           } 
         })
 /*
@@ -103,12 +104,7 @@ class Events {
         }
 
 
-        if (
-          pair.bodyA.label === "player" &&
-          pair.bodyB.label === "point" && pair.bodyB.typeObject === "start"
-        ) {
-          //  pair.bodyA.level = 0;
-        }
+
       }
     })
     Matter.Events.on(engine, "beforeUpdate", function (event) { });

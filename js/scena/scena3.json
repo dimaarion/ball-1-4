@@ -1288,63 +1288,63 @@
          "objects":[
                 {
                  "ellipse":true,
-                 "height":10,
+                 "height":40,
                  "id":82,
                  "name":"money",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":10,
-                 "x":701.95454545454,
-                 "y":365.931818181821
+                 "width":40,
+                 "x":3059.95454545454,
+                 "y":1735.93181818182
                 }, 
                 {
                  "ellipse":true,
-                 "height":10,
+                 "height":40,
                  "id":83,
                  "name":"money",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":10,
-                 "x":724.95454545454,
-                 "y":361.515151515152
+                 "width":40,
+                 "x":3130.28787878787,
+                 "y":1734.84848484849
                 }, 
                 {
                  "ellipse":true,
-                 "height":10,
+                 "height":40,
                  "id":84,
                  "name":"money",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":10,
-                 "x":551.621212121212,
-                 "y":364.848484848482
+                 "width":40,
+                 "x":2919.62121212121,
+                 "y":1727.51515151515
                 }, 
                 {
                  "ellipse":true,
-                 "height":10,
+                 "height":40,
                  "id":85,
                  "name":"money",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":10,
-                 "x":585.621212121212,
-                 "y":362.848484848482
+                 "width":40,
+                 "x":2978.95454545455,
+                 "y":1733.51515151515
                 }, 
                 {
                  "ellipse":true,
-                 "height":10,
+                 "height":40,
                  "id":86,
                  "name":"money",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":10,
-                 "x":613.621212121212,
-                 "y":363.515151515152
+                 "width":40,
+                 "x":2851.62121212121,
+                 "y":1729.51515151515
                 }],
          "opacity":1,
          "type":"objectgroup",

@@ -106,7 +106,7 @@ class Body {
     return false;
   }
 
-  getTtypeObject(name,n){
+  getTypeObject(name,n){
    return  this.body.filter((f) => f.typeObject === name)[n];
   }
 
@@ -255,7 +255,8 @@ class Body {
           speedBodyDop: 0,
           level: 0,
           display:"start",
-          activeB:0
+          activeB:0,
+          money:0
         }
       )
     );
@@ -282,7 +283,8 @@ class Body {
           speedBodyDop: 0,
           level: 0,
           display:"start",
-          activeB:0
+          activeB:0,
+          money:0
         }
       )
     );
@@ -311,7 +313,8 @@ class Body {
           speedBodyDop: 0,
           level: 0,
           display:"start",
-          activeB:0
+          activeB:0,
+          money:0
         }
       )
     );
@@ -345,7 +348,8 @@ class Body {
           speedBodyDop: 0,
           level: 0,
           display:"start",
-          activeB:0
+          activeB:0,
+          money:0
         }
       )
     );

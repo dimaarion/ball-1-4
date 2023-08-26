@@ -415,7 +415,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -427,7 +427,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -438,26 +438,26 @@
          "name":"point",
          "objects":[
                 {
-                 "height":66.5618663268197,
+                 "height":77.2285329934862,
                  "id":132,
                  "name":"point",
                  "rotation":0,
                  "type":"level_2",
                  "visible":true,
                  "width":83.8681074766356,
-                 "x":808.655149627111,
-                 "y":1128.42232606438
+                 "x":807.988482960444,
+                 "y":1108.42232606438
                 }, 
                 {
-                 "height":11.8830324270745,
+                 "height":57.8830324270745,
                  "id":179,
                  "name":"point",
                  "rotation":0,
                  "type":"start",
                  "visible":true,
-                 "width":57.3571651090342,
-                 "x":814.193748229964,
-                 "y":715.572634640801
+                 "width":85.3571651090342,
+                 "x":805.527081563297,
+                 "y":735.572634640801
                 }, 
                 {
                  "height":42.9418224299066,
@@ -472,7 +472,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -643,7 +643,7 @@
          "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":194,
+ "nextobjectid":199,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.8.4",

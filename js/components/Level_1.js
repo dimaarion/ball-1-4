@@ -16,7 +16,8 @@ class Level_1 {
     portal = new Portal("portal");
     point = new Body("point");
     crystal = new Crystal();
-    money = new Money("money")
+    money = new Money("money");
+
 
     props;
     playRight;
@@ -43,7 +44,7 @@ class Level_1 {
         this.crystal.preload();
     }
 
-    create(panel, props) {
+    create(props) {
 
         this.props = props
 
@@ -71,13 +72,13 @@ class Level_1 {
         this.player.body[0].level = this.level;
         this.point.sensor = true;
         this.point.createRect(this.world, this.scena);
-        this.money.create(this.world, this.scena)
+        this.money.create(this.engine, this.scena)
         // this.point.sensor = true
-        panel.create(this.world);
+
 
     }
 
-    view(panel) {
+    view() {
         background(102, 98, 97);
         rectMode(p5.CENTER);
         push();
@@ -97,7 +98,7 @@ class Level_1 {
         this.portal.view();
         pop();
         this.restart.buttonView();
-        console.log(this.player.up)
+
         if (this.player.body[0].level == this.level + 1) {
             panel.level = this.player.body[0].level;
         }

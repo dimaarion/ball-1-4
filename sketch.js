@@ -29,6 +29,8 @@ let tilesImage = new Animate();
 let portalImage = new Animate();
 let money = new Animate();
 
+let moneyBank = 0
+
 let scena_1_level_1 = new TileMap(level_1.scena);
 let scena_1_wall = new TileMap(level_1.scena);
 
@@ -42,7 +44,7 @@ function preload() {
     tilesImage.animateD("./asset/level1/Tiles/tilesD.png", 28);
     portalImage.animateD("./asset/level1/Tiles/portalD.png", 12);
     playerImage = loadImage("./asset/Player/ball.png");
-    money.animateD("./asset/level1/Tiles/money.png",100);
+    money.animateD("./asset/level1/Tiles/money.png", 100);
 
     scena_1_level_1.preload("./js/scena/scena1.png");
     scena_1_wall.preload("./js/scena/wall1.png");
@@ -82,6 +84,7 @@ function setup() {
     md = new MobileDetect(window.navigator.userAgent);
     tilesImage.setupAnimate();
     money.setupAnimate();
+    panel.create();
     let images = {
         playerImage: playerImage,
         tiles: tilesImage,
@@ -95,12 +98,12 @@ function setup() {
     };
     // level 1
 
-    level_1.create(panel, images);
+    level_1.create(images);
     // level 2
-    level_2.create(panel, images);
+    level_2.create(images);
     // level 3
 
-    level_3.create(panel, images);
+    level_3.create(images);
 
 }
 
@@ -112,25 +115,25 @@ function draw() {
         level_1.wall_img = scena_1_wall;
         level_1.view(panel);
         pop();
-        panel.headBar();
+        panel.headBar({moneyImg:money,money:level_1.player.body[0].money});
     } else if (panel.level === 2) {
         push();
         level_2.level_1_img = scena_2_level_1;
         level_2.wall_img = scena_2_wall;
         level_2.view(panel);
         pop();
-        panel.headBar();
+        panel.headBar({moneyImg:money,money:level_1.player.body[0].money + level_2.player.body[0].money});
     } else if (panel.level === 3) {
         push();
         level_3.level_1_img = scena_3_level_1;
         level_3.wall_img = scena_3_wall;
         level_3.view(panel);
         pop();
-        panel.headBar();
+        panel.headBar({moneyImg:money,money:level_1.player.body[0].money + level_2.player.body[0].money + level_3.player.body[0].money});
     } else {
         panel.levelPanel();
     }
-
+    moneyBank = level_1.player.body[0].money + level_2.player.body[0].money;
 
     if (panel.level !== 0) {
         panel.buttonView();

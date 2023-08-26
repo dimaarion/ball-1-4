@@ -100,16 +100,24 @@ class Player extends Body {
       var pairs = event.pairs;
       for (var i = 0; i < pairs.length; i++) {
         var pair = pairs[i];
+
         if (
           pair.bodyA.label === "player" &&
           pair.bodyB.label === "platform_b"
         ) {
           pair.bodyA.activeB = 1;
-          //  Matter.Body.setRotate(pair.bodyA, pair.bodyA.jX);
-        } else {
+        }
+
+        if (
+            pair.bodyA.label === "player" &&
+            pair.bodyB.label === "money"
+        ) {
+          Matter.Body.setPosition(pair.bodyB,{x:0,y: 0});
+          pair.bodyA.money += 1;
 
         }
       }
+
     });
   }
 
@@ -156,6 +164,8 @@ class Player extends Body {
       );
       pop();
     });
+
+
 
   }
 }

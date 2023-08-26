@@ -4,7 +4,7 @@ class Scena {
     scenaWidth = 0;
     scenaHeigiht = 0;
     scenaSize = 0;
-    scale = 7;
+    scale = 12;
 
 
     preload(name) {
