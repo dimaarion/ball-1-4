@@ -65,7 +65,7 @@ function preload() {
     if (deviceOrientation === LANDSCAPE) {
         panel.button(92, 0, 5, 5, "./asset/panel/Settings_BTN.png", 0);
         restart.button(82, 0, 5, 5, "./asset/panel/restart_level.png", "restart");
-        restart.button(82, 0, 5, 5, "./asset/panel/atan_icon.png", "atan");
+        atanIcon.button(82, 20, 5, 5, "./asset/panel/atan_icon.png", "atan");
         playRight.button(30, 70, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
         playUp.button(70, 70, 8, 8, "./asset/panel/PlayUp_BTN.png", 1);
         playLeft.button(10, 70, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
@@ -102,7 +102,8 @@ function setup() {
         restart: restart,
         playUp: playUp,
         money: money,
-        atanImg:atan
+        atanImg: atan,
+        atanIcon: atanIcon
 
     };
     // level 1
@@ -111,7 +112,6 @@ function setup() {
     // level 2
     level_2.create(images);
     // level 3
-
     level_3.create(images);
 
 }
@@ -124,28 +124,39 @@ function draw() {
         level_1.wall_img = scena_1_wall;
         level_1.view(panel);
         pop();
-        panel.headBar({moneyImg:money,money:level_1.player.body[0].money});
+        panel.bank = level_1.player.body[0].money + level_2.player.body[0].money
+        panel.headBar({moneyImg: money, money: panel.bank});
+        level_1.player.money = panel.bank;
     } else if (panel.level === 2) {
         push();
         level_2.level_1_img = scena_2_level_1;
         level_2.wall_img = scena_2_wall;
         level_2.view(panel);
         pop();
-        panel.headBar({moneyImg:money,money:level_1.player.body[0].money + level_2.player.body[0].money});
+        panel.bank = level_1.player.body[0].money + level_2.player.body[0].money
+        panel.headBar({moneyImg: money, money: panel.bank});
+        level_2.player.money = panel.bank;
     } else if (panel.level === 3) {
         push();
         level_3.level_1_img = scena_3_level_1;
         level_3.wall_img = scena_3_wall;
         level_3.view(panel);
         pop();
-        panel.headBar({moneyImg:money,money:level_1.player.body[0].money + level_2.player.body[0].money + level_3.player.body[0].money});
+        panel.bank = level_1.player.body[0].money + level_2.player.body[0].money + level_3.player.body[0].money
+        panel.headBar({
+            moneyImg: money,
+            money: panel.bank
+        });
+        level_3.player.money = panel.bank;
     } else {
         panel.levelPanel();
     }
-    moneyBank = level_1.player.body[0].money + level_2.player.body[0].money;
+   // window.localStorage.setItem("money", moneyBank);
 
     if (panel.level !== 0) {
+
         panel.buttonView();
+        atanIcon.buttonView();
         if (md.mobile()) {
         }
     } else {
@@ -166,6 +177,7 @@ function mousePressed(e) {
     level_2.pressedM(e);
     level_3.pressedM(e);
     levelStep_1.pressed(e);
+    atanIcon.pressed(e);
 
 }
 
@@ -173,8 +185,10 @@ function mouseReleased(e) {
     level_1.relassedM(e);
     level_2.relassedM(e);
     level_3.relassedM(e);
-
+    atanIcon.rePressed(e);
     levelStep_1.rePressed(e);
+
+
 }
 
 function keyPressed(e) {

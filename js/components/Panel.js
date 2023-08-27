@@ -40,6 +40,7 @@ class Panel {
     active;
     display = "start";
     scena = new Scena();
+    bank = 0;
 
     preload() {
         this.bg = loadImage("./asset/panel/BG.png");
@@ -82,7 +83,7 @@ class Panel {
         this.tableNumSize = this.tableNumX;
         this.timer = new Timer(1000);
         this.timer.start();
-        this.crystal2.setupAnimate();
+
     }
 
     procentIn(n, p) {
@@ -198,30 +199,30 @@ class Panel {
         textSize(this.scena.procentXY(2));
         fill(255);
         this.updateTimer();
-        if (this.elapsedSeconds < 10) {
+        if (this.timer.elapsedSeconds < 10) {
             this.zero = "0";
         } else {
             this.zero = "";
         }
-        if (this.elapsedMinutes < 10) {
+        if (this.timer.elapsedMinutes < 10) {
             this.zero2 = "0";
         } else {
             this.zero2 = "";
         }
-        if (this.elapsedHour < 10) {
+        if (this.timer.elapsedHour < 10) {
             this.zero3 = "0";
         } else {
             this.zero3 = "";
         }
         text(
             this.zero3 +
-            this.elapsedHour +
+            this.timer.elapsedHour +
             ":" +
             this.zero2 +
-            this.elapsedMinutes +
+            this.timer.elapsedMinutes +
             ":" +
             this.zero +
-            this.elapsedSeconds,
+            this.timer.elapsedSeconds,
             this.scena.procentXY(5),
             this.scena.procentXY(3.3)
         );
@@ -235,29 +236,21 @@ class Panel {
         );
 
       //  text("x", this.scena.procentXY(11.2), this.scena.procentXY(2));
-        text(props.money, this.scena.procentXY(16.5), this.scena.procentXY(3.3));
+
+        text(this.bank, this.scena.procentXY(16.5), this.scena.procentXY(3.3));
+    }
+
+    reset(){
+        this.timer.reset()
     }
 
     updateTimer() {
-        if (this.timer.expired()) {
-            this.elapsedSeconds++;
-            if (this.elapsedSeconds > 59) {
-                this.elapsedSeconds = 0;
-                this.elapsedMinutes++;
-            }
-            if (this.elapsedMinutes > 59) {
-                this.elapsedMinutes = 0;
-                this.elapsedHour++;
-            }
-            if (this.elapsedHour > 99) {
-                this.elapsedHour = 0;
-            }
-            this.timer.start();
-        }
+            this.timer.updateTimer();
     }
 
     pressed() {
         // Выбор уровней
+
         if (this.level === 0) {
             let col = 0;
             let row = 0;
@@ -311,6 +304,7 @@ class Panel {
     }
 
     rePressed(e) {
+
         if (
             this.collidePointRect(
                 mouseX,
@@ -325,5 +319,6 @@ class Panel {
         } else {
             this.buttonActive = NaN;
         }
+
     }
 }

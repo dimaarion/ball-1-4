@@ -1,5 +1,8 @@
 class Timer {
   // Store the duration and start the timer
+  elapsedSeconds = 0;
+  elapsedMinutes = 0;
+  elapsedHour = 0;
   constructor(_duration, start = false) {
     this.startTime = millis();
     this.duration = _duration;
@@ -104,5 +107,25 @@ class Timer {
     }
 
     return pauseTime;
+  }
+
+  updateTimer() {
+    if (this.expired()) {
+      this.elapsedSeconds ++;
+     if (this.elapsedSeconds > 59) {
+        this.elapsedSeconds = 0;
+        this.elapsedMinutes++;
+      }
+      if (this.elapsedMinutes > 59) {
+        this.elapsedMinutes = 0;
+        this.elapsedHour++;
+      }
+      if (this.elapsedHour > 99) {
+        this.elapsedHour = 0;
+      }
+     this.start();
+    }else {
+
+    }
   }
 }

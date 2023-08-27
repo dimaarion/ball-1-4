@@ -29,7 +29,7 @@ class Player extends Body {
     engine;
     p5;
     time = 0;
-    time2 = 0;
+    timeAtan = 0;
     direction = 0;
     speedBody = 0.08;
     speedBodyDop = 1;
@@ -39,6 +39,13 @@ class Player extends Body {
     header2;
     velocity = 8;
     atanImg;
+    atanIcon;
+    money;
+    active = 0;
+    timer;
+    elapsedSeconds = 0;
+    elapsedMinutes = 0;
+    elapsedHour = 0;
 
     constructor(props) {
         super(props);
@@ -46,29 +53,59 @@ class Player extends Body {
 
     atan() {
 
-      push();
-        this.body.map((b) => {
-            translate(b.position.x, b.position.y);
 
-            let a = atan2(this.getType(this.engine,"exit").position.y - b.position.y, this.getType(this.engine,"exit").position.x - b.position.x);
+        if (this.atanIcon.buttonActive === "atan") {
+            this.active = 1;
+            this.timer.elapsedSeconds = 0
 
-            rotate(a - 1);
-            image(this.atanImg.sprite(),
-                -(b.width + this.scena.size(5, this.scena.scale)) / 2,
-                -(b.width + this.scena.size(5, this.scena.scale)) / 2,
-                b.width + this.scena.size(5, this.scena.scale),
-                b.width + this.scena.size(5, this.scena.scale)
-            )
-        });
-        pop();
+        }else {
+
+        }
+
+
+
+        if (this.timer.elapsedSeconds > 5) {
+            this.timer.elapsedSeconds = 6
+            this.active = 0;
+
+
+        }
+
+
+        if (this.active === 1 && this.money > 4) {
+            this.timer.updateTimer();
+            push();
+            this.body.map((b) => {
+                translate(b.position.x, b.position.y);
+
+                let a = atan2(this.getType(this.engine, "exit").position.y - b.position.y, this.getType(this.engine, "exit").position.x - b.position.x);
+
+                rotate(a - 1);
+                image(this.atanImg.sprite(),
+                    -(b.width + this.scena.size(5, this.scena.scale)) / 2,
+                    -(b.width + this.scena.size(5, this.scena.scale)) / 2,
+                    b.width + this.scena.size(5, this.scena.scale),
+                    b.width + this.scena.size(5, this.scena.scale)
+                )
+            });
+            pop();
+        }
+
     }
 
+    rePressed(){
+        console.log(this.atanIcon.buttonActive)
+          if(this.active === 1  && this.money > 4 ){
+             this.body[0].money -= 5;
+
+          }
+    }
 
     setup(engine, world, scena) {
 
         this.engine = engine;
         this.scena = scena;
-
+        this.timer = new Timer(1000);
         this.fric = 1;
         this.createEllipse(world, scena);
         // this.speedBody = scena.size(this.speedBody, scena.scale);
@@ -81,7 +118,6 @@ class Player extends Body {
             this.speedBody = scena.size(this.velocity - 2, scena.scale);
             this.gravity = scena.size(this.velocity - 4, scena.scale);
         }
-
 
 
         this.body.map((b) => {
@@ -172,7 +208,9 @@ class Player extends Body {
             this.setVelosity(0, -this.gravity)
         }
 
-this.atan()
+        this.atan()
+
+
         this.body.map((b) => {
             push();
             translate(b.position.x, b.position.y)

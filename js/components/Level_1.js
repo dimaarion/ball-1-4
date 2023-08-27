@@ -58,6 +58,7 @@ class Level_1 {
         this.mapPortalImages.image = this.props.portalImage.newArrImg;
 
         this.player.atanImg = this.props.atanImg;
+        this.player.atanIcon = this.props.atanIcon;
 
 
         this.engine = Engine.create();
@@ -105,34 +106,38 @@ class Level_1 {
         if (this.restart.buttonActive === "restart") {
             this.scena.getObjects("player").map((p) => this.player.setPosition(this.scena.size(p.x + p.width / 2, this.scena.scale), this.scena.size(p.y + p.width / 2, this.scena.scale)))
         }
+
+        if (this.player.atanIcon.buttonActive == "atan") {
+            //  this.money = this.money - 10;
+        }
         if (md.mobile()) {
-        if (this.playRight.buttonActive === 1) {
-            this.player.speed = this.playRight.buttonActive;
-        }
-        if (this.playLeft.buttonActive === 2) {
-            this.player.speed = this.playLeft.buttonActive;
-        }
-        if (this.playUp.buttonActive === 1) {
-            this.player.up = this.playUp.buttonActive;
-        } else {
-            this.player.up = 0;
-        }
+            if (this.playRight.buttonActive === 1) {
+                this.player.speed = this.playRight.buttonActive;
+            }
+            if (this.playLeft.buttonActive === 2) {
+                this.player.speed = this.playLeft.buttonActive;
+            }
+            if (this.playUp.buttonActive === 1) {
+                this.player.up = this.playUp.buttonActive;
+            } else {
+                this.player.up = 0;
+            }
 
             this.playRight.buttonView();
             this.playLeft.buttonView();
             this.playUp.buttonView();
 
-        if (touches.length == 1) {
-            this.playRight.pressed();
-            this.playLeft.pressed();
-            this.playUp.pressed();
+            if (touches.length == 1) {
+                this.playRight.pressed();
+                this.playLeft.pressed();
+                this.playUp.pressed();
 
-        }
-        if (touches.length == 2) {
-            this.player.up = 1;
-        } else {
+            }
+            if (touches.length == 2) {
+                this.player.up = 1;
+            } else {
 
-        }
+            }
         }
 
 
@@ -141,7 +146,6 @@ class Level_1 {
     pressedM(e) {
 
         this.restart.pressed(e);
-
 
     }
 
@@ -154,6 +158,11 @@ class Level_1 {
         if (md.mobile()) {
             this.player.up = 0;
         }
+        console.log(this.player.active)
+        if(this.player.active === 1){
+            this.player.rePressed();
+        }
+
     }
 
     pressed(e) {
