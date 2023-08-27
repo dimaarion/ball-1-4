@@ -57,6 +57,7 @@ class Level_1 {
         this.mapTileImages.image = this.props.tiles.newArrImg;
         this.mapPortalImages.image = this.props.portalImage.newArrImg;
 
+        this.player.atanImg = this.props.atanImg;
 
 
         this.engine = Engine.create();
@@ -93,9 +94,8 @@ class Level_1 {
         this.money.view(this.props.money);
         this.player.view();
         this.level_1_img.imageMap();
-
-
         this.portal.view();
+
         pop();
         this.restart.buttonView();
 
@@ -118,16 +118,9 @@ class Level_1 {
             this.player.up = 0;
         }
 
-
-
-
             this.playRight.buttonView();
             this.playLeft.buttonView();
             this.playUp.buttonView();
-
-
-
-
 
         if (touches.length == 1) {
             this.playRight.pressed();

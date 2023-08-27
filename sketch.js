@@ -25,10 +25,12 @@ let playLeft = new Panel();
 let playUp = new Panel();
 let restart = new Panel();
 let mapScale = new Panel();
+let atanIcon = new Panel();
 
 let tilesImage = new Animate();
 let portalImage = new Animate();
 let money = new Animate();
+let atan = new Animate();
 
 let moneyBank = 0
 
@@ -46,6 +48,7 @@ function preload() {
     portalImage.animateD("./asset/level1/Tiles/portalD.png", 12);
     playerImage = loadImage("./asset/Player/ball.png");
     money.animateD("./asset/level1/Tiles/money.png", 100);
+    atan.animateE("./asset/Player/atan.png");
 
     scena_1_level_1.preload("./js/scena/scena1.png");
     scena_1_wall.preload("./js/scena/wall1.png");
@@ -62,6 +65,7 @@ function preload() {
     if (deviceOrientation === LANDSCAPE) {
         panel.button(92, 0, 5, 5, "./asset/panel/Settings_BTN.png", 0);
         restart.button(82, 0, 5, 5, "./asset/panel/restart_level.png", "restart");
+        restart.button(82, 0, 5, 5, "./asset/panel/atan_icon.png", "atan");
         playRight.button(30, 70, 8, 8, "./asset/panel/PlayRight_BTN.png", 1);
         playUp.button(70, 70, 8, 8, "./asset/panel/PlayUp_BTN.png", 1);
         playLeft.button(10, 70, 8, 8, "./asset/panel/PlayLeft_BTN.png", 2);
@@ -98,6 +102,7 @@ function setup() {
         restart: restart,
         playUp: playUp,
         money: money,
+        atanImg:atan
 
     };
     // level 1
