@@ -74,24 +74,10 @@ class Events {
             this.level = lev;
             pair.bodyA.level = lev;
             scena.getObjects("player").map((p) => Matter.Body.setPosition(pair.bodyA,{x:scena.size(p.x + p.width / 2, scena.scale),y: scena.size(p.y + p.width / 2, scena.scale)}))
-
-            //  Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "start").position.x, y: body.getNameType(engine, "point", "start").position.y });
-          } 
+ }
         })
-/*
-        if (
-          pair.bodyA.label === "player" &&
-          pair.bodyB.label === "point" && pair.bodyB.typeObject === "level_2"
-        ) {
-          pair.bodyA.level = 2;
-          Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "start").position.x, y: body.getNameType(engine, "point", "start").position.y });
-        } else if (pair.bodyA.label === "player" &&
-          pair.bodyB.label === "point" && pair.bodyB.typeObject === "level_3") {
-          pair.bodyA.level = 3;
-          Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "start").position.x, y: body.getNameType(engine, "point", "start").position.y });
 
-        }
-*/
+
         //Перемещение из in в ex
         pointIn.map((p, i) => setPositionPoint(body, pair, p, pointEx[i]));
 
@@ -100,8 +86,7 @@ class Events {
             pair.bodyB.label === "point" && pair.bodyB.typeObject === "0"
         ) {
           scena.getObjects("player").map((p) => Matter.Body.setPosition(pair.bodyA,{x:scena.size(p.x + p.width / 2, scena.scale),y: scena.size(p.y + p.width / 2, scena.scale)}))
-         // Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "start").position.x, y: body.getNameType(engine, "point", "start").position.y });
-        }
+          }
 
 
 

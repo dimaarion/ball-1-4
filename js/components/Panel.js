@@ -41,7 +41,9 @@ class Panel {
     display = "start";
     scena = new Scena();
     bank = 0;
-
+    atanActive = 0;
+    countMoney = 0;
+    atanMoney = 0;
     preload() {
         this.bg = loadImage("./asset/panel/BG.png");
         this.window = loadImage("./asset/panel/Window.png");
@@ -181,7 +183,7 @@ class Panel {
         });
     }
 
-    headBar(props = {moneyImg: {}, money: 0}) {
+    headBar(props) {
         image(
             this.statsBar,
             this.scena.procentXY(0),
@@ -198,31 +200,31 @@ class Panel {
         );
         textSize(this.scena.procentXY(2));
         fill(255);
-        this.updateTimer();
-        if (this.timer.elapsedSeconds < 10) {
+        // this.updateTimer();
+        if (this.elapsedSeconds < 10) {
             this.zero = "0";
         } else {
             this.zero = "";
         }
-        if (this.timer.elapsedMinutes < 10) {
+        if (this.elapsedMinutes < 10) {
             this.zero2 = "0";
         } else {
             this.zero2 = "";
         }
-        if (this.timer.elapsedHour < 10) {
+        if (this.elapsedHour < 10) {
             this.zero3 = "0";
         } else {
             this.zero3 = "";
         }
         text(
             this.zero3 +
-            this.timer.elapsedHour +
+            this.elapsedHour +
             ":" +
             this.zero2 +
-            this.timer.elapsedMinutes +
+            this.elapsedMinutes +
             ":" +
             this.zero +
-            this.timer.elapsedSeconds,
+            this.elapsedSeconds,
             this.scena.procentXY(5),
             this.scena.procentXY(3.3)
         );
@@ -235,21 +237,49 @@ class Panel {
             this.scena.procentXY(1.2)
         );
 
-      //  text("x", this.scena.procentXY(11.2), this.scena.procentXY(2));
+        //text(10, this.scena.procentXY(20), this.scena.procentXY(20));
+        let n = 0;
+        this.bank.filter((f) => f != undefined).map((x) => {
+            n += x;
+        })
+//this.countMoney = n;
 
-        text(this.bank, this.scena.procentXY(16.5), this.scena.procentXY(3.3));
+
+        this.atanActive = props.player.active;
+
+            n = n - this.countMoney
+
+this.atanMoney = n;
+        text(n, this.scena.procentXY(16.5), this.scena.procentXY(3.3));
+        this.updateTimer();
     }
 
-    reset(){
+    reset() {
         this.timer.reset()
     }
 
     updateTimer() {
-            this.timer.updateTimer();
+        if (this.timer.expired()) {
+            this.elapsedSeconds++;
+            if (this.elapsedSeconds > 59) {
+                this.elapsedSeconds = 0;
+                this.elapsedMinutes++;
+            }
+            if (this.elapsedMinutes > 59) {
+                this.elapsedMinutes = 0;
+                this.elapsedHour++;
+            }
+            if (this.elapsedHour > 99) {
+                this.elapsedHour = 0;
+            }
+            this.timer.start();
+        }
     }
 
     pressed() {
         // Выбор уровней
+
+
 
         if (this.level === 0) {
             let col = 0;

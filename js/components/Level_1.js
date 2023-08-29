@@ -81,8 +81,8 @@ class Level_1 {
     }
 
     view() {
-        background(102, 98, 97);
-        rectMode(p5.CENTER);
+        background("#0d0b1a");
+        rectMode(CENTER);
         push();
         this.player.translates();
 
@@ -91,12 +91,12 @@ class Level_1 {
 
         //  this.mapTileImages.newArray(28).map((x) => this.mapTileImages.view(x, "level 1"))
         //  this.mapTileImages.newArray(28).map((x) => this.mapTileImages.view(x, "portal"))
-        this.wall_img.imageMap();
-        this.money.view(this.props.money);
-        this.player.view();
+       // this.wall_img.imageMap();
+
         this.level_1_img.imageMap();
         this.portal.view();
-
+        this.money.view(this.props.money);
+        this.player.view();
         pop();
         this.restart.buttonView();
 
@@ -151,17 +151,15 @@ class Level_1 {
 
     relassedM(e) {
         this.player.speed = 0;
-        this.restart.rePressed(e);
+       this.restart.rePressed(e);
         this.playRight.rePressed(e);
         this.playLeft.rePressed(e);
         this.playUp.rePressed(e);
         if (md.mobile()) {
             this.player.up = 0;
         }
-        console.log(this.player.active)
-        if(this.player.active === 1){
             this.player.rePressed();
-        }
+
 
     }
 

@@ -109,23 +109,5 @@ class Timer {
     return pauseTime;
   }
 
-  updateTimer() {
-    if (this.expired()) {
-      this.elapsedSeconds ++;
-     if (this.elapsedSeconds > 59) {
-        this.elapsedSeconds = 0;
-        this.elapsedMinutes++;
-      }
-      if (this.elapsedMinutes > 59) {
-        this.elapsedMinutes = 0;
-        this.elapsedHour++;
-      }
-      if (this.elapsedHour > 99) {
-        this.elapsedHour = 0;
-      }
-     this.start();
-    }else {
 
-    }
-  }
 }

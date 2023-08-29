@@ -27,6 +27,8 @@ let restart = new Panel();
 let mapScale = new Panel();
 let atanIcon = new Panel();
 
+let bank = new Bank();
+
 let tilesImage = new Animate();
 let portalImage = new Animate();
 let money = new Animate();
@@ -42,7 +44,7 @@ let scena_2_wall = new TileMap(level_2.scena);
 
 let scena_3_level_1 = new TileMap(level_3.scena);
 let scena_3_wall = new TileMap(level_3.scena);
-
+let levelArr =  [level_1,level_2,level_3];
 function preload() {
     tilesImage.animateD("./asset/level1/Tiles/tilesD.png", 28);
     portalImage.animateD("./asset/level1/Tiles/portalD.png", 12);
@@ -58,7 +60,6 @@ function preload() {
 
     scena_3_level_1.preload("./js/scena/scena3.png");
     scena_3_wall.preload("./js/scena/wall3.png");
-
 
     panel.preload();
 
@@ -80,9 +81,10 @@ function preload() {
 
     }
     levelStep_1.button(60, 60, 8, 8, "./asset/panel/step_level.png", 2);
-    level_1.preload();
-    level_2.preload();
-    level_3.preload();
+    levelArr.map((lev,i)=>{
+        lev.preload();
+    })
+
 
 }
 
@@ -107,48 +109,44 @@ function setup() {
 
     };
     // level 1
+    //level_1.scena.scale = 5
+    levelArr.map((lev,i)=>{
+        lev.create(images);
+    })
 
-    level_1.create(images);
+    level_1.level_1_img = scena_1_level_1;
+    level_1.wall_img = scena_1_wall;
+
     // level 2
-    level_2.create(images);
+
+    level_2.level_1_img = scena_2_level_1;
+    level_2.wall_img = scena_2_wall;
     // level 3
-    level_3.create(images);
+
+    level_3.level_1_img = scena_3_level_1;
+    level_3.wall_img = scena_3_wall;
+
 
 }
 
-function draw() {
+function level(obj,panel) {
+    push();
+    obj.view();
+    pop();
+    panel.headBar({player:obj.player});
+    obj.player.money = panel.bank;
+}
 
-    if (panel.level === 1) {
-        push();
-        level_1.level_1_img = scena_1_level_1;
-        level_1.wall_img = scena_1_wall;
-        level_1.view(panel);
-        pop();
-        panel.bank = level_1.player.body[0].money + level_2.player.body[0].money
-        panel.headBar({moneyImg: money, money: panel.bank});
-        level_1.player.money = panel.bank;
-    } else if (panel.level === 2) {
-        push();
-        level_2.level_1_img = scena_2_level_1;
-        level_2.wall_img = scena_2_wall;
-        level_2.view(panel);
-        pop();
-        panel.bank = level_1.player.body[0].money + level_2.player.body[0].money
-        panel.headBar({moneyImg: money, money: panel.bank});
-        level_2.player.money = panel.bank;
-    } else if (panel.level === 3) {
-        push();
-        level_3.level_1_img = scena_3_level_1;
-        level_3.wall_img = scena_3_wall;
-        level_3.view(panel);
-        pop();
-        panel.bank = level_1.player.body[0].money + level_2.player.body[0].money + level_3.player.body[0].money
-        panel.headBar({
-            moneyImg: money,
-            money: panel.bank
-        });
-        level_3.player.money = panel.bank;
-    } else {
+
+
+function draw() {
+    panel.bank = levelArr.map((lev)=>lev.player.body[0].money);
+    levelArr.map((lev, i)=>{
+        if (panel.level === i + 1) {
+            level(lev,panel);
+        }
+    })
+     if(panel.level === 0) {
         panel.levelPanel();
     }
    // window.localStorage.setItem("money", moneyBank);
@@ -162,9 +160,9 @@ function draw() {
     } else {
     }
     if (panel.buttonActive == 0) {
-        level_1.player.body[0].level = 0;
-        level_2.player.body[0].level = 0;
-        level_3.player.body[0].level = 0;
+        levelArr.map((lev)=>{
+            lev.player.body[0].level = 0;
+        })
         panel.level = 0;
     }
     // panel.levelEnd();
@@ -172,19 +170,29 @@ function draw() {
 
 function mousePressed(e) {
     panel.pressed(e);
+levelArr.map((lev)=>{
+    lev.pressedM(e);
+})
 
-    level_1.pressedM(e);
-    level_2.pressedM(e);
-    level_3.pressedM(e);
     levelStep_1.pressed(e);
+if(panel.atanActive === 0 && panel.atanMoney >= 10){
     atanIcon.pressed(e);
+    if(atanIcon.buttonActive == "atan"){
+        panel.countMoney = panel.countMoney + 10
+    }
+
+
+}
+
+    console.log(atanIcon.buttonActive)
 
 }
 
 function mouseReleased(e) {
-    level_1.relassedM(e);
-    level_2.relassedM(e);
-    level_3.relassedM(e);
+    levelArr.map((lev)=>{
+        lev.relassedM(e);
+    })
+
     atanIcon.rePressed(e);
     levelStep_1.rePressed(e);
 
@@ -192,9 +200,10 @@ function mouseReleased(e) {
 }
 
 function keyPressed(e) {
-    level_1.pressed(e);
-    level_2.pressed(e);
-    level_3.pressed(e);
+    levelArr.map((lev)=>{
+        lev.pressed(e);
+    })
+
 }
 
 function touchMoved() {
@@ -203,7 +212,7 @@ function touchMoved() {
 }
 
 function keyReleased(e) {
-    level_1.rePressed(e);
-    level_2.rePressed(e);
-    level_3.rePressed(e);
+    levelArr.map((lev)=>{
+        lev.rePressed(e);
+    })
 }

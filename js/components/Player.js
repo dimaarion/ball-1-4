@@ -37,12 +37,12 @@ class Player extends Body {
     rotate = 0;
     header;
     header2;
-    velocity = 8;
+    velocity = 10;
     atanImg;
     atanIcon;
     money;
     active = 0;
-    timer;
+    timer = new Panel();
     elapsedSeconds = 0;
     elapsedMinutes = 0;
     elapsedHour = 0;
@@ -53,29 +53,25 @@ class Player extends Body {
 
     atan() {
 
-
-        if (this.atanIcon.buttonActive === "atan") {
+        if (this.atanIcon.buttonActive === "atan" ) {
             this.active = 1;
             this.timer.elapsedSeconds = 0
-
-        }else {
-
+//window.localStorage.setItem("active", this.active.toString());
         }
-
-
 
         if (this.timer.elapsedSeconds > 5) {
             this.timer.elapsedSeconds = 6
             this.active = 0;
-
-
+            //window.localStorage.setItem("active", this.active.toString());
         }
 
 
-        if (this.active === 1 && this.money > 4) {
+        if (this.active === 1) {
+
             this.timer.updateTimer();
             push();
             this.body.map((b) => {
+
                 translate(b.position.x, b.position.y);
 
                 let a = atan2(this.getType(this.engine, "exit").position.y - b.position.y, this.getType(this.engine, "exit").position.x - b.position.x);
@@ -94,9 +90,9 @@ class Player extends Body {
     }
 
     rePressed(){
-        console.log(this.atanIcon.buttonActive)
-          if(this.active === 1  && this.money > 4 ){
-             this.body[0].money -= 5;
+
+          if(this.active === 1){
+            // this.body[0].money -= 5;
 
           }
     }
@@ -105,7 +101,8 @@ class Player extends Body {
 
         this.engine = engine;
         this.scena = scena;
-        this.timer = new Timer(1000);
+
+        this.timer.create();
         this.fric = 1;
         this.createEllipse(world, scena);
         // this.speedBody = scena.size(this.speedBody, scena.scale);
@@ -113,7 +110,7 @@ class Player extends Body {
         // this.gravity = 15;
         if (md.mobile()) {
             this.speedBody = scena.size(this.velocity, scena.scale);
-            this.gravity = scena.size(this.velocity - 2, scena.scale);
+            this.gravity = scena.size(this.velocity , scena.scale);
         } else {
             this.speedBody = scena.size(this.velocity - 2, scena.scale);
             this.gravity = scena.size(this.velocity - 4, scena.scale);
@@ -125,9 +122,9 @@ class Player extends Body {
         });
         Matter.Events.on(engine, "collisionActive", function (event) {
             //  console.log(this.joystick.valX);
-            var pairs = event.pairs;
-            for (var i = 0; i < pairs.length; i++) {
-                var pair = pairs[i];
+            let pairs = event.pairs;
+            for (let i = 0; i < pairs.length; i++) {
+                let pair = pairs[i];
                 if (
                     pair.bodyA.label === "player" &&
                     pair.bodyB.label === "platform_b"
@@ -139,10 +136,10 @@ class Player extends Body {
         });
 
         Matter.Events.on(engine, "collisionEnd", function (event) {
-            //  console.log(this.joystick.valX);
-            var pairs = event.pairs;
-            for (var i = 0; i < pairs.length; i++) {
-                var pair = pairs[i];
+
+            let pairs = event.pairs;
+            for (let i = 0; i < pairs.length; i++) {
+                let pair = pairs[i];
                 if (
                     pair.bodyA.label === "player" &&
                     pair.bodyB.label === "platform_b"
@@ -154,10 +151,10 @@ class Player extends Body {
 
 
         Matter.Events.on(engine, "collisionStart", function (event) {
-            //  console.log(this.joystick.valX);
-            var pairs = event.pairs;
-            for (var i = 0; i < pairs.length; i++) {
-                var pair = pairs[i];
+
+            let pairs = event.pairs;
+            for (let i = 0; i < pairs.length; i++) {
+                let pair = pairs[i];
 
                 if (
                     pair.bodyA.label === "player" &&
@@ -170,7 +167,7 @@ class Player extends Body {
                     pair.bodyA.label === "player" &&
                     pair.bodyB.label === "money"
                 ) {
-                    Matter.Body.setPosition(pair.bodyB, {x: 0, y: 0});
+                    Matter.Body.setPosition(pair.bodyB, {x: -1000, y: -1000});
                     pair.bodyA.money += 1;
 
                 }
