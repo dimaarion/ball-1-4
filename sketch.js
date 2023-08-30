@@ -2,7 +2,7 @@
 let Engine = Matter.Engine;
 let engine, world;
 
-let level_1 = new Level_1("/js/scena/scena.json", 1);
+let level_1 = new Level_1("./js/scena/scena.json", 1);
 let level_2 = new Level_1("./js/scena/scena2.json", 2);
 let level_3 = new Level_1("./js/scena/scena3.json", 3);
 let panel = new Panel();
