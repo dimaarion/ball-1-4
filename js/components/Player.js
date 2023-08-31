@@ -59,7 +59,7 @@ class Player extends Body {
 //window.localStorage.setItem("active", this.active.toString());
         }
 
-        if (this.timer.elapsedSeconds > 5) {
+        if (this.timer.elapsedSeconds > 30) {
             this.timer.elapsedSeconds = 6
             this.active = 0;
             //window.localStorage.setItem("active", this.active.toString());
