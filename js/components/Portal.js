@@ -11,46 +11,37 @@ class Portal extends Body {
   portal_level_b = new Animate();
   portal_restart_vertical_l = new Animate();
   portal_restart_vertical_r = new Animate();
-
   scale = 8;
+
+  activeRight;
   constructor(props) {
     super(props);
   }
   preload() {
-  /*  this.portal_vertical_l.animateE("./asset/portal/portal_vertical_l.png");
-    this.portal_vertical_r.animateE("./asset/portal/portal_vertical_r.png");
-    this.gorizontal_restart.animateE("./asset/portal/portal_restart_gorizontal.png");
-    this.gorizontal_restart_up.animateE("./asset/portal/portal_restart_gorizontal_up.png");
-    this.vertical_restart.animateE("./asset/portal/portal_restart_vertical.png")
-    this.gorizontal.animateE("./asset/portal/portal_gorizontal.png");
-    this.gorizontal_up.animateE("./asset/portal/portal_gorizontal_up.png")
-    this.portal_level_t.animateE("./asset/portal/portal_level_t.png");
-    this.portal_level_b.animateE("./asset/portal/portal_level_b.png");
-    this.level_vertical.animateE("./asset/portal/portal_level_gorizontal.png");
-    this.portal_restart_vertical_l.animateE("./asset/portal/portal_restart_vertical_l.png");
-    this.portal_restart_vertical_r.animateE("./asset/portal/portal_restart_vertical_r.png");*/
+
   }
 
   create(world, scena) {
     this.sensor = true;
     this.createRect(world, scena);
     this.body.map((b) => {});
+    console.log(this.body)
   }
 
   view() {
-    /*
+ this.activeRight.params()
     this.body
-      .filter((f) => f.typeObject === "portal_vertical_l")
+      .filter((f) => f.typeObject === "activeRight")
       .map((b) =>
         image(
-          this.portal_vertical_l.sprite(),
+          this.activeRight.sprite(),
           b.position.x - b.width / 2,
           b.position.y - b.height / 2,
           b.width,
           b.height
         )
       );
-
+ /*
       this.body
       .filter((f) => f.typeObject === "portal_vertical_r")
       .map((b) =>

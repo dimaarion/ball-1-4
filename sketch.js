@@ -32,6 +32,8 @@ let bank = new Bank();
 let tilesImage = new Animate();
 let portalImage = new Animate();
 let money = new Animate();
+let activeRight = new Animate();
+
 let atan = new Animate();
 
 let moneyBank = 0
@@ -49,7 +51,8 @@ function preload() {
     tilesImage.animateD("./asset/level1/Tiles/tilesD.png", 28);
     portalImage.animateD("./asset/level1/Tiles/portalD.png", 12);
     playerImage = loadImage("./asset/Player/ball.png");
-    money.animateD("./asset/level1/Tiles/money.png", 100);
+    money.animateD("./asset/money/money.png", 189);
+    activeRight.animateD("./asset/objects/right.png", 50);
     atan.animateE("./asset/Player/atan.png");
 
     scena_1_level_1.preload("./js/scena/scena1.png");
@@ -94,6 +97,7 @@ function setup() {
     md = new MobileDetect(window.navigator.userAgent);
     tilesImage.setupAnimate();
     money.setupAnimate();
+    activeRight.setupAnimate();
     panel.create();
     let images = {
         playerImage: playerImage,
@@ -105,7 +109,8 @@ function setup() {
         playUp: playUp,
         money: money,
         atanImg: atan,
-        atanIcon: atanIcon
+        atanIcon: atanIcon,
+        activeRight:activeRight
 
     };
     // level 1

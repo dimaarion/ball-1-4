@@ -60,6 +60,7 @@ class Level_1 {
         this.player.atanImg = this.props.atanImg;
         this.player.atanIcon = this.props.atanIcon;
 
+        this.portal.activeRight = this.props.activeRight;
 
         this.engine = Engine.create();
         this.world = this.engine.world;
