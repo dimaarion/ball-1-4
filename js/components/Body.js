@@ -22,6 +22,13 @@ class Body {
   }
 
 
+  arrayCount(n){
+   let a = [];
+    for (let i = 0; i < n; i++){
+      a[i] = i + 1;
+    }
+    return a;
+  }
 
 
   timer(frame, rate) {
@@ -109,17 +116,24 @@ class Body {
   getTypeObject(name,n){
    return  this.body.filter((f) => f.typeObject === name)[n];
   }
-
+  getTypeObjectAll(name){
+    return  this.body.filter((f) => f.typeObject === name);
+  }
   getType(engine, name, n = 0) {
     return engine.world.bodies.filter((f) => f.typeObject === name)[n];
   }
-
+  getTypeAll(engine, name) {
+    return engine.world.bodies.filter((f) => f.typeObject === name);
+  }
   getName(world, name, n = 0) {
     if (this.world !== undefined) {
       return this.world.bodies.filter((f) => f.label === name);
     } else {
       return world.bodies.filter((f) => f.label === name)[n];
     }
+  }
+  getName(engine, name) {
+      return engine.world.bodies.filter((f) => f.label === name);
   }
   getNameType(engine, name, type) {
     return engine.world.bodies
@@ -256,7 +270,9 @@ class Body {
           level: 0,
           display:"start",
           activeB:0,
-          money:0
+          money:0,
+          rotation:b.rotation,
+
         }
       )
     );
@@ -284,7 +300,8 @@ class Body {
           level: 0,
           display:"start",
           activeB:0,
-          money:0
+          money:0,
+          rotation:b.rotation
         }
       )
     );
@@ -314,7 +331,8 @@ class Body {
           level: 0,
           display:"start",
           activeB:0,
-          money:0
+          money:0,
+          rotation:b.rotation
         }
       )
     );
@@ -349,7 +367,9 @@ class Body {
           level: 0,
           display:"start",
           activeB:0,
-          money:0
+          money:0,
+          rotation:b.rotation,
+
         }
       )
     );

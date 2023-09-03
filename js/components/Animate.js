@@ -82,7 +82,7 @@ class Animate {
     this.animated = false;
 
     if(typeof name === "string"){
-      console.log(this.name)
+
       this.img = loadImage(this.name);
     }else {
       this.img = this.name;

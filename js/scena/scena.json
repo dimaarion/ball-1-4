@@ -723,15 +723,15 @@
          "name":"portal",
          "objects":[
                 {
-                 "height":159,
+                 "height":160.333333333333,
                  "id":228,
                  "name":"portal",
                  "rotation":0,
                  "type":"activeRight",
                  "visible":true,
-                 "width":553,
-                 "x":2232,
-                 "y":3024
+                 "width":451,
+                 "x":2322.89166460697,
+                 "y":3035.96340037167
                 }],
          "opacity":1,
          "type":"objectgroup",

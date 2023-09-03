@@ -132,6 +132,12 @@ class Player extends Body {
                     pair.bodyA.activeB = 1;
 
                 }
+                if (
+                    pair.bodyA.label === "player" &&
+                    pair.bodyB.label === "portal"
+                ) {
+                    pair.bodyA.activeB = 1;
+                }
             }
         });
 
@@ -143,6 +149,13 @@ class Player extends Body {
                 if (
                     pair.bodyA.label === "player" &&
                     pair.bodyB.label === "platform_b"
+                ) {
+                    pair.bodyA.activeB = 0;
+                }
+
+                if (
+                    pair.bodyA.label === "player" &&
+                    pair.bodyB.label === "portal"
                 ) {
                     pair.bodyA.activeB = 0;
                 }
@@ -159,6 +172,12 @@ class Player extends Body {
                 if (
                     pair.bodyA.label === "player" &&
                     pair.bodyB.label === "platform_b"
+                ) {
+                    pair.bodyA.activeB = 1;
+                }
+                if (
+                    pair.bodyA.label === "player" &&
+                    pair.bodyB.label === "portal"
                 ) {
                     pair.bodyA.activeB = 1;
                 }
@@ -211,6 +230,7 @@ class Player extends Body {
         this.body.map((b) => {
             push();
             translate(b.position.x, b.position.y)
+            angleMode(RADIANS)
             rotate(b.angle)
             image(
                 this.img,

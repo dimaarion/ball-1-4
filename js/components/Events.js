@@ -12,11 +12,9 @@ class Events {
     let d2 = 0;
     let r = 0;
     let speed = 3;
-    let pointIn = ["in_1", "in_2", "in_3", "in_4", "in_5", "in_6"];
-    let pointEx = ["ex_1", "ex_2", "ex_3", "ex_4", "ex_5", "ex_6"];
+    let pointIn =  body.arrayCount(100).map((el)=>"in_" + el);
+    let pointEx = body.arrayCount(100).map((el)=>"ex_" + el);
     let pointLevel = [2, 3];
-
-
 
     function setPositionPoint(body, pair, el1, el2) {
       if (

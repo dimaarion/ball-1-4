@@ -12,7 +12,7 @@ class Portal extends Body {
   portal_restart_vertical_l = new Animate();
   portal_restart_vertical_r = new Animate();
   scale = 8;
-
+  angle = 0;
   activeRight;
   constructor(props) {
     super(props);
@@ -24,7 +24,7 @@ class Portal extends Body {
   create(world, scena) {
     this.sensor = true;
     this.createRect(world, scena);
-    this.body.map((b) => {});
+
     console.log(this.body)
   }
 
@@ -32,15 +32,18 @@ class Portal extends Body {
  this.activeRight.params()
     this.body
       .filter((f) => f.typeObject === "activeRight")
-      .map((b) =>
-        image(
-          this.activeRight.sprite(),
-          b.position.x - b.width / 2,
-          b.position.y - b.height / 2,
-          b.width,
-          b.height
-        )
+      .map((b) => {
+              image(
+                  this.activeRight.sprite(),
+                  b.position.x -  b.width / 2,
+                  b.position.y - b.height / 2,
+                  b.width,
+                  b.height
+              )
+          }
       );
+
+
  /*
       this.body
       .filter((f) => f.typeObject === "portal_vertical_r")

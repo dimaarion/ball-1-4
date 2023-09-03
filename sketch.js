@@ -171,6 +171,7 @@ function draw() {
         panel.level = 0;
     }
     // panel.levelEnd();
+
 }
 
 function mousePressed(e) {
@@ -221,3 +222,19 @@ function keyReleased(e) {
         lev.rePressed(e);
     })
 }
+axios.get('https://test.sandani.ru/',{
+    validateStatus: function (status) {
+        console.log(status);
+        return status < 500; // Разрешить, если код состояния меньше 500
+    }
+}).then(function (response) {
+    // handle success
+    console.log(response.request);
+})
+    .catch(function (error) {
+        // handle error
+        console.log(error);
+    })
+    .finally(function () {
+        // always executed
+    });
