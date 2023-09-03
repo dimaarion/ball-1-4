@@ -93,6 +93,7 @@ function preload() {
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
+
     gui = createGui();
     md = new MobileDetect(window.navigator.userAgent);
     tilesImage.setupAnimate();
@@ -190,7 +191,7 @@ if(panel.atanActive === 0 && panel.atanMoney >= 10){
 
 }
 
-    console.log(atanIcon.buttonActive)
+    console.log(p5)
 
 }
 

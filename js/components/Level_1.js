@@ -2,7 +2,7 @@ class Level_1 {
     engine;
     world;
     scena = new Scena();
-    nameScena = "./js/scena/scena.json";
+    nameScene = "./js/scena/scena.json";
     player = new Player("player");
 
     mapPlatform = new TileMap(this.scena);
@@ -25,20 +25,19 @@ class Level_1 {
     restart;
     playUp;
 
-    tilesImage;
     level = 0;
     level_1_img;
     portal_img;
     wall_img;
 
 
-    constructor(nameScena, level) {
-        this.nameScena = nameScena;
+    constructor(nameScene, level) {
+        this.nameScene = nameScene;
         this.level = level;
     }
 
     preload() {
-        this.scena.preload(this.nameScena);
+        this.scena.preload(this.nameScene);
 
         this.portal.preload();
         this.crystal.preload();
@@ -64,7 +63,7 @@ class Level_1 {
 
         this.engine = Engine.create();
         this.world = this.engine.world;
-        Engine.run(this.engine);
+
         this.scena.create();
         this.player.setup(this.engine, this.world, this.scena);
         this.platform.createRect(this.world, this.scena);
@@ -77,7 +76,7 @@ class Level_1 {
         this.point.createRect(this.world, this.scena);
         this.money.create(this.engine, this.scena)
         // this.point.sensor = true
-
+        Engine.run(this.engine);
 
     }
 
@@ -101,16 +100,14 @@ class Level_1 {
         pop();
         this.restart.buttonView();
 
-        if (this.player.body[0].level == this.level + 1) {
+        if (this.player.body[0].level === this.level + 1) {
             panel.level = this.player.body[0].level;
         }
         if (this.restart.buttonActive === "restart") {
             this.scena.getObjects("player").map((p) => this.player.setPosition(this.scena.size(p.x + p.width / 2, this.scena.scale), this.scena.size(p.y + p.width / 2, this.scena.scale)))
         }
 
-        if (this.player.atanIcon.buttonActive == "atan") {
-            //  this.money = this.money - 10;
-        }
+
         if (md.mobile()) {
             if (this.playRight.buttonActive === 1) {
                 this.player.speed = this.playRight.buttonActive;
@@ -128,13 +125,13 @@ class Level_1 {
             this.playLeft.buttonView();
             this.playUp.buttonView();
 
-            if (touches.length == 1) {
+            if (touches.length === 1) {
                 this.playRight.pressed();
                 this.playLeft.pressed();
                 this.playUp.pressed();
 
             }
-            if (touches.length == 2) {
+            if (touches.length === 2) {
                 this.player.up = 1;
             } else {
 
