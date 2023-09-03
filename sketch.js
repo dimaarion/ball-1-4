@@ -51,7 +51,7 @@ function preload() {
     tilesImage.animateD("./asset/level1/Tiles/tilesD.png", 28);
     portalImage.animateD("./asset/level1/Tiles/portalD.png", 12);
     playerImage = loadImage("./asset/Player/ball.png");
-    money.animateD("./asset/money/money.png", 189);
+    money.animateD("./asset/money/money.png", 63);
     activeRight.animateD("./asset/objects/right.png", 50);
     atan.animateE("./asset/Player/atan.png");
 

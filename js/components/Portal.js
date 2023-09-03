@@ -25,10 +25,11 @@ class Portal extends Body {
     this.sensor = true;
     this.createRect(world, scena);
 
-    console.log(this.body)
+    
   }
 
   view() {
+   /*
  this.activeRight.params()
     this.body
       .filter((f) => f.typeObject === "activeRight")
@@ -44,7 +45,7 @@ class Portal extends Body {
       );
 
 
- /*
+
       this.body
       .filter((f) => f.typeObject === "portal_vertical_r")
       .map((b) =>
