@@ -191,7 +191,7 @@ if(panel.atanActive === 0 && panel.atanMoney >= 10){
 
 }
 
-    console.log(p5)
+ 
 
 }
 

@@ -196,7 +196,7 @@ class Player extends Body {
     }
 
     view() {
-
+    
         if (this.speed === 1) {
 
             this.direction = 1;
@@ -224,8 +224,8 @@ class Player extends Body {
             this.setVelosity(0, -this.gravity)
         }
 
-        this.atan()
 
+        this.atan()
 
         this.body.map((b) => {
             push();
