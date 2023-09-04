@@ -1,5 +1,17 @@
 .progress-bar{
-    position: fixed;margin-top: 50px;z-index: 2;
+
+}
+
+.progress{
+    width: 50%;
+    text-align: center;
+    margin: auto;
+    position: fixed;
+    z-index: 80000;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
 }
 .preload{
     position: fixed;
@@ -7,3 +19,4 @@
     padding: 0px;
     z-index: 8000;
 }
+main{display: none}

@@ -6,7 +6,7 @@ class Level_1 {
     player = new Player("player");
 
     mapPlatform = new TileMap(this.scena);
-    mapTileImages = new TileMap(this.scena);
+
     mapPortalImages = new TileMap(this.scena);
 
     bg = new TileMap(this.scena);
@@ -53,7 +53,7 @@ class Level_1 {
         this.playUp = this.props.playUp;
 
         this.player.img = this.props.playerImage;
-        this.mapTileImages.image = this.props.tiles.newArrImg;
+
         this.mapPortalImages.image = this.props.portalImage.newArrImg;
 
         this.player.atanImg = this.props.atanImg;
@@ -86,12 +86,6 @@ class Level_1 {
         push();
         this.player.translates();
 
-        //  this.mapTileImages.newArray(28).map((x) => this.mapTileImages.view(x, "wall"))
-
-
-        //  this.mapTileImages.newArray(28).map((x) => this.mapTileImages.view(x, "level 1"))
-        //  this.mapTileImages.newArray(28).map((x) => this.mapTileImages.view(x, "portal"))
-       // this.wall_img.imageMap();
 
         this.level_1_img.imageMap();
         this.portal.view();

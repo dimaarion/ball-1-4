@@ -52,8 +52,7 @@ let props;
 
 let loading = 0;
 function preload() {
-    tilesImage.animateD("./asset/level1/Tiles/tilesD.png", 28);
-    portalImage.animateD("./asset/level1/Tiles/portalD.png", 12);
+
     playerImage = loadImage("./asset/Player/ball.png");
     money.animateD("./asset/money/money.png", 63);
     activeRight.animateD("./asset/objects/right.png", 50);
@@ -100,13 +99,13 @@ function setup(e) {
 
     gui = createGui();
     md = new MobileDetect(window.navigator.userAgent);
-    tilesImage.setupAnimate();
+
     money.setupAnimate();
     activeRight.setupAnimate();
     panel.create();
     props = {
         playerImage: playerImage,
-        tiles: tilesImage,
+
         portalImage: portalImage,
         playRight: playRight,
         playLeft: playLeft,
@@ -231,9 +230,13 @@ function keyReleased(e) {
 
 
 
-window.onload = (e)=>{
+document.addEventListener("DOMContentLoaded",(e)=>{
+
+
     let divD =  document.createElement("div");
     let progressBar = document.createElement("div");
+    let progressActive = document.createElement("div");
+    let loadTxt = document.createElement("div");
     let img = document.createElement("img");
     let timeS = 0
     document.body.appendChild(divD);
@@ -244,26 +247,46 @@ window.onload = (e)=>{
     progressBar.setAttribute("aria-valuenow","0");
     progressBar.setAttribute("aria-valuemin","0");
     progressBar.setAttribute("aria-valuemax","100");
-    progressBar.innerHTML = '<div class="progress-bar" style="width: 50%"></div>'
+    progressBar.appendChild(progressActive);
+    progressBar.appendChild(loadTxt);
+    progressActive.className = "progress-bar";
+    progressActive.style.width = 0 + "%";
     divD.appendChild(img);
     img.src = "./js/scena/scena1.png";
     img.width = window.innerWidth;
     img.height = window.innerHeight;
     divD.className = "preload";
-    timeS =  e.timeStamp / 1000;
+    timeS =  e.timeStamp;
     let loadCount = 0;
-    let interval = setInterval(()=>{
-        loadCount++;
-        console.log(timeS)
-        if(loading === 1) {
-            divD.remove();
-            img.remove();
-            clearInterval(interval);
-        }else {
-
-        }
-    },0.1)
-
-}
 
 
+    axios.get('./asset.php')
+        .then(function (response) {
+            // handle success
+         let counters  =   document.querySelector("#count");
+            let interval = setInterval(()=>{
+                loadCount = loadCount + 1
+                progressActive.innerHTML = Math.round(loadCount / response.data * 100)  + "%"
+                progressActive.style.width =  Math.round(loadCount / response.data * 100) + "%"
+                if(loadCount >  response.data && loading === 1) {
+                    document.querySelector("main").style.display = "block"
+                    progressBar.remove();
+                    progressActive.remove();
+                    divD.remove();
+                    img.remove();
+                    clearInterval(interval);
+                }else {
+
+                }
+            },1)
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+        .finally(function () {
+            // always executed
+        });
+
+
+})
