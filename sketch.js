@@ -47,6 +47,10 @@ let scena_2_wall = new TileMap(level_2.scena);
 let scena_3_level_1 = new TileMap(level_3.scena);
 let scena_3_wall = new TileMap(level_3.scena);
 let levelArr =  [level_1,level_2,level_3];
+
+let props;
+
+let loading = 0;
 function preload() {
     tilesImage.animateD("./asset/level1/Tiles/tilesD.png", 28);
     portalImage.animateD("./asset/level1/Tiles/portalD.png", 12);
@@ -91,7 +95,7 @@ function preload() {
 
 }
 
-function setup() {
+function setup(e) {
     createCanvas(windowWidth, windowHeight);
 
     gui = createGui();
@@ -100,7 +104,7 @@ function setup() {
     money.setupAnimate();
     activeRight.setupAnimate();
     panel.create();
-    let images = {
+    props = {
         playerImage: playerImage,
         tiles: tilesImage,
         portalImage: portalImage,
@@ -117,7 +121,7 @@ function setup() {
     // level 1
     //level_1.scena.scale = 5
     levelArr.map((lev,i)=>{
-        lev.create(images);
+        lev.create(props);
     })
 
     level_1.level_1_img = scena_1_level_1;
@@ -131,7 +135,7 @@ function setup() {
 
     level_3.level_1_img = scena_3_level_1;
     level_3.wall_img = scena_3_wall;
-
+    loading = 1
 
 }
 
@@ -223,19 +227,43 @@ function keyReleased(e) {
         lev.rePressed(e);
     })
 }
-axios.get('https://test.sandani.ru/',{
-    validateStatus: function (status) {
-        console.log(status);
-        return status < 500; // Разрешить, если код состояния меньше 500
-    }
-}).then(function (response) {
-    // handle success
-    console.log(response.request);
-})
-    .catch(function (error) {
-        // handle error
-        console.log(error);
-    })
-    .finally(function () {
-        // always executed
-    });
+
+
+
+
+window.onload = (e)=>{
+    let divD =  document.createElement("div");
+    let progressBar = document.createElement("div");
+    let img = document.createElement("img");
+    let timeS = 0
+    document.body.appendChild(divD);
+    document.body.appendChild(progressBar);
+    progressBar.className = "progress";
+    progressBar.setAttribute("role","progressbar");
+    progressBar.setAttribute("aria-label","Basic example");
+    progressBar.setAttribute("aria-valuenow","0");
+    progressBar.setAttribute("aria-valuemin","0");
+    progressBar.setAttribute("aria-valuemax","100");
+    progressBar.innerHTML = '<div class="progress-bar" style="width: 50%"></div>'
+    divD.appendChild(img);
+    img.src = "./js/scena/scena1.png";
+    img.width = window.innerWidth;
+    img.height = window.innerHeight;
+    divD.className = "preload";
+    timeS =  e.timeStamp / 1000;
+    let loadCount = 0;
+    let interval = setInterval(()=>{
+        loadCount++;
+        console.log(timeS)
+        if(loading === 1) {
+            divD.remove();
+            img.remove();
+            clearInterval(interval);
+        }else {
+
+        }
+    },0.1)
+
+}
+
+

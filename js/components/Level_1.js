@@ -142,8 +142,10 @@ class Level_1 {
     }
 
     pressedM(e) {
+if(this.restart !== undefined){
+    this.restart.pressed(e);
+}
 
-        this.restart.pressed(e);
 
     }
 

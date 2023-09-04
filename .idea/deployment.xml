@@ -16,6 +16,7 @@
           </mappings>
           <excludedPaths>
             <excludedPath path="/asset/level1/Tiles/tiles.png" />
+            <excludedPath path="/asset" />
           </excludedPaths>
         </serverdata>
       </paths>

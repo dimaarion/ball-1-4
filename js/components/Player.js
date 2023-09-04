@@ -104,7 +104,13 @@ class Player extends Body {
 
         this.timer.create();
         this.fric = 1;
+        push()
+        drawingContext.shadowOffsetX = 0;
+        drawingContext.shadowOffsetY = 0;
+        drawingContext.shadowBlur = 20;
+        drawingContext.shadowColor = 'red';
         this.createEllipse(world, scena);
+        pop()
         // this.speedBody = scena.size(this.speedBody, scena.scale);
         this.speedBodyDop = scena.size(this.speedBodyDop, scena.scale);
         // this.gravity = 15;
