@@ -39,7 +39,7 @@ class Loading {
                 loadCount = loadCount + 1
                 progressActive.innerHTML = Math.round(loadCount / timeS * 100)  + "%"
                 progressActive.style.width =  Math.round(loadCount / timeS * 100) + "%"
-                if(loadCount >  timeS && loading === 1) {
+                if(loadCount >  timeS && this.load === 1) {
                     document.querySelector("main").style.display = "block"
                     progressBar.remove();
                     progressActive.remove();
