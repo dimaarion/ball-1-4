@@ -1,5 +1,6 @@
 class Events {
   level = 0;
+  levelCount = 0
   getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
@@ -8,13 +9,14 @@ class Events {
 
   collideStart(engine, scena) {
     let body = new Body();
+    let player = new Player();
     let d = 0;
     let d2 = 0;
     let r = 0;
     let speed = 3;
     let pointIn =  body.arrayCount(100).map((el)=>"in_" + el);
     let pointEx = body.arrayCount(100).map((el)=>"ex_" + el);
-    let pointLevel = [2, 3];
+    let pointLevel = body.arrayCount(this.levelCount);
 
     function setPositionPoint(body, pair, el1, el2) {
       if (

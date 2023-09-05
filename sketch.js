@@ -2,9 +2,16 @@
 let Engine = Matter.Engine;
 let engine, world;
 
-let level_1 = new Level_1("./js/scena/scena.json", 1);
-let level_2 = new Level_1("./js/scena/scena2.json", 2);
-let level_3 = new Level_1("./js/scena/scena3.json", 3);
+let arrSprites = [{img: {name:"", frame: 0}}]
+
+let setLevels = [
+    {level:new Level_1("./js/scena/scena.json", 1),img:["./js/scena/scena1.png"]},
+    {level:new Level_1("./js/scena/scena2.json", 2),img:["./js/scena/scena2.png"]},
+    {level:new Level_1("./js/scena/scena3.json", 3),img:["./js/scena/scena3.png"]},
+    {level:new Level_1("./js/scena/scena4.json", 4),img:["./js/scena/scena4.png"]},
+    {level:new Level_1("./js/scena/scena4.json", 5),img:["./js/scena/scena4.png"]},
+]
+
 let panel = new Panel();
 let levelStep_1 = new Panel();
 
@@ -13,8 +20,7 @@ let gui;
 let b;
 let j;
 let x, y, velX, velY;
-let joystickDot1;
-let joystickDot2;
+
 let body = new Body();
 let md;
 let test = 0;
@@ -29,7 +35,7 @@ let atanIcon = new Panel();
 
 let bank = new Bank();
 
-let tilesImage = new Animate();
+
 let portalImage = new Animate();
 let money = new Animate();
 let activeRight = new Animate();
@@ -38,15 +44,17 @@ let atan = new Animate();
 
 let moneyBank = 0
 
-let scena_1_level_1 = new TileMap(level_1.scena);
-let scena_1_wall = new TileMap(level_1.scena);
 
-let scena_2_level_1 = new TileMap(level_2.scena);
-let scena_2_wall = new TileMap(level_2.scena);
+setImagesBg = setLevels.map((lev)=>{
+   lev.level.images = lev.img.map((img)=> {
+       let s =  new TileMap(lev.level.scena);
+       s.name = img;
+      return s;
+   })
 
-let scena_3_level_1 = new TileMap(level_3.scena);
-let scena_3_wall = new TileMap(level_3.scena);
-let levelArr =  [level_1,level_2,level_3];
+})
+
+let levelArr =  setLevels.map((lev)=>lev.level);
 
 let props;
 
@@ -55,18 +63,11 @@ loading.load = 0;
 function preload() {
 
     playerImage = loadImage("./asset/Player/ball.png");
-    money.animateD("./asset/money/money.png", 63);
+    money.animateLoad("./asset/money/money.png", 63);
     activeRight.animateD("./asset/objects/right.png", 50);
     atan.animateE("./asset/Player/atan.png");
 
-    scena_1_level_1.preload("./js/scena/scena1.png");
-    scena_1_wall.preload("./js/scena/wall1.png");
-
-    scena_2_level_1.preload("./js/scena/scena2.png");
-    scena_2_wall.preload("./js/scena/wall2.png");
-
-    scena_3_level_1.preload("./js/scena/scena3.png");
-    scena_3_wall.preload("./js/scena/wall3.png");
+    levelArr.map((lev)=>lev.images.map((img)=>img.preload()))
 
     panel.preload();
 
@@ -95,7 +96,7 @@ function preload() {
 
 }
 
-function setup(e) {
+function setup() {
     createCanvas(windowWidth, windowHeight);
 
     gui = createGui();
@@ -104,39 +105,28 @@ function setup(e) {
     money.setupAnimate();
     activeRight.setupAnimate();
     panel.create();
-    props = {
-        playerImage: playerImage,
 
-        portalImage: portalImage,
-        playRight: playRight,
-        playLeft: playLeft,
-        restart: restart,
-        playUp: playUp,
-        money: money,
-        atanImg: atan,
-        atanIcon: atanIcon,
-        activeRight:activeRight
+    levelArr.map((lev)=>{
+        lev.player.img = playerImage;
+        lev.player.atanImg = atan;
+        lev.player.atanIcon = atanIcon;
+        lev.money.image = money;
+        lev.playRight = playRight;
+        lev.playLeft = playLeft;
+        lev.restart = restart;
+        lev.playUp = playUp;
+        lev.portal.activeRight = activeRight;
+        lev.events.levelCount = levelArr.length;
 
-    };
-    // level 1
-    //level_1.scena.scale = 5
-    levelArr.map((lev,i)=>{
-        lev.create(props);
     })
 
-    level_1.level_1_img = scena_1_level_1;
-    level_1.wall_img = scena_1_wall;
+    levelArr.map((lev,i)=>{
+        lev.create();
+    });
 
-    // level 2
+    console.log(levelArr)
 
-    level_2.level_1_img = scena_2_level_1;
-    level_2.wall_img = scena_2_wall;
-    // level 3
-
-    level_3.level_1_img = scena_3_level_1;
-    level_3.wall_img = scena_3_wall;
-    loading.load = 1
-
+    loading.load = 1;
 }
 
 function level(obj,panel) {
@@ -159,7 +149,7 @@ function draw() {
      if(panel.level === 0) {
         panel.levelPanel();
     }
-   // window.localStorage.setItem("money", moneyBank);
+
 
     if (panel.level !== 0) {
 
@@ -169,7 +159,7 @@ function draw() {
         }
     } else {
     }
-    if (panel.buttonActive == 0) {
+    if (panel.buttonActive === 0) {
         levelArr.map((lev)=>{
             lev.player.body[0].level = 0;
         })
@@ -188,7 +178,7 @@ levelArr.map((lev)=>{
     levelStep_1.pressed(e);
 if(panel.atanActive === 0 && panel.atanMoney >= 10){
     atanIcon.pressed(e);
-    if(atanIcon.buttonActive == "atan"){
+    if(atanIcon.buttonActive === "atan"){
         panel.countMoney = panel.countMoney + 10
     }
 

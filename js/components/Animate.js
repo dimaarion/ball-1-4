@@ -31,17 +31,16 @@ class Animate {
       height: 0,
     },
   ];
-  animate(name, frame) {
+  animateLoad(name, frame = 0) {
     this.name = name;
-    this.frame = frame;
-    this.animated = true;
-    if (Array.isArray(name) && Array.isArray(frame)) {
-      this.arrAnimate = name.map((img, i) => [
-        { image: loadImage(img), frame: frame[i] },
-      ]);
-    } else {
-      this.img = loadImage(this.name);
+    if(frame > 0){
+      this.frame = frame;
+      this.animated = true;
+    }else{
+      this.animated = false;
     }
+
+    this.img = loadImage(this.name);
   }
 
   animateA(name, frame, format, x, y, w, h) {
@@ -71,7 +70,7 @@ class Animate {
     this.format = format;
     this.img = loadImage(this.name);
   }
-  animateD(name, frame) {
+  animateD(name, frame = 0) {
     this.name = name;
     this.frame = frame;
     this.animated = true;
@@ -241,10 +240,9 @@ class Animate {
     if (this.img) {
       if (this.animated) {
         if (this.arrAnimate.length > 0) {
-          console.log(this.count);
-          return this.arrSprite[this.count][0][0].arrImage[this.xp];
+
         } else {
-          return this.newArrImg[this.xp];
+          return this.newArrImg[frameCount % this.newArrImg.length];
         }
       } else {
         return this.img;

@@ -13,6 +13,7 @@ class Body {
   count = 0;
   animate = new Animate();
   rest = 0.2;
+  levelCount = 0;
   constructor(name) {
     this.name = name;
   }

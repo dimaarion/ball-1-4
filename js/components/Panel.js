@@ -45,13 +45,13 @@ class Panel {
     countMoney = 0;
     atanMoney = 0;
     preload() {
-        this.bg = loadImage("./asset/panel/BG.png");
+
         this.window = loadImage("./asset/panel/Window.png");
         this.tableNum = loadImage("./asset/panel/Table_03.png");
         this.levelNum = loadJSON("./asset/panel/level.json");
         this.statsBar = loadImage("./asset/panel/Stats_Bar.png");
         this.clock = loadImage("./asset/panel/Clock_Icon.png");
-        this.money.animateE("./asset/money/moneyStatic.png");
+        this.money.animateLoad("./asset/money/moneyStatic.png");
 
     }
 
@@ -230,12 +230,12 @@ class Panel {
             this.scena.procentXY(1.2)
         );
 
-        //text(10, this.scena.procentXY(20), this.scena.procentXY(20));
+
         let n = 0;
         this.bank.filter((f) => f !== undefined).map((x) => {
             n += x;
         })
-//this.countMoney = n;
+
 
 
         this.atanActive = props.player.active;

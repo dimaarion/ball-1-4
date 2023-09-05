@@ -5,11 +5,8 @@ class Level_1 {
     nameScene = "./js/scena/scena.json";
     player = new Player("player");
 
-    mapPlatform = new TileMap(this.scena);
+    images = [];
 
-    mapPortalImages = new TileMap(this.scena);
-
-    bg = new TileMap(this.scena);
     platform = new Body("platform");
     platform_b = new Body("platform_b");
     events = new Events();
@@ -24,11 +21,9 @@ class Level_1 {
     playLeft;
     restart;
     playUp;
-
     level = 0;
-    level_1_img;
-    portal_img;
-    wall_img;
+
+
 
 
     constructor(nameScene, level) {
@@ -38,29 +33,11 @@ class Level_1 {
 
     preload() {
         this.scena.preload(this.nameScene);
-
         this.portal.preload();
         this.crystal.preload();
     }
 
-    create(props) {
-
-        this.props = props
-
-        this.playRight = this.props.playRight;
-        this.playLeft = this.props.playLeft;
-        this.restart = this.props.restart;
-        this.playUp = this.props.playUp;
-
-        this.player.img = this.props.playerImage;
-
-
-
-        this.player.atanImg = this.props.atanImg;
-        this.player.atanIcon = this.props.atanIcon;
-
-        this.portal.activeRight = this.props.activeRight;
-
+    create() {
         this.engine = Engine.create();
         this.world = this.engine.world;
 
@@ -87,9 +64,9 @@ class Level_1 {
         this.player.translates();
 
 
-        this.level_1_img.imageMap();
+        this.images.map((el)=>el.imageMap());
         this.portal.view();
-        this.money.view(this.props.money);
+        this.money.view();
         this.player.view();
         pop();
         this.restart.buttonView();
@@ -145,7 +122,9 @@ if(this.restart !== undefined){
 
     relassedM(e) {
         this.player.speed = 0;
-       this.restart.rePressed(e);
+        if(this.restart !== undefined) {
+            this.restart.rePressed(e);
+        }
         this.playRight.rePressed(e);
         this.playLeft.rePressed(e);
         this.playUp.rePressed(e);

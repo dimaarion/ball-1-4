@@ -17,11 +17,6 @@ class Player extends Body {
     speed = 0;
     friction = 1;
     getObj;
-    image = "./asset/Player/playerHeader.png";
-    imageR = "./asset/Player/playerGolem.png";
-    imageS = "./asset/Player/soplo.png";
-    imageS2 = "./asset/Player/soplo2.png";
-    playerUp = "./asset/Player/playerUp.png";
     frame = 1;
     baseY = 0;
     img;
@@ -29,7 +24,6 @@ class Player extends Body {
     engine;
     p5;
     time = 0;
-    timeAtan = 0;
     direction = 0;
     speedBody = 0.08;
     speedBodyDop = 1;
@@ -45,7 +39,7 @@ class Player extends Body {
     timer = new Panel();
     elapsedSeconds = 0;
     elapsedMinutes = 0;
-    elapsedHour = 0;
+
 
     constructor(props) {
         super(props);
@@ -56,13 +50,12 @@ class Player extends Body {
         if (this.atanIcon.buttonActive === "atan" ) {
             this.active = 1;
             this.timer.elapsedSeconds = 0
-//window.localStorage.setItem("active", this.active.toString());
+
         }
 
         if (this.timer.elapsedSeconds > 30) {
             this.timer.elapsedSeconds = 6
             this.active = 0;
-            //window.localStorage.setItem("active", this.active.toString());
         }
 
 
@@ -217,16 +210,16 @@ class Player extends Body {
         }
 
 
-        if (this.speed == 1 && this.up == 0 && this.body[0].activeB == 1) {
+        if (this.speed === 1 && this.up === 0 && this.body[0].activeB === 1) {
             this.setVelosity(this.speedBody, 0)
-        } else if (this.speed == 1 && this.up != 0 && this.body[0].activeB == 1) {
+        } else if (this.speed === 1 && this.up !== 0 && this.body[0].activeB === 1) {
             this.setVelosity(this.speedBody, -this.gravity)
         }
-        if (this.speed == 2 && this.up == 0 && this.body[0].activeB == 1) {
+        if (this.speed === 2 && this.up === 0 && this.body[0].activeB === 1) {
             this.setVelosity(-this.speedBody, 0)
-        } else if (this.speed == 2 && this.up != 0 && this.body[0].activeB == 1) {
+        } else if (this.speed === 2 && this.up !== 0 && this.body[0].activeB === 1) {
             this.setVelosity(-this.speedBody, -this.gravity)
-        } else if (this.speed != 1 && this.speed != 2 && this.up != 0 && this.body[0].activeB == 1) {
+        } else if (this.speed !== 1 && this.speed !== 2 && this.up !== 0 && this.body[0].activeB === 1) {
             this.setVelosity(0, -this.gravity)
         }
 

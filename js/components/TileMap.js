@@ -13,8 +13,8 @@ class TileMap {
         this.scena = scena;
     }
 
-    preload(name){
-        this.animate.animateE(name);
+    preload(){
+        this.animate.animateE(this.name);
     }
     create() {
 
