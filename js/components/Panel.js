@@ -51,8 +51,8 @@ class Panel {
         this.levelNum = loadJSON("./asset/panel/level.json");
         this.statsBar = loadImage("./asset/panel/Stats_Bar.png");
         this.clock = loadImage("./asset/panel/Clock_Icon.png");
-        this.money.animateE("./asset/level1/Tiles/moneyStatic.png");
-        this.crystal2.animateD("./asset/crystall2.png", 189);
+        this.money.animateE("./asset/money/moneyStatic.png");
+
     }
 
     button(bx, by, bw, bh, bImg = "", active) {
@@ -62,13 +62,13 @@ class Panel {
         this.bw = bw;
         this.bh = bh;
         this.bImg = bImg;
-        if (this.bImg != "") {
+        if (this.bImg !== "") {
             this.bImg = loadImage(bImg);
         }
     }
 
     buttonView() {
-        if (this.bImg != "") {
+        if (this.bImg !== "") {
             image(
                 this.bImg,
                 this.scena.procentX(this.bx),
@@ -112,18 +112,11 @@ class Panel {
     }
 
     collidePointRect = function (pointX, pointY, x, y, xW, yW) {
-        //2d
-        if (
-            pointX >= x && // right of the left edge AND
+        return pointX >= x && // right of the left edge AND
             pointX <= x + xW && // left of the right edge AND
             pointY >= y && // below the top AND
-            pointY <= y + yW
-        ) {
-            // above the bottom
+            pointY <= y + yW;
 
-            return true;
-        }
-        return false;
     };
 
     levelEnd() {
@@ -239,7 +232,7 @@ class Panel {
 
         //text(10, this.scena.procentXY(20), this.scena.procentXY(20));
         let n = 0;
-        this.bank.filter((f) => f != undefined).map((x) => {
+        this.bank.filter((f) => f !== undefined).map((x) => {
             n += x;
         })
 //this.countMoney = n;
@@ -284,7 +277,7 @@ this.atanMoney = n;
         if (this.level === 0) {
             let col = 0;
             let row = 0;
-            let index = 0;
+
             Object.values(this.levelNum).map((lev, i) => {
                 col++;
                 if (i < 9) {
@@ -333,7 +326,7 @@ this.atanMoney = n;
         }
     }
 
-    rePressed(e) {
+    rePressed() {
 
         if (
             this.collidePointRect(

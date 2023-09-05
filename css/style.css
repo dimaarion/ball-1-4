@@ -10,13 +10,13 @@
     z-index: 80000;
     left: 0;
     right: 0;
-    top: 0;
-    bottom: 0;
+
+    bottom: 10px;
 }
 .preload{
     position: fixed;
     margin: auto;
-    padding: 0px;
+    padding: 0;
     z-index: 8000;
 }
 main{display: none}

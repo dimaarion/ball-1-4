@@ -14,10 +14,6 @@
           <mappings>
             <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
           </mappings>
-          <excludedPaths>
-            <excludedPath path="/asset/level1/Tiles/tiles.png" />
-            <excludedPath path="/asset" />
-          </excludedPaths>
         </serverdata>
       </paths>
       <paths name="sandani">

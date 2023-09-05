@@ -54,7 +54,7 @@ class Level_1 {
 
         this.player.img = this.props.playerImage;
 
-        this.mapPortalImages.image = this.props.portalImage.newArrImg;
+
 
         this.player.atanImg = this.props.atanImg;
         this.player.atanIcon = this.props.atanIcon;

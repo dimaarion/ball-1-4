@@ -50,7 +50,8 @@ let levelArr =  [level_1,level_2,level_3];
 
 let props;
 
-let loading = 0;
+let loading = new Loading();
+loading.load = 0;
 function preload() {
 
     playerImage = loadImage("./asset/Player/ball.png");
@@ -134,7 +135,7 @@ function setup(e) {
 
     level_3.level_1_img = scena_3_level_1;
     level_3.wall_img = scena_3_wall;
-    loading = 1
+    loading.load = 1
 
 }
 
@@ -229,64 +230,4 @@ function keyReleased(e) {
 
 
 
-
-document.addEventListener("DOMContentLoaded",(e)=>{
-
-
-    let divD =  document.createElement("div");
-    let progressBar = document.createElement("div");
-    let progressActive = document.createElement("div");
-    let loadTxt = document.createElement("div");
-    let img = document.createElement("img");
-    let timeS = 0
-    document.body.appendChild(divD);
-    document.body.appendChild(progressBar);
-    progressBar.className = "progress";
-    progressBar.setAttribute("role","progressbar");
-    progressBar.setAttribute("aria-label","Basic example");
-    progressBar.setAttribute("aria-valuenow","0");
-    progressBar.setAttribute("aria-valuemin","0");
-    progressBar.setAttribute("aria-valuemax","100");
-    progressBar.appendChild(progressActive);
-    progressBar.appendChild(loadTxt);
-    progressActive.className = "progress-bar";
-    progressActive.style.width = 0 + "%";
-    divD.appendChild(img);
-    img.src = "./js/scena/scena1.png";
-    img.width = window.innerWidth;
-    img.height = window.innerHeight;
-    divD.className = "preload";
-    timeS =  e.timeStamp;
-    let loadCount = 0;
-
-
-    axios.get('./asset.php')
-        .then(function (response) {
-            // handle success
-         let counters  =   document.querySelector("#count");
-            let interval = setInterval(()=>{
-                loadCount = loadCount + 1
-                progressActive.innerHTML = Math.round(loadCount / response.data * 100)  + "%"
-                progressActive.style.width =  Math.round(loadCount / response.data * 100) + "%"
-                if(loadCount >  response.data && loading === 1) {
-                    document.querySelector("main").style.display = "block"
-                    progressBar.remove();
-                    progressActive.remove();
-                    divD.remove();
-                    img.remove();
-                    clearInterval(interval);
-                }else {
-
-                }
-            },1)
-        })
-        .catch(function (error) {
-            // handle error
-            console.log(error);
-        })
-        .finally(function () {
-            // always executed
-        });
-
-
-})
+loading.render();
