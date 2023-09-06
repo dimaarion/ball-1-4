@@ -239,11 +239,7 @@ class Animate {
   sprite() {
     if (this.img) {
       if (this.animated) {
-        if (this.arrAnimate.length > 0) {
-
-        } else {
           return this.newArrImg[frameCount % this.newArrImg.length];
-        }
       } else {
         return this.img;
       }

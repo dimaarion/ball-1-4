@@ -137,6 +137,7 @@ class Player extends Body {
                 ) {
                     pair.bodyA.activeB = 1;
                 }
+
             }
         });
 
@@ -157,6 +158,12 @@ class Player extends Body {
                     pair.bodyB.label === "portal"
                 ) {
                     pair.bodyA.activeB = 0;
+                }
+                if (
+                    pair.bodyA.label === "player" &&
+                    pair.bodyB.label === "anomaly"
+                ) {
+                    //pair.bodyB.isSensor = false;
                 }
             }
         });
@@ -189,6 +196,7 @@ class Player extends Body {
                     pair.bodyA.money += 1;
 
                 }
+
             }
 
         });

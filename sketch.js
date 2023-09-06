@@ -124,7 +124,7 @@ function setup() {
         lev.create();
     });
 
-    console.log(levelArr)
+
 
     loading.load = 1;
 }

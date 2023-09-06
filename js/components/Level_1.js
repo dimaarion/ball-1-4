@@ -14,7 +14,7 @@ class Level_1 {
     point = new Body("point");
     crystal = new Crystal();
     money = new Money("money");
-
+    anomaly = new Anomaly("anomaly");
 
     props;
     playRight;
@@ -52,6 +52,7 @@ class Level_1 {
         this.point.sensor = true;
         this.point.createRect(this.world, this.scena);
         this.money.create(this.engine, this.scena)
+        this.anomaly.create(this.engine,this.scena);
         // this.point.sensor = true
         Engine.run(this.engine);
 
@@ -68,6 +69,7 @@ class Level_1 {
         this.portal.view();
         this.money.view();
         this.player.view();
+        this.anomaly.view();
         pop();
         this.restart.buttonView();
 

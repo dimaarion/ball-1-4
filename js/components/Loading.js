@@ -37,7 +37,7 @@ class Loading {
 
             let interval = setInterval(()=>{
                 loadCount = loadCount + 1
-                progressActive.innerHTML = Math.round(loadCount / timeS * 100)  + "%"
+                progressActive.innerHTML = Math.round(loadCount / timeS * 100) > 100? 100 : Math.round(loadCount / timeS * 100)  + "%"
                 progressActive.style.width =  Math.round(loadCount / timeS * 100) + "%"
                 if(loadCount >  timeS && this.load === 1) {
                     document.querySelector("main").style.display = "block"

@@ -812,18 +812,6 @@
          "y":0
         }, 
         {
-         "color":"#0055ff",
-         "draworder":"topdown",
-         "id":4,
-         "name":"lift",
-         "objects":[],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":false,
-         "x":0,
-         "y":0
-        }, 
-        {
          "color":"#ffff00",
          "draworder":"topdown",
          "id":5,
@@ -837,8 +825,8 @@
                  "type":"level_3",
                  "visible":true,
                  "width":178.825096724983,
-                 "x":3007.40565384973,
-                 "y":4560.47506264946
+                 "x":3010.0723205164,
+                 "y":4529.80839598279
                 }, 
                 {
                  "height":48.0391685267199,
@@ -848,8 +836,8 @@
                  "type":"exit",
                  "visible":true,
                  "width":41.5289229741101,
-                 "x":3072.57506955079,
-                 "y":4537.165767989
+                 "x":3075.24173621746,
+                 "y":4503.83243465567
                 }, 
                 {
                  "height":163.190715151515,
@@ -858,7 +846,7 @@
                  "rotation":0,
                  "type":"in_1",
                  "visible":true,
-                 "width":178.825,
+                 "width":22.8249999999998,
                  "x":4352.13295454545,
                  "y":3015.49555151515
                 }, 
@@ -880,7 +868,7 @@
                  "rotation":0,
                  "type":"in_2",
                  "visible":true,
-                 "width":178.825,
+                 "width":32.1583333333328,
                  "x":4349.98143939394,
                  "y":4212.34389393939
                 }, 
@@ -896,7 +884,7 @@
                  "y":3071.31358181818
                 }, 
                 {
-                 "height":163.191,
+                 "height":35.1909999999998,
                  "id":271,
                  "name":"point",
                  "rotation":0,
@@ -913,8 +901,8 @@
                  "rotation":0,
                  "type":"in_3",
                  "visible":true,
-                 "width":178.825,
-                 "x":3260.34507575758,
+                 "width":24.2795454545455,
+                 "x":3414.89053030303,
                  "y":3422.10146969697
                 }, 
                 {
@@ -935,7 +923,7 @@
                  "rotation":0,
                  "type":"in_4",
                  "visible":true,
-                 "width":178.825,
+                 "width":42.4613636363642,
                  "x":3940.89053030303,
                  "y":1806.28328787879
                 }, 
@@ -957,7 +945,7 @@
                  "rotation":0,
                  "type":"in_5",
                  "visible":true,
-                 "width":178.825,
+                 "width":39.4310606060603,
                  "x":2738.5875,
                  "y":3014.4045
                 }, 
@@ -979,7 +967,7 @@
                  "rotation":0,
                  "type":"in_5",
                  "visible":true,
-                 "width":178.825,
+                 "width":38.8249999999998,
                  "x":2738.5875,
                  "y":4230.4045
                 }, 
@@ -990,13 +978,13 @@
                  "rotation":0,
                  "type":"in_5",
                  "visible":true,
-                 "width":178.825,
-                 "x":1278.5875,
+                 "width":42.4613636363637,
+                 "x":1414.95113636364,
                  "y":4222.4045
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -1609,18 +1597,6 @@
          "y":0
         }, 
         {
-         "color":"#ff007f",
-         "draworder":"topdown",
-         "id":8,
-         "name":"blockLift",
-         "objects":[],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":false,
-         "x":0,
-         "y":0
-        }, 
-        {
          "color":"#00aa00",
          "draworder":"topdown",
          "id":3,
@@ -1642,9 +1618,42 @@
          "visible":false,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":12,
+         "name":"anomaly",
+         "objects":[
+                {
+                 "height":100,
+                 "id":313,
+                 "name":"anomaly",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":100,
+                 "x":2560.60606060606,
+                 "y":1866.66666666667
+                }, 
+                {
+                 "height":100,
+                 "id":314,
+                 "name":"anomaly",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":100,
+                 "x":4068.18181818182,
+                 "y":3071.21212121212
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":12,
- "nextobjectid":313,
+ "nextlayerid":13,
+ "nextobjectid":315,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.8.4",

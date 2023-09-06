@@ -2240,7 +2240,7 @@
            * Affects body speed.
            * @method setVelocity
            * @param {body} body
-           * @param {vector} velocity
+           * @param {{x: number, y: number}} velocity
            */
           Body.setVelocity = function (body, velocity) {
             var timeScale = body.deltaTime / Body._baseDelta;
