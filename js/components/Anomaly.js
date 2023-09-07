@@ -3,6 +3,15 @@ class Anomaly extends Body {
     xoff = 0.0;
     xincrement = 0.01;
     speed = 3;
+    dir = [];
+    theta = [];
+    r = [];
+    n = 50;
+    c = [];
+    x = 0;
+    y = 0;
+    rdir = [];
+    w = 0;
     constructor(props) {
         super(props);
     }
@@ -12,37 +21,88 @@ class Anomaly extends Body {
         this.static = false;
         this.sensor = false;
         this.createEllipse(engine.world, scena);
-        this.speed =  scena.size(this.speed, scena.scale);
+        this.speed = scena.size(this.speed, scena.scale);
+      //  drawingContext.shadowOffsetX = 0;
+     //   drawingContext.shadowOffsetY = 10;
+      //  drawingContext.shadowBlur = 20;
+        
+        this.body.map((b)=>{
+              for (let i = 0; i < this.n; i++) {
+           this.theta.push(random(0, 2 * PI));
+           this.rdir.push(1);
+           this.r.push(random(b.width / 2,b.width));
+           this.dir.push(1);
+           this.c.push(createVector(0, 0));
+           this.w = b.width;
+        }
+        })
+      
+    }
 
+
+    checkr(rdir,r, w) {
+        if (rdir === 1 && r > w) {
+            rdir = -1;
+        }
+        if (rdir === -1 && r < 0) {
+            rdir = 1;
+        }
+        return rdir;
     }
 
     view() {
         push();
-
-
-
-
-       // console.log(v1.x * 5)
-
-
-        this.body.map((b) => {
-            if(Matter.Body.getSpeed(b) === 0){
+      //   fill(220,220,220,100);
+         strokeWeight(5);
+         stroke(255,100,255);
+        // drawingContext.shadowOffsetX = 0;
+        // drawingContext.shadowOffsetY = 0;
+         drawingContext.shadowBlur = 30;
+         drawingContext.shadowColor = '#ccc';
+         
+         for (let i = 0; i < this.n; i++) {
+            this.theta[i] = this.theta[i] + PI / 100 * this.dir[i] ;
+            this.rdir[i] = this.checkr(this.rdir[i],this.r[i], this.w / 3);
+            this.r[i] = this.r[i] + this.rdir[i]; 
+         //   this.x = this.c[i].x + this.r[i] * cos(this.theta[i]);
+         //   this.y = this.c[i].y + this.r[i] * sin(this.theta[i]);
+       //     noFill()
+            
+         //  circle(this.c[i].x + b.position.x,this.c[i].y + b.position.y, 2 * this.r[i]);
+          // strokeWeight(20);
+         //   point(this.x + b.position.x, this.y + b.position.y);
+           }
+        this.body.map((b) => { 
+           // ellipse(b.position.x, b.position.y, b.width, b.width)
+            if (Matter.Body.getSpeed(b) === 0) {
                 b.activeB = b.activeB + 1
-                if(b.activeB > 2){
+                if (b.activeB > 2) {
                     b.activeB = 0;
                 }
             }
-            if(b.activeB === 1){
+            if (b.activeB === 1) {
                 Matter.Body.setVelocity(b, { x: this.speed, y: this.speed })
-            }else if(b.activeB === 2){
+            } else if (b.activeB === 2) {
                 Matter.Body.setVelocity(b, { x: -this.speed, y: this.speed })
-            }else {
+            } else {
                 Matter.Body.setVelocity(b, { x: -this.speed, y: this.speed })
             }
 
-            fill("red");
-            ellipse(b.position.x, b.position.y, b.width, b.width);
+            for (let i = 0; i < this.n; i++) {
+              //  this.theta[i] = this.theta[i] + PI / 100 * this.dir[i] ;
+              //  this.rdir[i] = this.checkr(this.rdir[i],this.r[i], b.width / 2);
+              //  this.r[i] = this.r[i] + this.rdir[i]; 
+                this.x = this.c[i].x + this.r[i] * cos(this.theta[i]);
+                this.y = this.c[i].y + this.r[i] * sin(this.theta[i]);
+           //     noFill()
+                
+             //  circle(this.c[i].x + b.position.x,this.c[i].y + b.position.y, 2 * this.r[i]);
+              // strokeWeight(20);
+                point(this.x + b.position.x, this.y + b.position.y);
+               }
+          //  ellipse(b.position.x, b.position.y, b.width, b.width);
         })
+        
         /*
         angleMode(DEGREES);
         stroke("red");

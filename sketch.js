@@ -38,9 +38,12 @@ let bank = new Bank();
 
 let portalImage = new Animate();
 let money = new Animate();
-let activeRight = new Animate();
+let closedСhest = new Animate();
+let openСhest = new Animate();
 
+let activeRight = new Animate();
 let atan = new Animate();
+let lightningImage = new Animate();
 
 let moneyBank = 0
 
@@ -64,8 +67,11 @@ function preload() {
 
     playerImage = loadImage("./asset/Player/ball.png");
     money.animateLoad("./asset/money/money.png", 63);
+    closedСhest.animateLoad("./asset/objects/Chest_0.png");
+    openСhest.animateLoad("./asset/objects/Chest_1.png");
     activeRight.animateD("./asset/objects/right.png", 50);
     atan.animateE("./asset/Player/atan.png");
+    lightningImage.animateLoad("./asset/objects/lightning.png",20);
 
     levelArr.map((lev)=>lev.images.map((img)=>img.preload()))
 
@@ -104,6 +110,7 @@ function setup() {
 
     money.setupAnimate();
     activeRight.setupAnimate();
+    lightningImage.setupAnimate();
     panel.create();
 
     levelArr.map((lev)=>{
@@ -117,6 +124,9 @@ function setup() {
         lev.playUp = playUp;
         lev.portal.activeRight = activeRight;
         lev.events.levelCount = levelArr.length;
+        lev.chest.imageClosed = closedСhest;
+        lev.chest.imageOpen = openСhest;
+        lev.lightning.image = lightningImage;
 
     })
 

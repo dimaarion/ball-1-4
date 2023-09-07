@@ -30,19 +30,16 @@ class Events {
             }
         }
 
+       
         function collideAnomalyPositionPoint(pair,scena, pointEx, body,name) {
             if (pair.bodyB.label === "anomaly") {
-                let point = scena.getObjects("point");
+                let point = scena.getObjects("point").filter((f)=>f.type.match("ex_"));
                 let r = round(random(point.length - 1))
                 point.filter((f,i)=>i === r).map((p) => Matter.Body.setPosition(pair.bodyB, {
                     x: scena.size(p.x + p.width / 2, scena.scale),
                     y: scena.size(p.y + p.width / 2, scena.scale)
                 }))
 
-               /* Matter.Body.setPosition(pair.bodyB, {
-                    x: body.getName("point",r).position.x,
-                    y: body.getName("point",r).position.y
-                })*/
             }
         }
 
@@ -51,22 +48,6 @@ class Events {
             var pairs = event.pairs;
             for (var i = 0; i < pairs.length; i++) {
                 var pair = pairs[i];
-
-
-                /*
-                        if (
-                          pair.bodyA.label === "player" &&
-                          pair.bodyB.label === "point" && pair.bodyB.typeObject === "level_2"
-                        ) {
-                          this.level = 2;
-                          pair.bodyA.level = 2;
-
-                          // Matter.Body.setPosition(pair.bodyA, { x: body.getNameType(engine, "point", "start").position.x, y: body.getNameType(engine, "point", "start").position.y });
-                        } else if (pair.bodyA.label === "player" &&
-                          pair.bodyB.label === "point" && pair.bodyB.typeObject === "level_3") {
-                          this.level = 3;
-                          pair.bodyA.level = 3;
-                        }*/
                 if (
                     pair.bodyA.label === "player" &&
                     pair.bodyB.label === "point" && pair.bodyB.typeObject === "start"
@@ -141,16 +122,15 @@ class Events {
                 })
                 pointLevel.map((el)=>{
                     if ( pair.bodyA.typeObject === "level_" + el && pair.bodyB.label === "anomaly") {
-                        console.log("level_" + el)
                         collideAnomalyPositionPoint(pair,scena,pointEx,body,"point");
                     }
                 })
 
                 if (
-                    pair.bodyA.label === "platform_b" &&
+                    pair.bodyA.label === "anomaly" &&
                     pair.bodyB.label === "anomaly"
                 ) {
-
+                    collideAnomalyPositionPoint(pair,scena,pointEx,body,"point");
                     //   Matter.Body.setVelocity(pair.bodyB,{x:1,y:0})
                     //  scena.getObjects("player").map((p) => Matter.Body.setPosition(pair.bodyA,{x:scena.size(p.x + p.width / 2, scena.scale),y: scena.size(p.y + p.width / 2, scena.scale)}))
 

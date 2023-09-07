@@ -15,6 +15,8 @@ class Level_1 {
     crystal = new Crystal();
     money = new Money("money");
     anomaly = new Anomaly("anomaly");
+    chest = new Chest("chest");
+    lightning = new Lightning("lightning");
 
     props;
     playRight;
@@ -51,8 +53,10 @@ class Level_1 {
         this.player.body[0].level = this.level;
         this.point.sensor = true;
         this.point.createRect(this.world, this.scena);
-        this.money.create(this.engine, this.scena)
+        this.money.create(this.engine, this.scena);
+        this.chest.create(this.engine, this.scena);
         this.anomaly.create(this.engine,this.scena);
+        this.lightning.create(this.engine,this.scena);
         // this.point.sensor = true
         Engine.run(this.engine);
 
@@ -67,9 +71,12 @@ class Level_1 {
 
         this.images.map((el)=>el.imageMap());
         this.portal.view();
-        this.money.view();
-        this.player.view();
         this.anomaly.view();
+        this.money.view();
+        this.chest.view();
+        this.lightning.view();
+        this.player.view();
+        
         pop();
         this.restart.buttonView();
 
