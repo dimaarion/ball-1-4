@@ -290,21 +290,21 @@
                  "id":248,
                  "name":"lightning",
                  "rotation":0,
-                 "type":"",
+                 "type":"0",
                  "visible":true,
                  "width":40,
-                 "x":2304.45454545455,
-                 "y":2789.27272727273
+                 "x":2480.45454545455,
+                 "y":2229.27272727273
                 }, 
                 {
                  "height":159,
                  "id":250,
                  "name":"lightning",
                  "rotation":0,
-                 "type":"",
+                 "type":"0",
                  "visible":true,
                  "width":40,
-                 "x":2405,
+                 "x":2498,
                  "y":3024.5
                 }, 
                 {
@@ -312,11 +312,11 @@
                  "id":251,
                  "name":"lightning",
                  "rotation":0,
-                 "type":"",
+                 "type":"0",
                  "visible":true,
                  "width":40,
-                 "x":2715,
-                 "y":3140.5
+                 "x":2920,
+                 "y":3424.5
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -750,8 +750,8 @@
                  "type":"player",
                  "visible":true,
                  "width":80,
-                 "x":2259.95751555482,
-                 "y":3070.15134525091
+                 "x":3041.775697373,
+                 "y":2279.24225434182
                 }],
          "opacity":1,
          "type":"objectgroup",

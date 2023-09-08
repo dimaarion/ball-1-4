@@ -81,8 +81,7 @@ class Events {
                 pointIn.map((p, i) => setPositionPoint(body, pair, p, pointEx[i]));
 
                 if (
-                    pair.bodyA.label === "player" &&
-                    pair.bodyB.label === "point" && pair.bodyB.typeObject === "0"
+                    pair.bodyA.label === "player" && pair.bodyB.typeObject === "0"
                 ) {
                     scena.getObjects("player").map((p) => Matter.Body.setPosition(pair.bodyA, {
                         x: scena.size(p.x + p.width / 2, scena.scale),
