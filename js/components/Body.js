@@ -202,6 +202,14 @@ class Body {
     }
   }
 
+  setMass(n) {
+    if (this.world !== undefined) {
+      this.world.bodies
+        .filter((f) => f.label === this.name)
+        .map((b) => Matter.Body.setMass(b, n));
+    }
+  }
+
   setVelosity(x, y) {
     if (this.world !== undefined) {
       this.world.bodies

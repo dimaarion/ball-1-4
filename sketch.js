@@ -44,6 +44,7 @@ let openСhest = new Animate();
 let activeRight = new Animate();
 let atan = new Animate();
 let lightningImage = new Animate();
+let stone = new Animate();
 
 let moneyBank = 0
 
@@ -72,7 +73,7 @@ function preload() {
     activeRight.animateD("./asset/objects/right.png", 50);
     atan.animateE("./asset/Player/atan.png");
     lightningImage.animateLoad("./asset/objects/lightning.png",20);
-
+    stone.animateLoad("./asset/objects/stone.png");
     levelArr.map((lev)=>lev.images.map((img)=>img.preload()))
 
     panel.preload();
@@ -127,6 +128,7 @@ function setup() {
         lev.chest.imageClosed = closedСhest;
         lev.chest.imageOpen = openСhest;
         lev.lightning.image = lightningImage;
+        lev.stone.image = stone;
 
     })
 
