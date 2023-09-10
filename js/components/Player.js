@@ -130,6 +130,7 @@ class Player extends Body {
                     pair.bodyB.label === "portal"
                 ) {
                     pair.bodyA.activeB = 1;
+                    
                 }
 
             }

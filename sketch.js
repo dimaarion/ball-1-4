@@ -5,7 +5,7 @@ let engine, world;
 let arrSprites = [{img: {name:"", frame: 0}}]
 
 let setLevels = [
-    {level:new Level_1("./js/scena/scena.json", 1),img:["./js/scena/scena1.png"]},
+    {level:new Level_1("./js/scena/scena.json", 1),img:["./js/scena/scena.png"]},
     {level:new Level_1("./js/scena/scena2.json", 2),img:["./js/scena/scena2.png"]},
     {level:new Level_1("./js/scena/scena3.json", 3),img:["./js/scena/scena3.png"]},
     {level:new Level_1("./js/scena/scena4.json", 4),img:["./js/scena/scena4.png"]},
