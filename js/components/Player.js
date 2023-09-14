@@ -39,7 +39,7 @@ class Player extends Body {
     timer = new Panel();
     elapsedSeconds = 0;
     elapsedMinutes = 0;
-
+    test = 0;
 
     constructor(props) {
         super(props);
