@@ -44,6 +44,7 @@ class Panel {
     atanActive = 0;
     countMoney = 0;
     atanMoney = 0;
+    
     preload() {
 
         this.window = loadImage("./asset/panel/Window.png");
