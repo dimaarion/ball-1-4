@@ -113,6 +113,8 @@ class Player extends Body {
         this.body.map((b) => {
             b.speedBodyDop = this.speedBodyDop;
         });
+
+
         Matter.Events.on(engine, "collisionActive", function (event) {
             //  console.log(this.joystick.valX);
             let pairs = event.pairs;
@@ -165,7 +167,7 @@ class Player extends Body {
 
 
         Matter.Events.on(engine, "collisionStart", function (event) {
-
+            let body = new Body();
             let pairs = event.pairs;
             for (let i = 0; i < pairs.length; i++) {
                 let pair = pairs[i];
@@ -187,7 +189,9 @@ class Player extends Body {
                     pair.bodyA.label === "player" &&
                     pair.bodyB.label === "money"
                 ) {
-                    Matter.Body.setPosition(pair.bodyB, {x: -1000, y: -1000});
+                   // Matter.Body.setPosition(pair.bodyB, {x: -1000, y: -1000});
+                 //  Matter.Composite.remove(engine.world, pair.bodyB) 
+                  // body.clear(engine, pair.bodyB.id);
                     pair.bodyA.money += 1;
 
                 }
@@ -195,6 +199,8 @@ class Player extends Body {
             }
 
         });
+
+       
     }
 
     view() {
@@ -234,13 +240,13 @@ class Player extends Body {
             translate(b.position.x, b.position.y)
             angleMode(RADIANS)
             rotate(b.angle)
-            image(
+          /*  image(
                 this.img,
                 -b.width / 2,
                 -b.width / 2,
                 b.width,
                 b.width
-            );
+            );*/
             pop();
         });
 

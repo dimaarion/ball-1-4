@@ -44,6 +44,12 @@ class Body {
     return this.n;
   }
 
+  clear(engine, id){
+   let b = engine.world.bodies.map((el,i)=>{return el.id === id?i:0}).filter((f)=>f != 0)[0]; 
+   engine.world.bodies.splice(b,1);
+   return engine;
+  }
+
   loadImage(image, frame = 0) {
     this.image = image;
     if (frame > 0) {
@@ -281,7 +287,12 @@ class Body {
           activeB:0,
           money:0,
           rotation:b.rotation,
-
+          render: {
+            strokeStyle: '#ffffff',
+            sprite: {
+                texture: './asset/Player/ball.png'
+            }
+        }
         }
       )
     );
@@ -310,7 +321,13 @@ class Body {
           display:"start",
           activeB:0,
           money:0,
-          rotation:b.rotation
+          rotation:b.rotation,
+          render: {
+            strokeStyle: '#ffffff',
+            sprite: {
+                texture: './asset/Player/ball.png'
+            }
+        }
         }
       )
     );

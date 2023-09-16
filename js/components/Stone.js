@@ -13,8 +13,6 @@ class Stone extends Body{
         this.fric = 0.1;
         this.createEllipse(engine.world, scena);
         
-        
-        console.log(this.body)
     }
 
     view() {

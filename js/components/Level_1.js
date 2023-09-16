@@ -1,6 +1,7 @@
 class Level_1 {
     engine;
     world;
+    render;
     scena = new Scena();
     nameScene = "./js/scena/scena.json";
     player = new Player("player");
@@ -42,6 +43,7 @@ class Level_1 {
 
     create() {
         this.engine = Engine.create();
+        this.render = Matter.Render,
         this.world = this.engine.world;
 
         this.scena.create();
@@ -59,7 +61,7 @@ class Level_1 {
         this.anomaly.create(this.engine,this.scena);
         this.lightning.create(this.engine,this.scena);
         this.stone.create(this.engine, this.scena);
-
+        
         // this.point.sensor = true
         Engine.run(this.engine);
 
