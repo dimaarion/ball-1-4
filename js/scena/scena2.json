@@ -1879,19 +1879,19 @@
          "name":"player",
          "objects":[
                 {
-                 "height":50,
+                 "height":100,
                  "id":120,
                  "name":"player",
                  "rotation":0,
                  "type":"player",
                  "visible":true,
-                 "width":50,
+                 "width":100,
                  "x":2659.6617463837,
                  "y":1232.45213810579
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
