@@ -23,10 +23,10 @@ class Events {
                 pair.bodyA.label === "player" &&
                 pair.bodyB.typeObject === el1
             ) {
-                Matter.Body.setPosition(pair.bodyA, {
+              /*  Matter.Body.setPosition(pair.bodyA, {
                     x: body.getNameType(engine, "point", el2).position.x,
                     y: body.getNameType(engine, "point", el2).position.y
-                });
+                });*/
             }
         }
 
@@ -35,10 +35,10 @@ class Events {
             if (pair.bodyB.label === "anomaly") {
                 let point = scena.getObjects("point").filter((f)=>f.type.match("ex_"));
                 let r = round(random(point.length - 1))
-                point.filter((f,i)=>i === r).map((p) => Matter.Body.setPosition(pair.bodyB, {
+               /* point.filter((f,i)=>i === r).map((p) => Matter.Body.setPosition(pair.bodyB, {
                     x: scena.size(p.x + p.width / 2, scena.scale),
                     y: scena.size(p.y + p.width / 2, scena.scale)
-                }))
+                }))*/
 
             }
         }
@@ -69,7 +69,7 @@ class Events {
                     ) {
                         this.level = lev;
                         pair.bodyA.level = lev;
-                        scena.getObjects("player").map((p) => Matter.Body.setPosition(pair.bodyA, {
+                        engine.world.bodies.filter((f)=>f.typeObject === "start").map((p) => Matter.Body.setPosition(pair.bodyA, {
                             x: scena.size(p.x + p.width / 2, scena.scale),
                             y: scena.size(p.y + p.width / 2, scena.scale)
                         }))
@@ -83,10 +83,10 @@ class Events {
                 if (
                     pair.bodyA.label === "player" && pair.bodyB.typeObject === "0"
                 ) {
-                    scena.getObjects("player").map((p) => Matter.Body.setPosition(pair.bodyA, {
+                   /* scena.getObjects("player").map((p) => Matter.Body.setPosition(pair.bodyA, {
                         x: scena.size(p.x + p.width / 2, scena.scale),
                         y: scena.size(p.y + p.width / 2, scena.scale)
-                    }))
+                    }))*/
                 }
 
                 if (
@@ -94,7 +94,7 @@ class Events {
                     pair.bodyB.label === "anomaly"
                 ) {
                     if( pair.bodyA.label === "player"){
-                        scena.getObjects("player").map((p) => Matter.Body.setPosition(pair.bodyA,{x:scena.size(p.x + p.width / 2, scena.scale),y: scena.size(p.y + p.width / 2, scena.scale)}))
+                      //  scena.getObjects("player").map((p) => Matter.Body.setPosition(pair.bodyA,{x:scena.size(p.x + p.width / 2, scena.scale),y: scena.size(p.y + p.width / 2, scena.scale)}))
                     }
 
                 }

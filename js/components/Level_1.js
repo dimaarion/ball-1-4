@@ -64,6 +64,7 @@ class Level_1 {
         
         // this.point.sensor = true
         Engine.run(this.engine);
+        console.log(this.world)
 
     }
 
@@ -71,10 +72,13 @@ class Level_1 {
         background("#0d0b1a");
         rectMode(CENTER);
         push();
+     //  angleMode(DEGREES)
+       // rotate(frameCount % 360)
+      //  translate(this.scena.size(-(this.scena.scenaWidth / 2)  + windowWidth  ),this.scena.size(-(this.scena.scenaHeigiht / 2)))
         this.player.translates();
+       // Matter.Composite.translate(this.world,{x:100,y:100})
 
-
-        this.images.map((el)=>el.imageMap());
+        this.images.map((el)=>el.imageMap(this.platform));
         this.stone.view();
         this.portal.view();
         this.anomaly.view();
@@ -82,7 +86,10 @@ class Level_1 {
         this.chest.view();
         this.lightning.view();
         this.player.view();
-        
+      //  this.platform.viewRect()
+     //   this.platform_b.viewRect()
+      
+       
         pop();
         this.restart.buttonView();
 
@@ -90,7 +97,7 @@ class Level_1 {
             panel.level = this.player.body[0].level;
         }
         if (this.restart.buttonActive === "restart") {
-            this.scena.getObjects("player").map((p) => this.player.setPosition(this.scena.size(p.x + p.width / 2, this.scena.scale), this.scena.size(p.y + p.width / 2, this.scena.scale)))
+            this.world.bodies.filter((f)=>f.typeObject === "start").map((p) => this.player.setPosition(p.position.x,p.position.y ))
         }
 
 
@@ -123,13 +130,19 @@ class Level_1 {
 
             }
         }
-
-
+        if(this.player.speed === 1){
+             Matter.Composite.rotate(this.engine.world,0.01,{x:0,y:0}) 
+        }else if(this.player.speed === 2){
+            Matter.Composite.rotate(this.engine.world,-0.01,{x:0,y:0}) 
+        }
+       
+      
     }
 
     pressedM(e) {
 if(this.restart !== undefined){
     this.restart.pressed(e);
+  // Matter.Composite.rotate(this.world,0.1,{x:0,y:0})  
 }
 
 
@@ -153,6 +166,7 @@ if(this.restart !== undefined){
 
     pressed(e) {
         if (e.key === "ArrowRight") {
+           
             this.player.speed = 1;
         } else if (e.key === "ArrowLeft") {
             this.player.speed = 2;

@@ -30,7 +30,7 @@ class TileMap {
         }
         return a;
     }
-    view(id, layers) {
+    view(id, layers, platform) {
         let col = 0;
         let row = 0;
         let index = 0;
@@ -73,7 +73,12 @@ class TileMap {
     }
 
 
-    imageMap() {
+    imageMap(platform) {
+      
+  
+       push() 
+         rotate(platform.body[0].angle)
+      // translate(500,0)
         image(
             this.animate.sprite(),
             0,
@@ -87,5 +92,6 @@ class TileMap {
                 this.scena.scale
             )
         );
+        pop()
     }
 }

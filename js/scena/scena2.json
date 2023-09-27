@@ -1246,10 +1246,21 @@
                  "width":42.4613636363637,
                  "x":1398.95113636364,
                  "y":4222.4045
+                }, 
+                {
+                 "height":35.9183,
+                 "id":346,
+                 "name":"point",
+                 "rotation":0,
+                 "type":"start",
+                 "visible":true,
+                 "width":57.6129,
+                 "x":2678.45950249185,
+                 "y":1490.89040752212
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -1890,13 +1901,13 @@
          "name":"anomaly",
          "objects":[
                 {
-                 "height":50,
+                 "height":100,
                  "id":313,
                  "name":"anomaly",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":50,
+                 "width":100,
                  "x":2560.60606060606,
                  "y":1866.66666666667
                 }, 
@@ -1945,13 +1956,13 @@
                  "y":4271
                 }, 
                 {
-                 "height":50,
+                 "height":100,
                  "id":344,
                  "name":"anomaly",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":50,
+                 "width":100,
                  "x":3207,
                  "y":1455
                 }, 
@@ -1973,7 +1984,7 @@
          "y":0
         }],
  "nextlayerid":16,
- "nextobjectid":346,
+ "nextobjectid":347,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.8.4",

@@ -474,10 +474,21 @@
                  "width":29.6376149699463,
                  "x":1668.8978157528,
                  "y":1508.41230341194
+                }, 
+                {
+                 "height":23.999,
+                 "id":260,
+                 "name":"point",
+                 "rotation":0,
+                 "type":"start",
+                 "visible":true,
+                 "width":23.999,
+                 "x":1592.0005,
+                 "y":374.0005
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -822,15 +833,15 @@
          "name":"player",
          "objects":[
                 {
-                 "height":150,
+                 "height":50,
                  "id":120,
                  "name":"player",
                  "rotation":0,
                  "type":"player",
                  "visible":true,
-                 "width":150,
-                 "x":505.806000403303,
-                 "y":319.211951311517
+                 "width":50,
+                 "x":777.333333333333,
+                 "y":561.333333333333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -839,7 +850,7 @@
          "y":0
         }],
  "nextlayerid":16,
- "nextobjectid":260,
+ "nextobjectid":261,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.8.4",

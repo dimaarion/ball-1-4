@@ -219,34 +219,38 @@ class Player extends Body {
         }
 
 
-        if (this.speed === 1 && this.up === 0 && this.body[0].activeB === 1) {
-            this.setVelosity(this.speedBody, 0)
+        if (this.speed === 1 && this.up === 0) {
+             
+           //this.setVelosity(this.speedBody, 0)
         } else if (this.speed === 1 && this.up !== 0 && this.body[0].activeB === 1) {
-            this.setVelosity(this.speedBody, -this.gravity)
+           //this.setVelosity(this.speedBody, -this.gravity)
         }
-        if (this.speed === 2 && this.up === 0 && this.body[0].activeB === 1) {
-            this.setVelosity(-this.speedBody, 0)
+        if (this.speed === 2 && this.up === 0) {
+           // Matter.Composite.rotate(this.engine.world,-0.01,{x:0,y:0})  
+          //this.setVelosity(-this.speedBody, 0)
         } else if (this.speed === 2 && this.up !== 0 && this.body[0].activeB === 1) {
-            this.setVelosity(-this.speedBody, -this.gravity)
+           // this.setVelosity(-this.speedBody, -this.gravity)
         } else if (this.speed !== 1 && this.speed !== 2 && this.up !== 0 && this.body[0].activeB === 1) {
-            this.setVelosity(0, -this.gravity)
+           // this.setVelosity(0, -this.gravity)
         }
+
+
+        
 
 
         this.atan()
-
         this.body.map((b) => {
             push();
             translate(b.position.x, b.position.y)
             angleMode(RADIANS)
             rotate(b.angle)
-          /*  image(
+         image(
                 this.img,
                 -b.width / 2,
                 -b.width / 2,
                 b.width,
                 b.width
-            );*/
+            );
             pop();
         });
 

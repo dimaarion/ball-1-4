@@ -26,11 +26,12 @@ this.interval[i] = round(random(3,6));
 
     view() {
         this.time.updateTimer();
-       
+      push() 
         this.body.map((b,i) => {
 
          if(this.time.elapsedSeconds < this.interval[i]){
             b.typeObject = "0";
+           
             image(this.image.sprite(), b.position.x - b.width * this.scaleWidth / 2, b.position.y - b.height / 2, b.width * this.scaleWidth, b.height);
           
          }else{
@@ -43,5 +44,6 @@ this.interval[i] = round(random(3,6));
        
            
         });
+        pop()
     }
 }
