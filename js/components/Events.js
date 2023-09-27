@@ -23,22 +23,22 @@ class Events {
                 pair.bodyA.label === "player" &&
                 pair.bodyB.typeObject === el1
             ) {
-              /*  Matter.Body.setPosition(pair.bodyA, {
-                    x: body.getNameType(engine, "point", el2).position.x,
-                    y: body.getNameType(engine, "point", el2).position.y
-                });*/
+                /*  Matter.Body.setPosition(pair.bodyA, {
+                      x: body.getNameType(engine, "point", el2).position.x,
+                      y: body.getNameType(engine, "point", el2).position.y
+                  });*/
             }
         }
 
-       
-        function collideAnomalyPositionPoint(pair,scena, pointEx, body,name) {
+
+        function collideAnomalyPositionPoint(pair, scena, pointEx, body, name) {
             if (pair.bodyB.label === "anomaly") {
-                let point = scena.getObjects("point").filter((f)=>f.type.match("ex_"));
+                let point = scena.getObjects("point").filter((f) => f.type.match("ex_"));
                 let r = round(random(point.length - 1))
-               /* point.filter((f,i)=>i === r).map((p) => Matter.Body.setPosition(pair.bodyB, {
-                    x: scena.size(p.x + p.width / 2, scena.scale),
-                    y: scena.size(p.y + p.width / 2, scena.scale)
-                }))*/
+                /* point.filter((f,i)=>i === r).map((p) => Matter.Body.setPosition(pair.bodyB, {
+                     x: scena.size(p.x + p.width / 2, scena.scale),
+                     y: scena.size(p.y + p.width / 2, scena.scale)
+                 }))*/
 
             }
         }
@@ -69,10 +69,10 @@ class Events {
                     ) {
                         this.level = lev;
                         pair.bodyA.level = lev;
-                        engine.world.bodies.filter((f)=>f.typeObject === "start").map((p) => Matter.Body.setPosition(pair.bodyA, {
-                            x: scena.size(p.x + p.width / 2, scena.scale),
-                            y: scena.size(p.y + p.width / 2, scena.scale)
-                        }))
+                     /*   engine.world.bodies.filter((f) => f.typeObject === "start").map((p) => Matter.Body.setPosition(pair.bodyA, {
+                            x: p.x,
+                            y: p.y
+                        }))*/
                     }
                 })
 
@@ -83,27 +83,27 @@ class Events {
                 if (
                     pair.bodyA.label === "player" && pair.bodyB.typeObject === "0"
                 ) {
-                   /* scena.getObjects("player").map((p) => Matter.Body.setPosition(pair.bodyA, {
-                        x: scena.size(p.x + p.width / 2, scena.scale),
-                        y: scena.size(p.y + p.width / 2, scena.scale)
-                    }))*/
+                    /* scena.getObjects("player").map((p) => Matter.Body.setPosition(pair.bodyA, {
+                         x: scena.size(p.x + p.width / 2, scena.scale),
+                         y: scena.size(p.y + p.width / 2, scena.scale)
+                     }))*/
                 }
 
                 if (
                     pair.bodyA.label === "player" &&
                     pair.bodyB.label === "anomaly"
                 ) {
-                    if( pair.bodyA.label === "player"){
-                      //  scena.getObjects("player").map((p) => Matter.Body.setPosition(pair.bodyA,{x:scena.size(p.x + p.width / 2, scena.scale),y: scena.size(p.y + p.width / 2, scena.scale)}))
+                    if (pair.bodyA.label === "player") {
+                        //  scena.getObjects("player").map((p) => Matter.Body.setPosition(pair.bodyA,{x:scena.size(p.x + p.width / 2, scena.scale),y: scena.size(p.y + p.width / 2, scena.scale)}))
                     }
 
                 }
 
 
-                if ( pair.bodyA.label === "platform" && pair.bodyB.label === "anomaly") {
+                if (pair.bodyA.label === "platform" && pair.bodyB.label === "anomaly") {
                     if (pair.bodyB.label === "anomaly") {
                         pair.bodyB.activeB += 1
-                        if(pair.bodyB.activeB > 2){
+                        if (pair.bodyB.activeB > 2) {
                             pair.bodyB.activeB = 0;
                         }
                     }
@@ -111,17 +111,17 @@ class Events {
 
 
 
-                if ( pair.bodyA.typeObject === "0" && pair.bodyB.label === "anomaly") {
-                    collideAnomalyPositionPoint(pair,scena,pointEx,body,"point");
+                if (pair.bodyA.typeObject === "0" && pair.bodyB.label === "anomaly") {
+                    collideAnomalyPositionPoint(pair, scena, pointEx, body, "point");
                 }
-                pointIn.map((el)=>{
-                    if ( pair.bodyA.typeObject === el && pair.bodyB.label === "anomaly") {
-                        collideAnomalyPositionPoint(pair,scena,pointEx,body,"point");
+                pointIn.map((el) => {
+                    if (pair.bodyA.typeObject === el && pair.bodyB.label === "anomaly") {
+                        collideAnomalyPositionPoint(pair, scena, pointEx, body, "point");
                     }
                 })
-                pointLevel.map((el)=>{
-                    if ( pair.bodyA.typeObject === "level_" + el && pair.bodyB.label === "anomaly") {
-                        collideAnomalyPositionPoint(pair,scena,pointEx,body,"point");
+                pointLevel.map((el) => {
+                    if (pair.bodyA.typeObject === "level_" + el && pair.bodyB.label === "anomaly") {
+                        collideAnomalyPositionPoint(pair, scena, pointEx, body, "point");
                     }
                 })
 
@@ -129,7 +129,7 @@ class Events {
                     pair.bodyA.label === "anomaly" &&
                     pair.bodyB.label === "anomaly"
                 ) {
-                    collideAnomalyPositionPoint(pair,scena,pointEx,body,"point");
+                    collideAnomalyPositionPoint(pair, scena, pointEx, body, "point");
                     //   Matter.Body.setVelocity(pair.bodyB,{x:1,y:0})
                     //  scena.getObjects("player").map((p) => Matter.Body.setPosition(pair.bodyA,{x:scena.size(p.x + p.width / 2, scena.scale),y: scena.size(p.y + p.width / 2, scena.scale)}))
 
@@ -145,7 +145,7 @@ class Events {
             for (let i = 0; i < pairs.length; i++) {
                 let pair = pairs[i];
 
-                if ( pair.bodyA.label === "platform" && pair.bodyB.label === "anomaly") {
+                if (pair.bodyA.label === "platform" && pair.bodyB.label === "anomaly") {
                     if (pair.bodyB.label === "anomaly") {
 
                     }

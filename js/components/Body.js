@@ -286,6 +286,7 @@ class Body {
           display:"start",
           activeB:0,
           money:0,
+          removeMoney:false,
           rotation:b.rotation,
           render: {
             strokeStyle: '#ffffff',
@@ -321,6 +322,7 @@ class Body {
           display:"start",
           activeB:0,
           money:0,
+          removeMoney:false,
           rotation:b.rotation,
           render: {
             strokeStyle: '#ffffff',
@@ -358,6 +360,7 @@ class Body {
           display:"start",
           activeB:0,
           money:0,
+          removeMoney:false,
           rotation:b.rotation
         }
       )
@@ -394,6 +397,7 @@ class Body {
           display:"start",
           activeB:0,
           money:0,
+          removeMoney:false,
           rotation:b.rotation,
 
         }

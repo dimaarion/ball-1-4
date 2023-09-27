@@ -19,6 +19,7 @@ class Level_1 {
     chest = new Chest("chest");
     lightning = new Lightning("lightning");
     stone = new Stone("stone");
+    skillBig = new Scill("skill");
 
     props;
     playRight;
@@ -45,6 +46,7 @@ class Level_1 {
         this.engine = Engine.create();
         this.render = Matter.Render,
         this.world = this.engine.world;
+        this.engine.gravity.y = 5
 
         this.scena.create();
         this.player.setup(this.engine, this.world, this.scena);
@@ -61,10 +63,11 @@ class Level_1 {
         this.anomaly.create(this.engine,this.scena);
         this.lightning.create(this.engine,this.scena);
         this.stone.create(this.engine, this.scena);
+        this.skillBig.create(this.engine,this.scena);
         
         // this.point.sensor = true
         Engine.run(this.engine);
-        console.log(this.world)
+        
 
     }
 
@@ -84,6 +87,7 @@ class Level_1 {
         this.anomaly.view();
         this.money.view();
         this.chest.view();
+        this.skillBig.view();
         this.lightning.view();
         this.player.view();
       //  this.platform.viewRect()
@@ -95,9 +99,13 @@ class Level_1 {
 
         if (this.player.body[0].level === this.level + 1) {
             panel.level = this.player.body[0].level;
+          //  this.world.bodies.filter((f)=>f.typeObject === "start").map((p) => this.player.setPosition(1000,1000))
+          console.log(this.player.body[0].level)
+
         }
         if (this.restart.buttonActive === "restart") {
             this.world.bodies.filter((f)=>f.typeObject === "start").map((p) => this.player.setPosition(p.position.x,p.position.y ))
+           //this.player.setPosition(0,0)
         }
 
 
@@ -131,9 +139,9 @@ class Level_1 {
             }
         }
         if(this.player.speed === 1){
-             Matter.Composite.rotate(this.engine.world,0.01,{x:0,y:0}) 
+             Matter.Composite.rotate(this.engine.world,this.player.speedBody,{x:0,y:0}) 
         }else if(this.player.speed === 2){
-            Matter.Composite.rotate(this.engine.world,-0.01,{x:0,y:0}) 
+            Matter.Composite.rotate(this.engine.world,-this.player.speedBody,{x:0,y:0}) 
         }
        
       
@@ -143,6 +151,7 @@ class Level_1 {
 if(this.restart !== undefined){
     this.restart.pressed(e);
   // Matter.Composite.rotate(this.world,0.1,{x:0,y:0})  
+ 
 }
 
 

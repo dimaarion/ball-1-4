@@ -16,7 +16,7 @@ class Stone extends Body{
     }
 
     view() {
-        this.setMass(5000);
+       
         this.body.map((b) => {
             push();
             translate(b.position.x, b.position.y);

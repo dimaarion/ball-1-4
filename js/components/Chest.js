@@ -34,9 +34,18 @@ class Chest extends Body {
     }
 
     view() {
+
         this.body.map((b) => {
-           
-            image(b.activeB === 0?this.imageOpen.sprite():this.imageClosed.sprite(), b.position.x - b.width / 2, b.position.y - b.height / 2, b.width, b.height)
+            push();
+            translate(b.position.x, b.position.y);
+            angleMode(RADIANS);
+            rotate(b.angle);
+             image(b.activeB === 0?this.imageOpen.sprite():this.imageClosed.sprite(), -b.width / 2,
+            -b.width / 2,
+            b.width,
+            b.width)
+            pop();
         });
+       
     }
 }

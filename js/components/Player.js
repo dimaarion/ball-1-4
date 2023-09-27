@@ -25,7 +25,7 @@ class Player extends Body {
     p5;
     time = 0;
     direction = 0;
-    speedBody = 0.08;
+    speedBody = 0.02;
     speedBodyDop = 1;
     gravity = 0.06;
     rotate = 0;
@@ -102,10 +102,10 @@ class Player extends Body {
         this.speedBodyDop = scena.size(this.speedBodyDop, scena.scale);
         
         if (md.mobile()) {
-            this.speedBody = scena.size(this.velocity, scena.scale);
+         //   this.speedBody = scena.size(this.velocity, scena.scale);
             this.gravity = scena.size(this.velocity , scena.scale);
         } else {
-            this.speedBody = scena.size(this.velocity - 2, scena.scale);
+        //    this.speedBody = scena.size(this.velocity - 2, scena.scale);
             this.gravity = scena.size(this.velocity - 4, scena.scale);
         }
 
@@ -190,9 +190,14 @@ class Player extends Body {
                     pair.bodyB.label === "money"
                 ) {
                    // Matter.Body.setPosition(pair.bodyB, {x: -1000, y: -1000});
-                 //  Matter.Composite.remove(engine.world, pair.bodyB) 
-                  // body.clear(engine, pair.bodyB.id);
+                 if(pair.bodyB.label === "money"){
+                    Matter.Composite.remove(engine.world, pair.bodyB); 
+                    pair.bodyB.removeMoney = true;  
                     pair.bodyA.money += 1;
+                 }  
+                  
+                 
+                   
 
                 }
 

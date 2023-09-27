@@ -155,7 +155,6 @@ function draw() {
     panel.bank = levelArr.map((lev)=>lev.player.body[0].money);
     levelArr.map((lev, i)=>{
         if (panel.level === i + 1) {
-            
             level(lev,panel);
         }
     })

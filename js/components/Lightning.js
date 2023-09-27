@@ -32,7 +32,10 @@ this.interval[i] = round(random(3,6));
          if(this.time.elapsedSeconds < this.interval[i]){
             b.typeObject = "0";
            
-            image(this.image.sprite(), b.position.x - b.width * this.scaleWidth / 2, b.position.y - b.height / 2, b.width * this.scaleWidth, b.height);
+            translate(b.position.x, b.position.y)
+          //  angleMode(RADIANS)
+          //  rotate(b.angle)
+         //   image(this.image.sprite(), - b.width / 2 ,  - b.height / 2, b.width, b.height);
           
          }else{
             b.typeObject = "1";

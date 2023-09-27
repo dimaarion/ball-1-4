@@ -14,7 +14,7 @@ class Money extends Body {
     }
 
     view() {
-        this.body.map((b) => {
+        this.body.filter((f)=>f.removeMoney === false).map((b) => {
             image(this.image.sprite(), b.position.x - b.width / 2, b.position.y - b.width / 2, b.width, b.width)
         });
     }
