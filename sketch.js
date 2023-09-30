@@ -2,14 +2,29 @@
 let Engine = Matter.Engine;
 let engine, world;
 
-let arrSprites = [{img: {name:"", frame: 0}}]
+let arrSprites = [{ img: { name: "", frame: 0 } }]
+function getArrImages(dir,n) {
+    let a = [];
+    let count = 1
+    for (let index = 1; index < n + 1 ; index++) {
+        count = index;
+        if(index < 10){
+            index = "0" + index;
+        }
+        a[count] = {id:count,name:dir + "/Tile_" + index  + ".png"}
+        }
+        return a;
+}
+
 
 let setLevels = [
-    {level:new Level_1("./js/scena/scena.json", 1),img:["./js/scena/scena.png"]},
-    {level:new Level_1("./js/scena/scena2.json", 2),img:["./js/scena/scena2.png"]},
-    {level:new Level_1("./js/scena/scena3.json", 3),img:["./js/scena/scena3.png"]},
-    {level:new Level_1("./js/scena/scena4.json", 4),img:["./js/scena/scena4.png"]},
-    {level:new Level_1("./js/scena/scena4.json", 5),img:["./js/scena/scena4.png"]},
+    {
+        level: new Level_1("./js/scena/scena.json", 1), img:getArrImages("./asset/maze/1 Tiles",81)
+    },
+    { level: new Level_1("./js/scena/scena2.json", 2), img: [{ id: 1, name: "./js/scena/scena.png" }] },
+    { level: new Level_1("./js/scena/scena3.json", 3), img: [{ id: 1, name: "./js/scena/scena.png" }] },
+    { level: new Level_1("./js/scena/scena4.json", 4), img: [{ id: 1, name: "./js/scena/scena.png" }] },
+    { level: new Level_1("./js/scena/scena4.json", 5), img: [{ id: 1, name: "./js/scena/scena.png" }] },
 ]
 
 let panel = new Panel();
@@ -49,16 +64,17 @@ let stone = new Animate();
 let moneyBank = 0
 
 
-setImagesBg = setLevels.map((lev)=>{
-   lev.level.images = lev.img.map((img)=> {
-       let s =  new TileMap(lev.level.scena);
-       s.name = img;
-      return s;
-   })
+setImagesBg = setLevels.map((lev) => {
+    lev.level.images = lev.img.map((img) => {
+        let s = new TileMap(lev.level.scena);
+        s.name = img.name;
+        s.id = img.id;
+        return s;
+    })
 
 })
 
-let levelArr =  setLevels.map((lev)=>lev.level);
+let levelArr = setLevels.map((lev) => lev.level);
 
 let props;
 
@@ -72,9 +88,9 @@ function preload() {
     openСhest.animateLoad("./asset/objects/Chest_1.png");
     activeRight.animateD("./asset/objects/right.png", 50);
     atan.animateE("./asset/Player/atan.png");
-    lightningImage.animateLoad("./asset/objects/lightning.png",20);
+    lightningImage.animateLoad("./asset/objects/lightning.png", 20);
     stone.animateLoad("./asset/objects/stone.png");
-    levelArr.map((lev)=>lev.images.map((img)=>img.preload()))
+    levelArr.map((lev) => lev.images.map((img) => img.preload()))
 
     panel.preload();
 
@@ -96,7 +112,7 @@ function preload() {
 
     }
     levelStep_1.button(60, 60, 8, 8, "./asset/panel/step_level.png", 2);
-    levelArr.map((lev,i)=>{
+    levelArr.map((lev, i) => {
         lev.preload();
     })
 
@@ -114,7 +130,7 @@ function setup() {
     lightningImage.setupAnimate();
     panel.create();
 
-    levelArr.map((lev)=>{
+    levelArr.map((lev) => {
         lev.player.img = playerImage;
         lev.player.atanImg = atan;
         lev.player.atanIcon = atanIcon;
@@ -132,7 +148,7 @@ function setup() {
 
     })
 
-    levelArr.map((lev,i)=>{
+    levelArr.map((lev, i) => {
         lev.create();
     });
 
@@ -141,24 +157,24 @@ function setup() {
     loading.load = 1;
 }
 
-function level(obj,panel) {
+function level(obj, panel) {
     push();
     obj.view();
     pop();
-    panel.headBar({player:obj.player});
+    panel.headBar({ player: obj.player });
     obj.player.money = panel.bank;
 }
 
 
 
 function draw() {
-    panel.bank = levelArr.map((lev)=>lev.player.body[0].money);
-    levelArr.map((lev, i)=>{
+    panel.bank = levelArr.map((lev) => lev.player.body[0].money);
+    levelArr.map((lev, i) => {
         if (panel.level === i + 1) {
-            level(lev,panel);
+            level(lev, panel);
         }
     })
-     if(panel.level === 0) {
+    if (panel.level === 0) {
         panel.levelPanel();
     }
 
@@ -172,7 +188,7 @@ function draw() {
     } else {
     }
     if (panel.buttonActive === 0) {
-        levelArr.map((lev)=>{
+        levelArr.map((lev) => {
             lev.player.body[0].level = 0;
         })
         panel.level = 0;
@@ -183,26 +199,26 @@ function draw() {
 
 function mousePressed(e) {
     panel.pressed(e);
-levelArr.map((lev)=>{
-    lev.pressedM(e);
-})
+    levelArr.map((lev) => {
+        lev.pressedM(e);
+    })
 
     levelStep_1.pressed(e);
-if(panel.atanActive === 0 && panel.atanMoney >= 10){
-    atanIcon.pressed(e);
-    if(atanIcon.buttonActive === "atan"){
-        panel.countMoney = panel.countMoney + 10
+    if (panel.atanActive === 0 && panel.atanMoney >= 10) {
+        atanIcon.pressed(e);
+        if (atanIcon.buttonActive === "atan") {
+            panel.countMoney = panel.countMoney + 10
+        }
+
+
     }
 
 
-}
-
- 
 
 }
 
 function mouseReleased(e) {
-    levelArr.map((lev)=>{
+    levelArr.map((lev) => {
         lev.relassedM(e);
     })
 
@@ -213,7 +229,7 @@ function mouseReleased(e) {
 }
 
 function keyPressed(e) {
-    levelArr.map((lev)=>{
+    levelArr.map((lev) => {
         lev.pressed(e);
     })
 
@@ -225,7 +241,7 @@ function touchMoved() {
 }
 
 function keyReleased(e) {
-    levelArr.map((lev)=>{
+    levelArr.map((lev) => {
         lev.rePressed(e);
     })
 }

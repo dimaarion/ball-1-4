@@ -7,6 +7,7 @@ class TileMap {
     img;
     image;
     scena = {};
+    id = 0;
     animate = new Animate();
 
     constructor(scena) {
@@ -34,34 +35,25 @@ class TileMap {
         let col = 0;
         let row = 0;
         let index = 0;
-
-        this.scena.getObjectData(layers).map((x, i) => {
+       
+        let center = {x:this.scena.scenaWidth / 2,y:this.scena.scenaHeigiht / 2}
+       
+        this.scena.getObjectData(layers).map((el, i) => {
             col++;
-            if (x === id) {
-                if (this.image) {
-/*
+           this.x = this.scena.size(col * this.scena.scena.tilewidth, this.scena.scale) - this.scena.size(this.scena.scena.tilewidth, this.scena.scale);
+           this.y = this.scena.size(row * this.scena.scena.tileheight, this.scena.scale);
+          
+            if (el === id && this.x > 0) {
+                push() 
+                rotate(platform.body[0].angle)
                    image(
-                        this.image[x - 1],
-                        this.scena.size(col * this.scena.scena.tilewidth, this.scena.scale) -
-                        this.scena.size(this.scena.scena.tilewidth, this.scena.scale),
-                        this.scena.size(row * this.scena.scena.tileheight, this.scena.scale),
-                        this.scena.size(this.scena.scena.tilewidth, this.scena.scale),
-                        this.scena.size(this.scena.scena.tileheight, this.scena.scale)
-                    );*/
-
-
-                }else {
-
-                   /* image(
-                        this.image[x],
-                        this.scena.size(col * this.scena.scena.tilewidth, this.scena.scale) -
-                        this.scena.size(this.scena.scena.tilewidth, this.scena.scale),
-                        this.scena.size(row * this.scena.scena.tileheight, this.scena.scale),
-                        this.scena.size(this.scena.scena.tilewidth, this.scena.scale),
-                        this.scena.size(this.scena.scena.tileheight, this.scena.scale)
-                    );*/
-                }
-
+                        this.animate.sprite(),
+                        this.x,
+                        this.y,
+                        this.scena.size(this.scena.scena.tilewidth + 1, this.scena.scale),
+                        this.scena.size(this.scena.scena.tileheight + 1, this.scena.scale)
+                    );
+                    pop()
             }
             if (col > this.scena.scena.width - 1) {
                 col = 0;
@@ -69,7 +61,7 @@ class TileMap {
             }
         });
 
-        image(0,0, this.scena.size(this.scena, this.scena.scale))
+       // image(0,0, this.scena.size(this.scena, this.scena.scale))
     }
 
 

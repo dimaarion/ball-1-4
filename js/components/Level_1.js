@@ -67,12 +67,12 @@ class Level_1 {
         
         // this.point.sensor = true
         Engine.run(this.engine);
-        
+        console.log(this.images)
 
     }
 
     view() {
-        background("#0d0b1a");
+        background("#38002c");
         rectMode(CENTER);
         push();
      //  angleMode(DEGREES)
@@ -81,7 +81,7 @@ class Level_1 {
         this.player.translates();
        // Matter.Composite.translate(this.world,{x:100,y:100})
 
-        this.images.map((el)=>el.imageMap(this.platform));
+        this.images.map((el)=>el.view(el.id,"wall",this.platform));
         this.stone.view();
         this.portal.view();
         this.anomaly.view();

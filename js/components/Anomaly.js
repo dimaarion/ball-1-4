@@ -76,16 +76,18 @@ class Anomaly extends Body {
            // ellipse(b.position.x, b.position.y, b.width, b.width)
             if (Matter.Body.getSpeed(b) === 0) {
                 b.activeB = b.activeB + 1
-                if (b.activeB > 2) {
+                if (b.activeB > 4) {
                     b.activeB = 0;
                 }
             }
             if (b.activeB === 1) {
-                Matter.Body.setVelocity(b, { x: this.speed, y: this.speed })
+                Matter.Body.setVelocity(b, { x: this.speed, y: 0 })
             } else if (b.activeB === 2) {
-                Matter.Body.setVelocity(b, { x: -this.speed, y: this.speed })
-            } else {
-                Matter.Body.setVelocity(b, { x: -this.speed, y: this.speed })
+                Matter.Body.setVelocity(b, { x: -this.speed, y: 0}) 
+            }else if(b.activeB === 3){
+                Matter.Body.setVelocity(b, { x: 0, y: -this.speed})
+            }else {
+                Matter.Body.setVelocity(b, { x: -this.speed, y: 0})
             }
 
             for (let i = 0; i < this.n; i++) {
